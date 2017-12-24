@@ -1,0 +1,23 @@
+@import '../../common/style/mixin.styl'
+$drawerBgc = #f7f7f7
+$drawerWidth = 15%
+$hideWidth = 35px
+$toggleBtnColor = #bfbfc0
+$toggleBtnFontSize = 16px
+
+.drawer
+  background-color $drawerBgc
+  width $drawerWidth
+  text-align left
+  &.hide
+    width $hideWidth
+    overflow hidden
+  & > i
+    cursor pointer
+    mx_fc($toggleBtnFontSize, $toggleBtnColor)
+    mx_hlh(45px, 45px)
+    margin-left 10px
+
+
+
+

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {getCardList} from '../../redux/songcardlist.redux'
+import {getCardList,keepScroll} from '../../redux/songcardlist.redux'
 import SongCard from '../SongCard/SongCard';
 
 // 该组件未完成任务 滑动到底部刷新，记录滚动条坐标
@@ -8,18 +8,32 @@ import './SongCardPage.styl';
 
 class SongCardPage extends Component {
 
-  componentDidMount(){
-    const {cardlist,pagenum,limit} = this.props.songcardlist;
-    if(!cardlist.length){
-      this.props.getCardList(pagenum,limit);
+  componentDidMount() {
+    const {cardList, pageNum, limit, bRequest,scrollPoint} = this.props.songcardlist;
+    if (!cardList.length) {
+      this.props.getCardList(pageNum, limit, bRequest);
     }
+    this.contentNode.scrollTop = scrollPoint;
   }
+
+  handleScroll = () => {
+    // 可以用函数节流优化
+    const {pageNum, limit, bRequest} = this.props.songcardlist;
+    const {scrollTop, clientHeight, scrollHeight} = this.contentNode;
+    // 判断是否到达底部进行请求 同时要注意请求尚未回来时无法再次发出请求
+    if (scrollTop + clientHeight === scrollHeight && bRequest) {
+      this.props.getCardList(pageNum, limit, bRequest);
+    }
+    // 记录滚动点
+    this.props.keepScroll(scrollTop);
+  };
+
   render() {
-    const {cardlist,pagenum,limit} = this.props.songcardlist;
+    const {cardList} = this.props.songcardlist;
     return (
-      <div className="songcard-page">
+      <div className="songcard-page" ref={node => this.contentNode = node} onScroll={this.handleScroll}>
         {
-          cardlist.length ? renderCard(cardlist) : 'waiting'
+          cardList.length ? renderCard(cardList) : 'waiting'
         }
       </div>
     )
@@ -36,6 +50,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = {
-  getCardList
+  getCardList,
+  keepScroll
 };
 export default connect(mapStateToProps, mapDispatchToProps)(SongCardPage);

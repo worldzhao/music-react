@@ -10,7 +10,7 @@ import Dashboard from './component/Dashboard/Dashboard';
 
 // import './axios/config.js'
 import './common/style/reset.css'
-import './common/style/fonts.css'
+require('./common/style/fonts.css');
 const store = createStore(reducers,applyMiddleware(thunk));
 ReactDOM.render(
   <Provider store={store}>

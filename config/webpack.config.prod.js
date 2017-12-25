@@ -143,6 +143,10 @@ module.exports = {
               name: 'static/media/[name].[hash:8].[ext]',
             },
           },
+          {
+            test: /\.styl(us)?$/,
+            loader: ['style-loader', 'css-loader', 'stylus-loader']
+          },
           // Process JS with Babel.
           {
             test: /\.(js|jsx|mjs)$/,
@@ -152,10 +156,6 @@ module.exports = {
 
               compact: true,
             },
-          },
-          {
-            test: /\.styl(us)?$/,
-            loader: ['style-loader', 'css-loader', 'stylus-loader']
           },
           // The notation here is somewhat confusing.
           // "postcss" loader applies autoprefixer to our CSS.
@@ -229,6 +229,13 @@ module.exports = {
             exclude: [/\.js$/, /\.html$/, /\.json$/],
             options: {
               name: 'static/media/[name].[hash:8].[ext]',
+            },
+          },
+          {
+            test: /\.(eot|svg|ttf|woff|woff2)$/,
+            loader:'file-loader',
+            options: {
+              name: 'static/[name].[hash:8].[ext]',
             },
           },
           // ** STOP ** Are you adding a new loader?

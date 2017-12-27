@@ -37,6 +37,11 @@ mx_postr($top, $right)
   top: $top;
   right: $right;
 
+mx_postb($top, $bottom)
+  position: absolute;
+  top: $top;
+  bottom: $bottom;
+
 // 绝对定位定义bottom,left值
 mx_posbl($bottom, $left)
   position: absolute;
@@ -144,3 +149,13 @@ mx_single_ellipsis()
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+
+
+@keyframes roll{
+  from{
+    transform: rotate(0deg);
+  }
+  to{
+    transform: rotate(360deg);
+  }
+}

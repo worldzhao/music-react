@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import {Route} from 'react-router-dom';
-import Subtitle from '../../component/Subtitle/Subtitle'
-import NavLink from '../../component/NavLink/NavLink'
-import SongCardPage from '../../component/SongCardPage/SongCardPage'
+import Subtitle from '../../component/Subtitle/Subtitle';
+import NavLink from '../../component/NavLink/NavLink';
+import SongCardPage from '../../component/SongCardPage/SongCardPage';
+import './FindMusic.styl';
 function SpecialRec() {
   return (
     <h1>person</h1>
@@ -12,6 +13,7 @@ function SpecialRec() {
 
 class FindMusic extends Component {
   render() {
+    console.log(this.props);
     const {match} = this.props;
     const navlist = [
       {
@@ -28,7 +30,7 @@ class FindMusic extends Component {
       <div className="findMusic">
         <Subtitle title={'发现音乐'}/>
         <NavLink navlist={navlist}/>
-        <div className="views">
+        <div className="level2-views">
           {
             navlist.map((v) => (
               <Route key={v.path} path={v.path} component={v.component}/>

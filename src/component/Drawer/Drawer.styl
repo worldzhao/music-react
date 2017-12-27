@@ -1,14 +1,16 @@
 @import '../../common/style/mixin.styl'
 $drawerBgc = #f7f7f7
-$drawerWidth = 15%
+$drawerWidth = 20%
 $hideWidth = 35px
 $toggleBtnColor = #bfbfc0
 $toggleBtnFontSize = 16px
 
 .drawer
   background-color $drawerBgc
-  width $drawerWidth
   text-align left
+  overflow-y auto
+  overflow-x hidden
+  width $drawerWidth
   &.hide
     width $hideWidth
     overflow hidden

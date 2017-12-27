@@ -23,7 +23,7 @@ function scrollPoint(scrollTop) {
 const initialState = {
   cardList: [],
   pageNum: 0,
-  limit: 24,
+  limit: 48,
   bRequest: true,
   scrollPoint: 0
 };

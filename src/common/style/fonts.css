@@ -1,3 +1,9 @@
+/*
+* 在默认的webpack.config.dev.js文件中，字体图标会失效
+* build环境中则没有问题
+* 在对比之后，发现两个文件对css的处理有差异
+* 生产环境的css经过了一个插件处理
+*/
 @font-face {
     font-family: 'icomoon';
     src:  url('./fonts/icomoon.eot?vfil4j');

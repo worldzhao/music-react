@@ -7,6 +7,7 @@ import Drawer from '../Drawer/Drawer'
 
 import FindMusic from '../../container/FindMusic/FindMusic'
 import PlaylistInfo from '../../container/PlaylistInfo/PlaylistInfo'
+
 function Search() {
   return (
     <h1>搜索</h1>
@@ -51,6 +52,8 @@ class Dashboard extends Component {
   };
 
   render() {
+    // 此处有两种对象，一种是显式路由以及对应的组件，例如findmusic，是要做导航渲染的Link
+    // 一种是仅仅是组件，没有导航，只是渲染Route,例如artistinfo
     const routeInfo = [{
       title: null,
       items: [{
@@ -85,7 +88,7 @@ class Dashboard extends Component {
           component: LatestSong
         },
         {
-          index: 6,
+          index: 5,
           path: '/favomusic',
           text: '我喜欢的音乐',
           title: '我喜欢的音乐',
@@ -101,12 +104,11 @@ class Dashboard extends Component {
           component: About
         },
         {
-          index:7,
-          path:'/playlistinfo',
-          component:PlaylistInfo
+          index: 7,
+          path: '/playlistinfo',
+          component: PlaylistInfo
         }]
     }];
-
     return (
       <div className="dashboard">
         <NavBar title={this.getTitle(routeInfo)}/>

@@ -6,19 +6,8 @@ class Drawer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      initMinHeight: 0,
       isShow: true
     };
-  }
-
-  componentDidMount() {
-    if (this.drawer) {
-      const innerHeight = window.innerHeight || document.documentElement.clientHeight;
-      const initMinHeight = innerHeight - 90;
-      this.setState({
-        initMinHeight
-      });
-    }
   }
 
   toggleDrawer = () => {
@@ -29,9 +18,9 @@ class Drawer extends Component {
 
   render() {
     const {routeInfo} = this.props;
-    const {initMinHeight, isShow} = this.state;
+    const {isShow} = this.state;
     return (
-      <div className={'drawer ' + (isShow ? '' : 'hide')} style={{minHeight: initMinHeight}}
+      <div className={'drawer ' + (isShow ? '' : 'hide')}
            ref={(node) => this.drawer = node}>
         <i className='icon-menu' onClick={this.toggleDrawer}/>
         {

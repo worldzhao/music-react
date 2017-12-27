@@ -1,15 +1,14 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {getCardList,keepScroll} from '../../redux/songcardlist.redux'
+import {getCardList, keepScroll} from '../../redux/songcardlist.redux'
 import SongCard from '../SongCard/SongCard';
-
-// 该组件未完成任务 滑动到底部刷新，记录滚动条坐标
+import Loading from '../Loading/Loading';
 import './SongCardPage.styl';
 
 class SongCardPage extends Component {
 
   componentDidMount() {
-    const {cardList, pageNum, limit, bRequest,scrollPoint} = this.props.songcardlist;
+    const {cardList, pageNum, limit, bRequest, scrollPoint} = this.props.songcardlist;
     if (!cardList.length) {
       this.props.getCardList(pageNum, limit, bRequest);
     }
@@ -33,7 +32,7 @@ class SongCardPage extends Component {
     return (
       <div className="songcard-page" ref={node => this.contentNode = node} onScroll={this.handleScroll}>
         {
-          cardList.length ? renderCard(cardList) : 'waiting'
+          cardList.length ? renderCard(cardList) : <Loading/>
         }
       </div>
     )

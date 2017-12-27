@@ -4,7 +4,7 @@ export function getArtistUrl(artistid) {
 }
 
 // 歌单详情 参数：歌单id
-export function getPlaylistDetailtUrl(playlistid) {
+export function getPlaylistInfotUrl(playlistid) {
   return `https://api.imjad.cn/cloudmusic/?type=playlist&id=${playlistid}`;
 }
 

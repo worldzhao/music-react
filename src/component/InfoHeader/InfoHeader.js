@@ -1,47 +1,77 @@
 import React, {Component} from 'react';
+import Subtitle from '../../component/Subtitle/Subtitle';
 import './InfoHeader.styl';
 
-class InfoHeader extends Component {
+class Header extends Component {
+  constructor(){
+    super();
+    this.state={
+      showDesc:false
+    }
+  }
+  toggleDesc=()=>{
+    console.log(1);
+    this.setState({
+      showDesc:!this.state.showDesc
+    })
+  };
   render() {
     const {playlist} = this.props;
-    console.log(playlist);
     return (
-      <div className="info-header">
-        <div className="cover">
-          <img src={playlist.coverImgUrl}/>
-          <div className="count"><span><i className="icon-headphones"/>{playlist.playCount}</span></div>
+      <div>
+        <Subtitle title='歌单'/>
+        <div className="info-header">
+          {renderCoverImg(playlist)}
+          <div className="info-header-right">
+            <p className="title">{playlist.name}</p>
+            {renderCreator(playlist)}
+            {renderOperationBtns(playlist)}
+            <div className="tags">标签：
+              {playlist.tags.map(v => <span key={v}>{v}</span>)}
+            </div>
+            <div className="playlist-desc" onClick={this.toggleDesc}>
+              <pre className={this.state.showDesc?'show':'more'}>{playlist.description}</pre>
+            </div>
+          </div>
         </div>
-
-        <div className="others">
-          <p className="title">{playlist.name}</p>
-
-          <div className="creator">
-            <div className="creator-avatar"><img src={playlist.creator.avatarUrl} alt="creator-avatar"/></div>
-            <div className="creator-nickname">{playlist.creator.nickname}</div>
-            <div className="create-time">{playlist.creator.createTime}创建</div>
-          </div>
-
-          <div className="btns">
-            <a><i className="icon-folder-plus"/>收藏({playlist.subscribedCount})</a>
-            <a href="javascript:void(0)"><i className="icon-spinner9"/>评论({playlist.commentCount})</a>
-            <a href="javascript:void(0)"><i className="icon-share2"/>分享({playlist.shareCount})</a>
-            <a href="javascript:void(0)"><i className="icon-folder-download"/>下载全部</a>
-            <a href="javascript:void(0)">~更多</a>
-          </div>
-
-          <div className="tag">标签：
-            <a>{playlist.tag}</a>
-          </div>
-          <div className="des">
-            <p>{playlist.description}</p>
-          </div>
-
-        </div>
-
-        <p>播放全部({playlist.tracks.length})</p>
       </div>
+
     )
   }
 }
 
-export default InfoHeader;
+function renderCoverImg(playlist) {
+  return (
+    <div className="cover-img">
+      <img src={playlist.coverImgUrl}/>
+      <p className="play-count">
+        <i className="icon-headphones"/>
+        {playlist.playCount}
+      </p>
+    </div>
+  )
+}
+
+function renderCreator(playlist) {
+  return (
+    <div className="creator">
+      <div className="creator-avatar"><img src={playlist.creator.avatarUrl} alt="creator-avatar"/></div>
+      <div className="creator-nickname">{playlist.creator.nickname}</div>
+      <div className="create-time">{playlist.createTime}创建</div>
+    </div>
+  )
+}
+
+function renderOperationBtns(playlist) {
+  return (
+    <div className="operation-buttons">
+      <a href="javascript:void(0)"><i className="icon-folder-plus"/>收藏({playlist.subscribedCount})</a>
+      <a href="javascript:void(0)"><i className="icon-spinner9"/>评论({playlist.commentCount})</a>
+      <a href="javascript:void(0)"><i className="icon-share2"/>分享({playlist.shareCount})</a>
+      <a href="javascript:void(0)"><i className="icon-folder-download"/>下载全部</a>
+      <a href="javascript:void(0)">~更多</a>
+    </div>
+  )
+}
+
+export default Header;

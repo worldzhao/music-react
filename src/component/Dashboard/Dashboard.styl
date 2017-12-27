@@ -1,17 +1,25 @@
 @import '../../common/style/mixin.styl'
 @import '../../common/style/variable.styl'
 
-$pageBgc = #fafafc
+html{
+  background-color: $pageBgc
+}
 .dashboard
   .navbar
-    mx_poftl(0,0)
+    mx_poftl(0, 0)
   .content
-    margin-top $navBarHeight
-    margin-bottom $playerHeight
+    background-color $pageBgc
+    mx_postb($navBarHeight,$playerHeight)
     mx_flex()
+    overflow auto
+    width 100%
     .views
-      background-color $pageBgc
+      mx_brbox()
       mx_flex_item(1)
-      padding:20px 30px;
+      overflow-x hidden
+      overflow-y auto
+      padding 20px 30px
+      &::-webkit-scrollbar
+        display none
   .player
-    mx_pofbl(0,0)
+    mx_pofbl(0, 0)

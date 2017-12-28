@@ -4,9 +4,10 @@
 $nicknameColor = #666666;
 $createTimeColor = #aeaeaf;
 $btnBorderColor = #c3c4c8
+$tagColor = #7e8c8d
 .info-header
   mx_flex()
-  margin-bottom 20px
+  margin-bottom 40px
   .cover-img
     flex 0 0 200px
     mx_wh(200px, 200px)
@@ -49,15 +50,14 @@ $btnBorderColor = #c3c4c8
         border 1px solid $btnBorderColor
         display inline-block
         mx_hlh(18px, 18px)
-        mx_fc(14px, #000)
+        mx_fc(12px, #000)
         margin-right 8px
         padding 8px
         letter-spacing 1px
         -webkit-border-radius: 5px
         -moz-border-radius: 5px
     .tags
-      mx_fc(12px, #000)
-      margin-bottom 15px
+      mx_fc(12px, $tagColor)
       & > span
         border 1px solid $btnBorderColor
         border-radius 8px
@@ -66,7 +66,6 @@ $btnBorderColor = #c3c4c8
         mx_hlh(18px, 18px)
         margin 0 10px 4px 0
         padding 4px
-
     .playlist-desc
       position relative
       & > pre

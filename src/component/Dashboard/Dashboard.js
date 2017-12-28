@@ -38,6 +38,12 @@ function About() {
   )
 }
 
+function ArtistInfo() {
+  return (
+    <h1>歌手信息</h1>
+  )
+}
+
 class Dashboard extends Component {
   getTitle = (routeInfo) => {
     let title;
@@ -107,6 +113,10 @@ class Dashboard extends Component {
           index: 7,
           path: '/playlistinfo',
           component: PlaylistInfo
+        },{
+          index: 8,
+          path: '/artistinfo',
+          component: ArtistInfo
         }]
     }];
     return (

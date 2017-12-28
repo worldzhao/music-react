@@ -1,20 +1,22 @@
 import React, {Component} from 'react';
 import Subtitle from '../../component/Subtitle/Subtitle';
+import {formatTimeStamp} from '../../common/js/util'
 import './InfoHeader.styl';
 
 class Header extends Component {
-  constructor(){
+  constructor() {
     super();
-    this.state={
-      showDesc:false
+    this.state = {
+      showDesc: false
     }
   }
-  toggleDesc=()=>{
-    console.log(1);
+
+  toggleDesc = () => {
     this.setState({
-      showDesc:!this.state.showDesc
+      showDesc: !this.state.showDesc
     })
   };
+
   render() {
     const {playlist} = this.props;
     return (
@@ -30,7 +32,7 @@ class Header extends Component {
               {playlist.tags.map(v => <span key={v}>{v}</span>)}
             </div>
             <div className="playlist-desc" onClick={this.toggleDesc}>
-              <pre className={this.state.showDesc?'show':'more'}>{playlist.description}</pre>
+              <pre className={this.state.showDesc ? 'show' : 'more'}>{playlist.description}</pre>
             </div>
           </div>
         </div>
@@ -57,7 +59,7 @@ function renderCreator(playlist) {
     <div className="creator">
       <div className="creator-avatar"><img src={playlist.creator.avatarUrl} alt="creator-avatar"/></div>
       <div className="creator-nickname">{playlist.creator.nickname}</div>
-      <div className="create-time">{playlist.createTime}创建</div>
+      <div className="create-time">{formatTimeStamp(playlist.createTime)}创建</div>
     </div>
   )
 }

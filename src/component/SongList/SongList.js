@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {addSong2Que,playSong2Que} from '../../redux/playqueue.redux';
 import {specIndex, formatDuration} from '../../common/js/util'
 import './SongList.styl';
 
 class SongList extends Component {
   render() {
-    const {tracks} = this.props;
+    const {tracks,addSong2Que,playSong2Que} = this.props;
     return (
       <div className='songList'>
         <p className='play-all-btn'>播放全部({tracks.length})</p>
@@ -20,8 +22,8 @@ class SongList extends Component {
                     <span className="song-name">{song.name}</span>
                   </div>
                   <div className="section-two">
-                    <i className="icon-plus"/>
-                    <i className="icon-play3"/>
+                    <i className="icon-plus" onClick={()=>addSong2Que(song)}/>
+                    <i className="icon-play3" onClick={()=>playSong2Que(song)}/>
                     <div className="song-artist">
                       {
                         song.ar.map(artist =>
@@ -41,4 +43,16 @@ class SongList extends Component {
   }
 }
 
-export default SongList;
+const mapStateToProps = (state) => ({
+  
+})
+
+const mapDispatchToProps = {
+  addSong2Que,
+  playSong2Que
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SongList);

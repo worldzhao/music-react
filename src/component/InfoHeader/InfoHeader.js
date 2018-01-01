@@ -32,7 +32,7 @@ class Header extends Component {
               {playlist.tags.map(v => <span key={v}>{v}</span>)}
             </div>
             <div className="playlist-desc" onClick={this.toggleDesc}>
-              <pre className={this.state.showDesc ? 'show' : 'more'}>{playlist.description}</pre>
+              <p className={this.state.showDesc ? 'show' : 'more'}>{playlist.description}</p>
             </div>
           </div>
         </div>

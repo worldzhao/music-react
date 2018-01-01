@@ -2,15 +2,14 @@ export const formatTimeStamp = (timeStamp) => {
   const time = new Date(timeStamp);
   let year = time.getFullYear(),
     month = time.getMonth(),
-    day = time.getDay(),
-    hours = time.getHours(),
-    minute = time.getMinutes(),
-    seconds = time.getSeconds();
+    day = time.getDay();
   return `${year}-${month}-${day} `
 };
 
 export const specIndex = (i) => {
-  return i < 10 ? "0" + i : i;
+  return i < 10
+    ? "0" + i
+    : i;
 };
 
 export const formatDuration = (ms) => {
@@ -19,3 +18,11 @@ export const formatDuration = (ms) => {
   let sec = parseInt(duration - min * 60, 10);
   return specIndex(min) + ':' + specIndex(sec);
 };
+
+export const formatCurrentTime = (cdt) => {
+  let min = parseInt(cdt / 60, 10);
+  let sec = parseInt(cdt - min * 60, 10);
+  min = specIndex(min);
+  sec = specIndex(sec);
+  return `${min}:${sec}`;
+}

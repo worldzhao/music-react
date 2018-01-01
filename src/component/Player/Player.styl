@@ -34,6 +34,7 @@ mx_bar_child()
       background-color $redBgc
       border-radius 50%
       cursor pointer
+      outline none
       mx_wh(40px, 40px)
       &.pp-btn
         margin 0 16px 0 16px
@@ -60,7 +61,6 @@ mx_bar_child()
         mx_bar(100%, 6px)
         .current-progress
           mx_bar_child()
-          width 20px
   .vol-wrapper
     mx_flex_item(2)
     padding 37px 20px 0
@@ -73,7 +73,6 @@ mx_bar_child()
         mx_bar(80%, 6px)
         .current-vol
           mx_bar_child()
-          width 20px
   .player-mode
     mx_flex_item(1)
     mx_flex()

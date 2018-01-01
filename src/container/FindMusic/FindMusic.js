@@ -13,7 +13,6 @@ function SpecialRec() {
 
 class FindMusic extends Component {
   render() {
-    console.log(this.props);
     const {match} = this.props;
     const navlist = [
       {

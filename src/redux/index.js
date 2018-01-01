@@ -1,3 +1,4 @@
 import {combineReducers} from 'redux';
 import {songcardlist} from './songcardlist.redux';
-export default combineReducers({songcardlist})
+import {playqueue} from './playqueue.redux';
+export default combineReducers({songcardlist,playqueue})

@@ -2,7 +2,7 @@ export const formatTimeStamp = (timeStamp) => {
   const time = new Date(timeStamp);
   let year = time.getFullYear(),
     month = time.getMonth(),
-    day = time.getDay();
+    day = time.getDate();
   return `${year}-${month}-${day} `
 };
 

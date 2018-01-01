@@ -67,7 +67,6 @@ $tagColor = #7e8c8d
         margin 0 10px 4px 0
         padding 4px
     .playlist-desc
-      position relative
       & > p
         color rgb(102, 102, 102)
         cursor pointer
@@ -77,12 +76,9 @@ $tagColor = #7e8c8d
         height 40px
         overflow hidden
         padding 0 30px
-        position absolute
         transition all .5s
-        z-index 100
         &.more
           mx_more_ellipsis()
         &.show
-          background-color: rgba(10,10,10,0.1)
           height auto
 

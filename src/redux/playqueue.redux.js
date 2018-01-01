@@ -26,7 +26,7 @@ const initState = {
       name: "春风吹",
       id: 28029097,
       url: "http://orot63356.bkt.clouddn.com/%E6%96%B9%E5%A4%A7%E5%90%8C%20-%20%E6%98%A5%E9%" +
-          "A3%8E%E5%90%B9%E4%B9%8B%E5%90%B9%E5%90%B9%E9%A3%8EMIX.mp3"
+        "A3%8E%E5%90%B9%E4%B9%8B%E5%90%B9%E5%90%B9%E9%A3%8EMIX.mp3"
     }
   ],
   song: {
@@ -76,9 +76,9 @@ export function playqueue(state = initState, action) {
     case CHANGE_SONG:
       return {
         ...state,
-        song:action.payload.song,
-        index:action.payload.index,
-        flag:'AFTER_PLAYED_SONG'
+        song: action.payload.song,
+        index: action.payload.index,
+        flag: action.payload.flag
       }
     default:
       return state;
@@ -94,13 +94,20 @@ function addSongAct(song) {
   return {type: ADD_SONG, payload: song}
 }
 
-function changeSongAct({song, index}) {
+function changeSongAct({song, index,flag}) {
   return {
     type: CHANGE_SONG,
     payload: {
       song,
-      index
+      index,
+      flag
     }
+  }
+}
+
+function deleteSongAct(){
+  return {
+    type:DELETE_SONG,
   }
 }
 
@@ -136,8 +143,18 @@ export function addSong2Que(song) {
 }
 
 // Player
-export function changeSong({song, index},cb) {
+export function changeSong({song, index, flag}) {
   return dispatch => {
-    dispatch(changeSongAct({song, index}));
+    flag = flag
+      ? flag
+      : '';
+    dispatch(changeSongAct({song, index, flag}));
+  }
+}
+
+// ReadyList
+export function deleteSong(){
+  return dispatch => {
+
   }
 }

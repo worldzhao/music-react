@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {changeSong} from '../../redux/playqueue.redux';
 import {formatDuration, formatCurrentTime} from '../../common/js/util'
+import ReadyList from '../ReadyList/ReadyList';
 import './Player.styl';
 
 class Player extends Component {
@@ -16,7 +17,8 @@ class Player extends Component {
       lastVolumeIcon: "",
       volumeIcon:"icon-volume-medium",
       mode: "listloop",
-      modeIcon: "icon-loop2"
+      modeIcon: "icon-loop2",
+      showReadyList:false
     }
   }
 
@@ -25,12 +27,13 @@ class Player extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const {flag,playlist} = nextProps.playqueue;
+    let {flag,playlist} = nextProps.playqueue;
     if(flag === "PLAY_SONG") {
       const song = playlist[0];
       const index = 0;
+      flag = 'ready2play'
       // 下面change之后redux中要改变flag，避免死循环
-      nextProps.changeSong({song,index});
+      nextProps.changeSong({song,index,flag});
     }
   }
 
@@ -160,7 +163,7 @@ class Player extends Component {
       // 暂停状态下切歌保持暂停状态
       // 播放状态下切歌歌曲立刻播放
       // ppIcon === icon-pause2说明处于播放状态，图标为暂停图标
-      if(ppIcon === "icon-pause2" || this.props.playqueue.flag === "AFTER_PLAYED_SONG") {
+      if(ppIcon === "icon-pause2" || this.props.playqueue.flag === 'ready2play') {
         this.toPlay();
       }else{
         return;
@@ -225,13 +228,20 @@ class Player extends Component {
     }
   }
 
+  toggleReadyList = () =>{
+    this.setState({
+      showReadyList:!this.state.showReadyList
+    })
+  }
+
   render() {
     const {
       ppIcon,
       volumeIcon,
       modeIcon,
       curProgressBarWidth,
-      curVolBarWidth
+      curVolBarWidth,
+      showReadyList
     } = this.state;
     const {song} = this.props.playqueue;
     return (
@@ -281,9 +291,10 @@ class Player extends Component {
         <div className="player-mode">
           <i className='icon-heart'/>
           <i className={modeIcon} onClick={this.setMode}/>
-          <i className='icon-list'/>
+          <i className='icon-list' onClick={this.toggleReadyList}/>
         </div>
 
+        {showReadyList?<ReadyList/>:null}
       </div>
     )
   }

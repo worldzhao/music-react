@@ -24,7 +24,6 @@ class PlaylistInfo extends Component {
     axios
       .get(getPlaylistInfotUrl(id))
       .then(res => {
-        console.log(res);
         this.setState({playlist: res.data.playlist});
       })
       .catch(error => {

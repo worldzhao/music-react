@@ -9,19 +9,36 @@ class Player extends Component {
   constructor() {
     super();
     this.state = {
+      cdt:"00:00",
       curProgressBarWidth:0,
       curVolBarWidth:"50%",
       ppIcon: "icon-play3",
       lastVolumeIcon: "",
       volumeIcon:"icon-volume-medium",
       mode: "listloop",
-      modeIcon: "icon-loop2",
-      index:0
+      modeIcon: "icon-loop2"
     }
   }
 
   componentDidMount() {
     this.audio.volume = 0.5;
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const {flag,playlist} = nextProps.playqueue;
+    if(flag === "PLAY_SONG") {
+      const song = playlist[0];
+      const index = 0;
+      // 下面change之后redux中要改变flag，避免死循环
+      nextProps.changeSong({song,index});
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    // 把这里当成异步dispatch的回调
+    if (this.props.playqueue.song.id !== prevProps.playqueue.song.id){
+      this.changeSongCallback();
+    }
   }
 
   togglePlay = () => {
@@ -47,17 +64,12 @@ class Player extends Component {
   }
 
   syncTime = () => {
-    const {currentTime} = this.audio;
     const progressBarWidth = this.progressBar.offsetWidth;
-    const {curProgressBarWidth,song} = this.state;
-    const {dt} = song;
-    const timeScale = currentTime * 1000 / dt;
+    const {song} = this.props.playqueue;
+    const timeScale = this.audio.currentTime * 1000 / song.dt;
     this.setState({
       curProgressBarWidth:progressBarWidth * timeScale + "px",
-      song: {
-        ...this.state.song,
-        cdt: formatCurrentTime(currentTime),
-      }
+      cdt:formatCurrentTime(this.audio.currentTime)
     })
   }
 
@@ -105,36 +117,42 @@ class Player extends Component {
   }
 
   preSong = () => {
-    const {mode,playlist} = this.state;
-    let index = this.state.index - 1;
+    const {mode} = this.state;
+    const {changeSong} = this.props;
+    let {playlist,index} = this.props.playqueue;
+    index = index - 1;
     if(index === -1){
       index = playlist.length - 1;
     }
     if(mode === 'shuffleplay') {
       index = Math.floor(Math.random()*playlist.length);
     } 
-    const song = this.state.playlist[index];
-    this.setState({
-      index,
-      song
-    },this.changeSongCallback)
-
+    const song = playlist[index];
+    changeSong({song,index});
   }
 
   nextSong = () => {
-    const {mode,playlist} = this.state;
-    let index = this.state.index + 1;
+    const {mode} = this.state;
+    const {changeSong} = this.props;
+    let {playlist, index} = this.props.playqueue;
+    index = index + 1;
     if(index === playlist.length){
       index = 0;
     }
     if(mode === 'shuffleplay') {
       index = Math.floor(Math.random()*playlist.length);
     } 
-    const song = this.state.playlist[index];
+    const song = playlist[index];
+    changeSong({song,index});
+
+    /*
     this.setState({
       index,
       song
-    },this.changeSongCallback)
+    },()=>{
+      this.changeSongCallback()
+    })
+    */
   }
 
   changeSongCallback = () => {
@@ -142,7 +160,7 @@ class Player extends Component {
       // 暂停状态下切歌保持暂停状态
       // 播放状态下切歌歌曲立刻播放
       // ppIcon === icon-pause2说明处于播放状态，图标为暂停图标
-      if(ppIcon === "icon-pause2") {
+      if(ppIcon === "icon-pause2" || this.props.playqueue.flag === "AFTER_PLAYED_SONG") {
         this.toPlay();
       }else{
         return;
@@ -155,7 +173,7 @@ class Player extends Component {
       case "listloop":
         this.setState({
           mode: "sequential",
-          modeIcon: "icon-loop2"
+          modeIcon: "icon-spinner11"
         })
         break;
       case "sequential":
@@ -183,7 +201,8 @@ class Player extends Component {
 
   ended = () => {
     // 当前歌曲播放完毕时会触发该方法
-    const {mode,index,playlist} = this.state;
+    const {mode} = this.state;
+    const {index,playlist} = this.props.playqueue;
     switch (mode) {
       case "listloop":
         this.nextSong();
@@ -207,14 +226,14 @@ class Player extends Component {
   }
 
   render() {
-      const {
-        song,
-        ppIcon,
-        volumeIcon,
-        modeIcon,
-        curProgressBarWidth,
-        curVolBarWidth
-      } = this.state;
+    const {
+      ppIcon,
+      volumeIcon,
+      modeIcon,
+      curProgressBarWidth,
+      curVolBarWidth
+    } = this.state;
+    const {song} = this.props.playqueue;
     return (
       <div className="player">
         {renderAlbumImg(song)}
@@ -239,7 +258,7 @@ class Player extends Component {
                 .map(v =>< Link key = {v.id} to = {{pathname:`/artistinfo`,search:`?id=${v.id}`}} > {v.name} </Link>)}
             </div>
             <div className="song-duration">
-              {song.cdt}/{formatDuration(song.dt)}
+              {this.state.cdt}/{formatDuration(song.dt)}
             </div>
           </div>
 
@@ -278,4 +297,17 @@ function renderAlbumImg(song) {
   )
 }
 
-export default Player;
+const mapStateToProps = (state) => {
+  return {
+    playqueue: state.playqueue
+  }
+}
+
+const mapDispatchToProps = {
+  changeSong
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Player);

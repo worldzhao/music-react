@@ -26,8 +26,8 @@ class SongList extends Component {
                     <i className="icon-play3" onClick={()=>playSong2Que(song)}/>
                     <div className="song-artist">
                       {
-                        song.ar.map(artist =>
-                          <Link key={artist.id} to={{pathname: `/artistinfo`, search: `?id=${artist.id}`}}>{artist.name}</Link>)
+                        song.ar.map((artist,index) =>
+                          <Link key={index + artist.id} to={{pathname: `/artistinfo`, search: `?id=${artist.id}`}}>{artist.name}</Link>)
                       }
                     </div>
                   </div>

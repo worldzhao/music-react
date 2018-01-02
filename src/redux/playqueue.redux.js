@@ -7,6 +7,7 @@ const ADD_SONG = 'ADD_SONG';
 const DELETE_SONG = "DELETE_SONG";
 const CHANGE_SONG = 'CHANGE_SONG';
 
+// inital state
 const initState = {
   playlist: [
     {
@@ -55,30 +56,73 @@ const initState = {
 
 // reducer
 export function playqueue(state = initState, action) {
+  let {playlist} = state;
+  let len = playlist.length;
+  const isContain = (id) => {
+    for (let i = 0; i < len; i++) {
+      const song = playlist[i];
+      if (song.id === id) {
+        return true;
+      }
+    }
+    return false;
+  }
   switch (action.type) {
     case PLAY_SONG:
-      return {
-        ...state,
-        playlist: [
-          action.payload, ...state.playlist
-        ],
-        flag: PLAY_SONG
-      };
+      // 歌曲列表中已经存在的歌曲不允许再次添加
+      if (isContain(action.payload.id)) {
+        return {
+          ...state
+        }
+      } else {
+        return {
+          ...state,
+          playlist: [
+            action.payload, ...state.playlist
+          ],
+          flag: PLAY_SONG
+        };
+      }
     case ADD_SONG:
-      return {
-        ...state,
-        playlist: [
-          ...state.playlist,
-          action.payload
-        ],
-        flag: ADD_SONG
-      };
+      // 歌曲列表中已经存在的歌曲不允许再次添加
+      if (isContain(action.payload.id)) {
+        return {
+          ...state
+        }
+      } else {
+        return {
+          ...state,
+          playlist: [
+            ...state.playlist,
+            action.payload
+          ],
+          flag: ADD_SONG
+        };
+      }
     case CHANGE_SONG:
       return {
         ...state,
         song: action.payload.song,
         index: action.payload.index,
         flag: action.payload.flag
+      }
+    case DELETE_SONG:
+      // 记录要删除歌曲的数组下标
+      let delIndex;
+      for (let i = 0; i < len; i++) {
+        const song = playlist[i];
+        if (playlist[i].id === action.payload) {
+          delIndex = i;
+        }
+      }
+      playlist.splice(delIndex, 1);
+      return {
+        ...state,
+        playlist,
+        // 删除歌曲后记得改变当前播放歌曲的index
+        index: state.index
+          ? state.index - 1
+          : state.playlist.length - 1
       }
     default:
       return state;
@@ -94,7 +138,7 @@ function addSongAct(song) {
   return {type: ADD_SONG, payload: song}
 }
 
-function changeSongAct({song, index,flag}) {
+function changeSongAct({song, index, flag}) {
   return {
     type: CHANGE_SONG,
     payload: {
@@ -105,10 +149,8 @@ function changeSongAct({song, index,flag}) {
   }
 }
 
-function deleteSongAct(){
-  return {
-    type:DELETE_SONG,
-  }
+function deleteSongAct(id) {
+  return {type: DELETE_SONG, payload: id}
 }
 
 // logic operation SongList
@@ -153,8 +195,8 @@ export function changeSong({song, index, flag}) {
 }
 
 // ReadyList
-export function deleteSong(){
+export function deleteSong(id) {
   return dispatch => {
-
+    dispatch(deleteSongAct(id))
   }
 }

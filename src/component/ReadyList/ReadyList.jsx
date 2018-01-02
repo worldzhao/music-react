@@ -26,9 +26,8 @@ class ReadyList extends Component {
             {playlist.map((v,index) => 
             <li 
             key={v.id} 
-            className={v.id===song.id?"body-item active":"body-item"}
-            onClick={()=>{this.playSong(v,index)}}>
-              <div className="song-name">{v.name}</div>
+            className={v.id===song.id?"body-item active":"body-item"}>
+              <div className="song-name" onClick={()=>{this.playSong(v,index)}}>{v.name}</div>
               <div className="song-artist">
                 {v
                   .ar
@@ -41,7 +40,7 @@ class ReadyList extends Component {
                 }
               </div>
               <div className="delete-btn">
-                <i className="icon-cross"></i>
+                <i className="icon-cross" onClick={()=>{this.props.deleteSong(v.id)}}></i>
               </div>
             </li>)
             }

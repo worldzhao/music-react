@@ -1,15 +1,15 @@
 // 歌手信息 参数：歌手id
-export function getArtistUrl(artistid) {
+export function getArtistInfo(artistid) {
   return `https://api.imjad.cn/cloudmusic/?type=artist&id=${artistid}`;
 }
 
 // 歌单详情 参数：歌单id
-export function getPlaylistInfotUrl(playlistid) {
+export function getPlaylistInfo(playlistid) {
   return `https://api.imjad.cn/cloudmusic/?type=playlist&id=${playlistid}`;
 }
 
 // 推荐歌单 参数 limit pagenum
-export function getRecmdPlaylistURL(limit=24, pagenum) {
+export function getRecmdPlaylist(limit=24, pagenum) {
   return `http://112.74.56.114:8888/NetEaseMusicServer/index?limit=${limit}&pagenum=${pagenum}`
 }
 
@@ -22,6 +22,7 @@ export function getMp3Url(id){
 export function getLyric(id){
   return `https://api.imjad.cn/cloudmusic/?type=lyric&id=${id}`;
 }
+
 // 轮播图
 export function getSwiperImg() {
   return 'http://112.74.56.114:8888/NetEaseMusicServer/image';

@@ -12,43 +12,46 @@ const initState = {
   playlist: [
     {
       al: {
-        id: 2716009,
-        name: "The SOULBOY Collection",
-        pic: 5771336534245379,
-        picUrl: "https://p1.music.126.net/C5aWA5i1pYSX24OrN6xQkg==/5771336534245379.jpg"
+        id: 19316,
+        name: "遥远的她.Amour",
+        pic: 43980465112095,
+        picUrl: "https://p1.music.126.net/rxyLRMZdqzHdxyP5cl8qQA==/43980465112095.jpg",
+        tns: []
       },
       ar: [
         {
-          id: 2738,
-          name: "方大同"
+
+          id: 6460,
+          name: "张学友",
+          tns: []
         }
       ],
-      dt: 200109,
-      name: "春风吹",
-      id: 28029097,
-      url: "http://orot63356.bkt.clouddn.com/%E6%96%B9%E5%A4%A7%E5%90%8C%20-%20%E6%98%A5%E9%" +
-        "A3%8E%E5%90%B9%E4%B9%8B%E5%90%B9%E5%90%B9%E9%A3%8EMIX.mp3"
+      dt: 259813,
+      name: "遥远的她",
+      id: 191232,
+      url: "https://m7.music.126.net/20180102222713/1d5d4043756cad752095d149a8199e8e/ymusic/c91b/17f3/70b9/1d8753528eb5196aa11de679df618cc7.mp3"  
     }
   ],
   song: {
     al: {
-      id: 2716009,
-      name: "The SOULBOY Collection",
-      pic: 5771336534245379,
-      picUrl: "https://p1.music.126.net/C5aWA5i1pYSX24OrN6xQkg==/5771336534245379.jpg"
+      id: 19316,
+      name: "遥远的她.Amour",
+      pic: 43980465112095,
+      picUrl: "https://p1.music.126.net/rxyLRMZdqzHdxyP5cl8qQA==/43980465112095.jpg",
+      tns: []
     },
     ar: [
       {
-        id: 2738,
-        name: "方大同"
+
+        id: 6460,
+        name: "张学友",
+        tns: []
       }
     ],
-    cdt: "00:00",
-    dt: 200109,
-    name: "春风吹",
-    id: 28029097,
-    url: "http://orot63356.bkt.clouddn.com/%E6%96%B9%E5%A4%A7%E5%90%8C%20-%20%E6%98%A5%E9%" +
-        "A3%8E%E5%90%B9%E4%B9%8B%E5%90%B9%E5%90%B9%E9%A3%8EMIX.mp3"
+    dt: 259813,
+    name: "遥远的她",
+    id: 191232,
+    url: "https://m7.music.126.net/20180102222713/1d5d4043756cad752095d149a8199e8e/ymusic/c91b/17f3/70b9/1d8753528eb5196aa11de679df618cc7.mp3"  
   },
   index: 0,
   flag: ''

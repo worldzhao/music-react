@@ -1,18 +1,12 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import InfoHeader from '../../component/InfoHeader/InfoHeader';
 import SongList from '../../component/SongList/SongList';
 import Loading from '../../component/Loading/Loading'
-import axios from 'axios';
-import {getPlaylistInfotUrl} from '../../axios/api'
+import {getPlaylist} from '../../redux/playlistinfo.redux'
 import './PlaylistInfo.styl'
 
 class PlaylistInfo extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      playlist: null
-    }
-  }
 
   componentDidMount() {
     const id = this
@@ -21,18 +15,11 @@ class PlaylistInfo extends Component {
       .location
       .search
       .split('=')[1];
-    axios
-      .get(getPlaylistInfotUrl(id))
-      .then(res => {
-        this.setState({playlist: res.data.playlist});
-      })
-      .catch(error => {
-        console.log(error);
-      })
+    this.props.getPlaylist(id);
   }
 
   render() {
-    const {playlist} = this.state;
+    const {playlist} = this.props.playlistinfo;
     return (
       <div>
         {playlist
@@ -43,16 +30,27 @@ class PlaylistInfo extends Component {
   }
 }
 function renderPlaylist(playlist) {
-  const {tracks, coverImgUrl} = playlist;
+  const {tracks} = playlist;
   return (
-    <div className="playlist-container">
-      <div className="filter-bgc" style={{"background":`url(${coverImgUrl}) repeat-x`}}></div>
-      <div className="shadow-bgc"></div>
       <div className="playlist-info">
         <InfoHeader playlist={playlist}/>
         <SongList tracks={tracks}/>
       </div>
-    </div>
   )
 }
-export default PlaylistInfo;
+
+
+const mapStateToProps = (state) => {
+  return {
+    playlistinfo: state.playlistinfo
+  }
+}
+
+const mapDispatchToProps = {
+  getPlaylist
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(PlaylistInfo);

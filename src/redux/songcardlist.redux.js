@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {getRecmdPlaylistURL} from '../axios/api'
+import {getRecmdPlaylist} from '../axios/api'
 // constant
 const CARD_LIST = 'CARD_LIST';
 const SCROLL_POINT = 'SCROLL_POINT';
@@ -52,7 +52,7 @@ export function songcardlist(state = initialState, action) {
 export function getCardList(pageNum, limit, bRequest) {
   return dispatch => {
     bRequest = !bRequest;
-    axios.get(getRecmdPlaylistURL(limit, pageNum)).then((res) => {
+    axios.get(getRecmdPlaylist(limit, pageNum)).then((res) => {
       dispatch(cardList(res.data, bRequest));
     }).catch((error) => {
       console.log(error);

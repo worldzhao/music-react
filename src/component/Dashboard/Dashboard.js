@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {withRouter, Switch, Route} from 'react-router-dom';
+import {withRouter, Switch, Route, Redirect} from 'react-router-dom';
 import './Dashboard.styl';
 import NavBar from '../NavBar/NavBar'
 import Player from '../Player/Player'
@@ -119,8 +119,10 @@ class Dashboard extends Component {
           component: ArtistInfo
         }]
     }];
+    const pathname = this.props.location.pathname;
     return (
       <div className="dashboard">
+      {pathname==="/"?<Redirect to="/findmusic/playlist"></Redirect>:null}
         <NavBar title={this.getTitle(routeInfo)}/>
         <div className="content">
           <Drawer routeInfo={routeInfo}/>

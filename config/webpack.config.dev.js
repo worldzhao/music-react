@@ -118,17 +118,11 @@ module.exports = {
       {
         test: /\.(js|jsx|mjs)$/,
         enforce: 'pre',
-        use: [
-          {
-            options: {
-              formatter: eslintFormatter,
-              eslintPath: require.resolve('eslint'),
-
-            },
-            loader: require.resolve('eslint-loader'),
-          },
+        loader: 'eslint-loader',
+        // 除去node_modules
+        exclude: [
+          path.resolve(__dirname, '../node_modules')
         ],
-        include: paths.appSrc,
       },
       {
         // "oneOf" will traverse all following loaders until one will

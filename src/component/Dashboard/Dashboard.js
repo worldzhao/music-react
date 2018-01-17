@@ -1,12 +1,13 @@
-import React, {Component} from 'react';
-import {withRouter, Switch, Route, Redirect} from 'react-router-dom';
-import './Dashboard.styl';
+import React, { Component } from 'react'
+import { withRouter, Switch, Route, Redirect } from 'react-router-dom'
+import './Dashboard.styl'
 import NavBar from '../NavBar/NavBar'
 import Player from '../Player/Player'
 import Drawer from '../Drawer/Drawer'
 
 import FindMusic from '../../container/FindMusic/FindMusic'
 import PlaylistInfo from '../../container/PlaylistInfo/PlaylistInfo'
+import LatestSong from '../../container/LatestSong/LatestSong'
 
 function Search() {
   return (
@@ -17,12 +18,6 @@ function Search() {
 function Toplist() {
   return (
     <h1>排行榜</h1>
-  )
-}
-
-function LatestSong() {
-  return (
-    <h1>最近播放</h1>
   )
 }
 
@@ -43,18 +38,28 @@ function ArtistInfo() {
     <h1>歌手信息</h1>
   )
 }
+function renderRoutes(routeInfo) {
+  let Routes
+  routeInfo.forEach((route) => {
+    const { items } = route
+    Routes = items.map(v => (
+      <Route key={v.path} path={v.path} component={v.component} />
+    ))
+  })
+  return Routes
+}
 
 class Dashboard extends Component {
   getTitle = (routeInfo) => {
-    let title;
-    const pathname = this.props.location.pathname;
+    let title
+    const { pathname } = this.props.location;// eslint-disable-line
     routeInfo.forEach((route) => {
-      let matchpath;
-      if (matchpath = route.items.find(v => pathname.indexOf(v.path) !== -1)) {
-        title = matchpath.title;
+      const matchPath = route.items.find(v => pathname.indexOf(v.path) !== -1)
+      if (matchPath) {
+        title = matchPath.title; // eslint-disable-line
       }
-    });
-    return title;
+    })
+    return title
   };
 
   render() {
@@ -68,64 +73,64 @@ class Dashboard extends Component {
         text: '搜索',
         title: '搜索',
         icon: 'icon-search',
-        component: Search
+        component: Search,
       }, {
         index: 2,
         path: '/findmusic',
         text: '发现音乐',
         title: '发现音乐',
         icon: 'icon-music',
-        component: FindMusic
+        component: FindMusic,
       },
-        {
-          index: 3,
-          path: '/toplist',
-          text: '排行榜',
-          title: '排行榜',
-          icon: 'icon-star-full',
-          component: Toplist
-        },
-        {
-          index: 4,
-          path: '/latestsong',
-          text: '最近播放',
-          title: '最近播放',
-          icon: 'icon-clock',
-          component: LatestSong
-        },
-        {
-          index: 5,
-          path: '/favomusic',
-          text: '我喜欢的音乐',
-          title: '我喜欢的音乐',
-          icon: 'icon-heart',
-          component: FavoMusic
-        },
-        {
-          index: 6,
-          path: '/about',
-          text: '关于',
-          title: '关于',
-          icon: 'icon-users',
-          component: About
-        },
-        {
-          index: 7,
-          path: '/playlistinfo',
-          component: PlaylistInfo
-        },{
-          index: 8,
-          path: '/artistinfo',
-          component: ArtistInfo
-        }]
-    }];
-    const pathname = this.props.location.pathname;
+      {
+        index: 3,
+        path: '/toplist',
+        text: '排行榜',
+        title: '排行榜',
+        icon: 'icon-star-full',
+        component: Toplist,
+      },
+      {
+        index: 4,
+        path: '/latestsong',
+        text: '最近播放',
+        title: '最近播放',
+        icon: 'icon-clock',
+        component: LatestSong,
+      },
+      {
+        index: 5,
+        path: '/favomusic',
+        text: '我喜欢的音乐',
+        title: '我喜欢的音乐',
+        icon: 'icon-heart',
+        component: FavoMusic,
+      },
+      {
+        index: 6,
+        path: '/about',
+        text: '关于',
+        title: '关于',
+        icon: 'icon-users',
+        component: About,
+      },
+      {
+        index: 7,
+        path: '/playlistinfo',
+        component: PlaylistInfo,
+      }, {
+        index: 8,
+        path: '/artistinfo',
+        component: ArtistInfo,
+      }],
+    }]
+    const { pathname } = this.props.location
     return (
       <div className="dashboard">
-      {pathname==="/"?<Redirect to="/findmusic/playlist"></Redirect>:null}
-        <NavBar title={this.getTitle(routeInfo)}/>
+        {pathname === '/' ? <Redirect to="/findmusic/playlist" /> : null}
+        <NavBar title={this.getTitle(routeInfo)} />
         <div className="content">
-          <Drawer routeInfo={routeInfo}/>
+          <Drawer routeInfo={routeInfo} />
           <div className="views">
             <Switch>
               {
@@ -134,21 +139,10 @@ class Dashboard extends Component {
             </Switch>
           </div>
         </div>
-        <Player/>
+        <Player />
       </div>
     )
   }
 }
 
-function renderRoutes(routeInfo) {
-  let Routes;
-  routeInfo.forEach((route) => {
-    const {items} = route;
-    Routes = items.map((v) => (
-      <Route key={v.path} path={v.path} component={v.component}/>
-    ));
-  });
-  return Routes;
-}
-
-export default withRouter(Dashboard);
+export default withRouter(Dashboard)

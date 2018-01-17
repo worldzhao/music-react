@@ -1,8 +1,9 @@
-import React from 'react';
+import React from 'react'
 import './Subtitle.styl'
-function Subtitle(props){
+
+function Subtitle(props) {
   return (
-    <h4 className='subtitle'>{props.title}</h4>
+    <h4 className="subtitle">{props.title}</h4>
   )
 }
-export default Subtitle;
+export default Subtitle

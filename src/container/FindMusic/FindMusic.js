@@ -1,9 +1,10 @@
-import React, {Component} from 'react';
-import {Route,Redirect} from 'react-router-dom';
-import Subtitle from '../../component/Subtitle/Subtitle';
-import NavLink from '../../component/NavLink/NavLink';
-import SongCardPage from '../../component/SongCardPage/SongCardPage';
-import './FindMusic.styl';
+import React from 'react'
+import { Route, Redirect } from 'react-router-dom'
+import Subtitle from '../../component/Subtitle/Subtitle'
+import NavLink from '../../component/NavLink/NavLink'
+import SongCardPage from '../../component/SongCardPage/SongCardPage'
+import './FindMusic.styl'
+
 function SpecialRec() {
   return (
     <h1>person</h1>
@@ -11,37 +12,34 @@ function SpecialRec() {
 }
 
 
-class FindMusic extends Component {
-  render() {
-    const {match} = this.props;
-    const pathname = this.props.location.pathname;
-    const navlist = [
-      {
-        path: `${match.url}/specialrec`,
-        text: '个性推荐',
-        component: SpecialRec
-      },
-      {
-        path: `${match.url}/playlist`,
-        text: '歌单',
-        component: SongCardPage
-      }];
-    return (
-      <div className="findMusic">
-      {pathname==="/findmusic"?<Redirect to="/findmusic/playlist"></Redirect>:null}
-        <Subtitle title={'发现音乐'}/>
-        <NavLink navlist={navlist}/>
-        <div className="level2-views">
-          {
-            navlist.map((v) => (
-              <Route key={v.path} path={v.path} component={v.component}/>
+function FindMusic(props) {
+  const { match } = props
+  const { pathname } = props.location
+  const navlist = [
+    {
+      path: `${match.url}/specialrec`,
+      text: '个性推荐',
+      component: SpecialRec,
+    },
+    {
+      path: `${match.url}/playlist`,
+      text: '歌单',
+      component: SongCardPage,
+    }]
+  return (
+    <div className="findMusic">
+      {pathname === '/findmusic' ? <Redirect to="/findmusic/playlist" /> : null}
+      <Subtitle title="发现音乐" />
+      <NavLink navlist={navlist} />
+      <div className="level2-views">
+        {
+            navlist.map(v => (
+              <Route key={v.path} path={v.path} component={v.component} />
             ))
           }
-        </div>
       </div>
-    )
-  }
+    </div>
+  )
 }
 
-
-export default FindMusic;
+export default FindMusic

@@ -1,12 +1,12 @@
-import axios from 'axios';
-import {getPlaylistInfo} from '../axios/api';
+import axios from 'axios'
+import { getPlaylistInfo } from '../axios/api'
 
 // constant
-const PLAYLIST = "PLAYLIST";
+const PLAYLIST = 'PLAYLIST'
 
 // initial state
 const initState = {
-  playlist: null
+  playlist: null,
 }
 
 // reducer
@@ -15,32 +15,32 @@ export function playlistinfo(state = initState, action) {
     case PLAYLIST:
       return {
         ...state,
-        playlist: action.payload
-      };
+        playlist: action.payload,
+      }
     default:
       return {
-        ...state
+        ...state,
       }
   }
 }
 
 // action creator
 function getPlaylistAct(playlist) {
-  return {type: PLAYLIST, payload: playlist}
+  return { type: PLAYLIST, payload: playlist }
 }
 
 // logic operation
 export function getPlaylist(id) {
-  return dispatch => {
+  return (dispatch) => {
     axios
       .get(getPlaylistInfo(id))
-      .then(res => {
+      .then((res) => {
         dispatch(getPlaylistAct(res.data.playlist))
       })
-      .catch(err => {
-        console.log('====================================');
-        console.log(err);
-        console.log('====================================');
+      .catch((err) => {
+        console.log('====================================')
+        console.log(err)
+        console.log('====================================')
       })
   }
 }

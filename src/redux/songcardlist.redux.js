@@ -1,21 +1,21 @@
-import axios from 'axios';
-import {getRecmdPlaylist} from '../axios/api'
+import axios from 'axios'
+import { getRecmdPlaylist } from '../axios/api'
 // constant
-const CARD_LIST = 'CARD_LIST';
-const SCROLL_POINT = 'SCROLL_POINT';
+const CARD_LIST = 'CARD_LIST'
+const SCROLL_POINT = 'SCROLL_POINT'
 
 // action creator
 function cardList(list, bRequest) {
   return {
     type: CARD_LIST,
-    payload: {list, bRequest}
+    payload: { list, bRequest },
   }
 }
 
 function scrollPoint(scrollTop) {
   return {
     type: SCROLL_POINT,
-    payload: scrollTop
+    payload: scrollTop,
   }
 }
 
@@ -25,8 +25,8 @@ const initialState = {
   pageNum: 0,
   limit: 48,
   bRequest: true,
-  scrollPoint: 0
-};
+  scrollPoint: 0,
+}
 
 // reducer
 export function songcardlist(state = initialState, action) {
@@ -37,31 +37,31 @@ export function songcardlist(state = initialState, action) {
         cardList: [...state.cardList, ...action.payload.list],
         pageNum: state.pageNum + 1,
         bRequest: !action.payload.bRequest,
-      };
+      }
     case SCROLL_POINT:
       return {
         ...state,
-        scrollPoint: action.payload
-      };
+        scrollPoint: action.payload,
+      }
     default:
-      return state;
+      return state
   }
 }
 
 // logic operation
-export function getCardList(pageNum, limit, bRequest) {
-  return dispatch => {
-    bRequest = !bRequest;
+export function getCardList(pageNum, limit, br) {
+  return (dispatch) => {
+    const bRequest = !br
     axios.get(getRecmdPlaylist(limit, pageNum)).then((res) => {
-      dispatch(cardList(res.data, bRequest));
+      dispatch(cardList(res.data, bRequest))
     }).catch((error) => {
-      console.log(error);
+      console.log(error)
     })
   }
 }
 
 export function keepScroll(scrollTop) {
-  return dispatch => {
-    dispatch(scrollPoint(scrollTop));
+  return (dispatch) => {
+    dispatch(scrollPoint(scrollTop))
   }
 }

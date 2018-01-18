@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import DrawerItem from '../drawer-item/index'
+import DrawerBlock from '../drawer-block/index'
+import { routeInfo } from '../../../config/router'
 import './style.styl'
 
 class Drawer extends Component {
@@ -17,7 +18,6 @@ class Drawer extends Component {
   };
 
   render() {
-    const { routeInfo } = this.props; // eslint-disable-line
     const { isShow } = this.state
     return (
       <div
@@ -26,7 +26,7 @@ class Drawer extends Component {
       >
         <i className="icon-menu" onClick={this.toggleDrawer} />
         {
-          routeInfo.map(route => <DrawerItem key={route} route={route} isShow={isShow} />)
+          routeInfo.map(route => <DrawerBlock key={route} route={route} isShow={isShow} />)
         }
       </div>
     )

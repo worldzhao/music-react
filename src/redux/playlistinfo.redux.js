@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { getPlaylistInfo } from '../axios/api'
+import { getPlaylistInfo } from '../config/api'
 
 // constant
 const PLAYLIST = 'PLAYLIST'

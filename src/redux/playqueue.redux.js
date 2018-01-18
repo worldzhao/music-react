@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { getMp3Url } from '../axios/api'
+import { getMp3Url } from '../config/api'
 
 // constant
 const PLAY_SONG = 'PLAY_SONG'

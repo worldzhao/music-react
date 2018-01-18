@@ -2,17 +2,15 @@ import React from 'react'
 import { withRouter, Link } from 'react-router-dom'
 import './style.styl'
 
-function renderTitle(title, isShow) {
-  return (
-    <h4 className={isShow ? '' : 'hide'}>{title}</h4>
-  )
-}
+const renderTitle = (title, isShow) => (
+  <h4 className={isShow ? '' : 'hide'}>{title}</h4>
+)
 
-function DrawerItem(props) {
+function DrawerBlock(props) {
   const { route, isShow } = props
   const { title, items } = route
   return (
-    <div className="draweritem">
+    <div className="drawerblock">
       {
           title ? renderTitle(title, isShow) : null
         }
@@ -35,4 +33,4 @@ function DrawerItem(props) {
 }
 
 
-export default withRouter(DrawerItem)
+export default withRouter(DrawerBlock)

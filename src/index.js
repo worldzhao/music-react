@@ -6,7 +6,7 @@ import thunk from 'redux-thunk'
 import { BrowserRouter } from 'react-router-dom'
 import reducers from './redux/index'
 
-import Dashboard from './component/Dashboard/Dashboard'
+import Dashboard from './views/dashboard/index'
 
 // import './axios/config.js'
 import './common/style/reset.css'

@@ -3,7 +3,7 @@ export const formatTimeStamp = (timeStamp) => {
   const year = time.getFullYear()
   const month = time.getMonth()
   const day = time.getDate()
-  return `${year}-${month}-${day} `
+  return `${year}-${month + 1}-${day} `
 }
 
 export const specIndex = (i) => {

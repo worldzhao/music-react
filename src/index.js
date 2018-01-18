@@ -7,19 +7,14 @@ import { BrowserRouter } from 'react-router-dom'
 import reducers from './redux/index'
 
 import Dashboard from './views/dashboard/index'
-
-// import './axios/config.js'
 import './common/style/reset.css'
-
-require('./common/style/fonts.css')
+import './common/style/fonts.css'
 
 const store = createStore(reducers, applyMiddleware(thunk))
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
-      <div className="App">
-        <Dashboard />
-      </div>
+      <Dashboard />
     </BrowserRouter>
   </Provider>
   , document.getElementById('root'),

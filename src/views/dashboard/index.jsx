@@ -2,7 +2,7 @@ import React from 'react'
 import { withRouter, Switch, Redirect } from 'react-router-dom'
 import './style.styl'
 import { Routes } from '../../config/router'
-import NavBar from './header/index'
+import HeadBar from './header/index'
 import Player from './player/index'
 import Drawer from './drawer/index'
 
@@ -11,7 +11,7 @@ function Dashboard(props) {
   return (
     <div className="dashboard">
       {pathname === '/' ? <Redirect to="/findmusic/playlist" /> : null}
-      <NavBar />
+      <HeadBar />
       <div className="content">
         <Drawer />
         <div className="views">

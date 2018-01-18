@@ -2,10 +2,10 @@ import React from 'react'
 import { withRouter, Link } from 'react-router-dom'
 import './style.styl'
 
-function NavLink(props) {
+function NavTab(props) {
   const { navlist } = props
   return (
-    <div className="navlink">
+    <div className="navtab">
       <ul className="items">
         {
             navlist.map(v => <li key={v.path} className="item"><Link to={v.path}>{v.text}</Link></li>)
@@ -15,4 +15,4 @@ function NavLink(props) {
   )
 }
 
-export default withRouter(NavLink)
+export default withRouter(NavTab)

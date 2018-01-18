@@ -14,11 +14,11 @@ const getTitle = (r, p) => {
   return title
 }
 
-function NavBar(props) {
+function HeadBar(props) {
   const { pathname } = props.location
   const title = getTitle(routeInfo, pathname) ? getTitle(routeInfo, pathname) : 'SoulBeats'
   return (
-    <div className="navbar">
+    <div className="headbar">
       <div className="left">
         <i
           className="icon-arrow-left"
@@ -35,4 +35,4 @@ function NavBar(props) {
   )
 }
 
-export default withRouter(NavBar)
+export default withRouter(HeadBar)

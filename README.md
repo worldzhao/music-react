@@ -65,7 +65,7 @@ cd music-react
 
 npm install
 
-npm run dev
+npm start
 ```
 每学到一点新知识，新思想，我都会来改进这个项目，欢迎fork和star，如果你正在学习react，通过一个比较综合的项目来实战也还是非常不错的。
 

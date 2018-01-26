@@ -28,7 +28,7 @@ const initState = {
       dt: 277029,
       name: '钟无艳',
       id: 308353,
-      url: 'https://m7.music.126.net/20180118142828/561819d1cacc8ef02c0474565bdfc57a/ymusic/32f7/cc71/dbc9/09af651475597148f47bc7dbcc03e64a.mp3',
+      url: 'http://www.170mv.com/kw/other.web.rh01.sycdn.kuwo.cn/resource/n2/85/93/2004871240.mp3',
     },
   ],
   song: {
@@ -49,7 +49,7 @@ const initState = {
     dt: 277029,
     name: '钟无艳',
     id: 308353,
-    url: 'https://m7.music.126.net/20180118142828/561819d1cacc8ef02c0474565bdfc57a/ymusic/32f7/cc71/dbc9/09af651475597148f47bc7dbcc03e64a.mp3',
+    url: 'http://www.170mv.com/kw/other.web.rh01.sycdn.kuwo.cn/resource/n2/85/93/2004871240.mp3',
   },
   index: 0,
   flag: '',
@@ -82,6 +82,8 @@ export function playqueue(state = initState, action) {
         playlist: [
           action.payload, ...state.playlist,
         ],
+        song: action.payload,
+        index: 0,
         flag: PLAY_SONG,
       }
 
@@ -106,7 +108,7 @@ export function playqueue(state = initState, action) {
         ...state,
         song: action.payload.song,
         index: action.payload.index,
-        flag: action.payload.flag,
+        flag: '',
       }
     case DELETE_SONG:
       // 记录要删除歌曲的数组下标
@@ -138,13 +140,12 @@ function addSongAct(song) {
   return { type: ADD_SONG, payload: song }
 }
 
-function changeSongAct({ song, index, flag }) {
+function changeSongAct({ song, index }) {
   return {
     type: CHANGE_SONG,
     payload: {
       song,
       index,
-      flag,
     },
   }
 }
@@ -197,10 +198,9 @@ export function addSong2Que(s) {
 }
 
 // Player
-export function changeSong({ song, index, f }) {
+export function changeSong({ song, index }) {
   return (dispatch) => {
-    const flag = f || ''
-    dispatch(changeSongAct({ song, index, flag }))
+    dispatch(changeSongAct({ song, index }))
   }
 }
 

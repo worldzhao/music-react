@@ -34,20 +34,8 @@ class Player extends Component {
     this.audio.volume = 0.5
   }
 
-  componentWillReceiveProps(nextProps) {
-    let { flag } = nextProps.playqueue
-    const { playlist } = nextProps.playqueue
-    if (flag === 'PLAY_SONG') {
-      const song = playlist[0]
-      const index = 0
-      flag = 'ready2play'
-      // 下面change之后redux中要改变flag，避免死循环
-      nextProps.changeSong({ song, index, flag })
-    }
-  }
-
   componentDidUpdate(prevProps) {
-    // 把这里当成异步dispatch的回调
+    // 把这里当成redux的回调吧
     if (this.props.playqueue.song.id !== prevProps.playqueue.song.id) {
       this.changeSongCallback()
     }
@@ -198,8 +186,10 @@ class Player extends Component {
     const { ppIcon } = this.state
     // 暂停状态下切歌保持暂停状态
     // 播放状态下切歌歌曲立刻播放
-    // ppIcon === icon-pause2说明处于播放状态，图标为暂停图标
-    if (ppIcon === 'icon-pause2' || this.props.playqueue.flag === 'ready2play') {
+    // ppIcon === icon-pause2说明图标为暂停图标,处于播放状态
+    // flag === 'PLAY_SONG' 是歌曲列表播放按钮被点击
+    // 这里不需要担心flag对上下切换的影响 因为上下切换[changeSong]会默认重置flag
+    if (ppIcon === 'icon-pause2' || this.props.playqueue.flag === 'PLAY_SONG') {
       this.toPlay()
     }
   };

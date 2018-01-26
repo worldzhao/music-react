@@ -160,11 +160,17 @@ export function playSong2Que(s) {
       .get(getMp3Url(s.id))
       .then((res) => {
         const { url } = res.data.data[0]
-        const song = {
-          ...s,
-          url,
+        if (url) {
+          const song = {
+            ...s,
+            url,
+          }
+          dispatch(playSongAct(song))
+        } else {
+          alert('歌曲直链不存在')
         }
-        dispatch(playSongAct(song))
+      }).catch((err) => {
+        alert(`获取歌曲链接是发生错误：${err}`)
       })
   }
 }
@@ -175,11 +181,17 @@ export function addSong2Que(s) {
       .get(getMp3Url(s.id))
       .then((res) => {
         const { url } = res.data.data[0]
-        const song = {
-          ...s,
-          url,
+        if (url) {
+          const song = {
+            ...s,
+            url,
+          }
+          dispatch(addSongAct(song))
+        } else {
+          alert('歌曲直链不存在')
         }
-        dispatch(addSongAct(song))
+      }).catch((err) => {
+        alert(`获取歌曲链接是发生错误：${err}`)
       })
   }
 }

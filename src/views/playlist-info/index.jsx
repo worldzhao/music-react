@@ -3,16 +3,19 @@ import { connect } from 'react-redux'
 import InfoHeader from './info-header/index'
 import InfoList from './info-list/index'
 import Loading from '../../component/loading/index'
-import { getPlaylist } from '../../redux/playlistinfo.redux'
+import { getPlaylist, clearList } from '../../redux/playlistinfo.redux'
+
+import './style.styl'
 
 function renderPlaylist(playlist) {
-  const { tracks } = playlist
-  return (
-    <div className="playlist-info">
+  const { tracks, coverImgUrl } = playlist
+  return [
+    <img src={coverImgUrl} alt="blur background" key="bgc" />,
+    <div className="playlist-info" key="playlist">
       <InfoHeader playlist={playlist} />
       <InfoList tracks={tracks} />
-    </div>
-  )
+    </div>,
+  ]
 }
 
 class PlaylistInfo extends Component {
@@ -26,13 +29,17 @@ class PlaylistInfo extends Component {
     this.props.getPlaylist(id)
   }
 
+  componentWillUnmount() {
+    this.props.clearList()
+  }
+
   render() {
-    const { playlist } = this.props.playlistinfo
+    const { isRequest, playlist } = this.props.playlistinfo
     return (
-      <div>
-        {playlist
-          ? renderPlaylist(playlist)
-          : <Loading />}
+      <div className="playlist-wrapper">
+        {isRequest
+          ? <Loading />
+          : renderPlaylist(playlist)}
       </div>
     )
   }
@@ -44,6 +51,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   getPlaylist,
+  clearList,
 }
 
 export default connect(

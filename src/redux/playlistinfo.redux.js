@@ -3,10 +3,12 @@ import { getPlaylistInfo } from '../config/api'
 
 // constant
 const PLAYLIST = 'PLAYLIST'
+const CLEARLIST = 'CLEARLIST'
 
 // initial state
 const initState = {
   playlist: null,
+  isRequest: true,
 }
 
 // reducer
@@ -16,6 +18,12 @@ export function playlistinfo(state = initState, action) {
       return {
         ...state,
         playlist: action.payload,
+        isRequest: false,
+      }
+    case CLEARLIST:
+      return {
+        ...state,
+        isRequest: true,
       }
     default:
       return {
@@ -27,6 +35,12 @@ export function playlistinfo(state = initState, action) {
 // action creator
 function getPlaylistAct(playlist) {
   return { type: PLAYLIST, payload: playlist }
+}
+
+function clearListAct() {
+  return {
+    type: CLEARLIST,
+  }
 }
 
 // logic operation
@@ -42,5 +56,11 @@ export function getPlaylist(id) {
         console.log(err)
         console.log('====================================')
       })
+  }
+}
+
+export function clearList() {
+  return (dispatch) => {
+    dispatch(clearListAct())
   }
 }

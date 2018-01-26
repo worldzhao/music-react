@@ -125,6 +125,7 @@ class Player extends Component {
   };
 
   toPlay = () => {
+    // 资源无效异常处理存在问题
     this
       .audio
       .play()

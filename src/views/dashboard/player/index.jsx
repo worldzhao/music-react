@@ -14,7 +14,25 @@ function renderAlbumImg(song) {
   )
 }
 
-class Player extends Component {
+// const mapStateToProps = state => ({
+//   playqueue: state.playqueue,
+// })
+
+// const mapDispatchToProps = {
+//   changeSong,
+// }
+
+// export default connect(
+//   mapStateToProps,
+//   mapDispatchToProps,
+// )(Player)
+@connect(
+  state => ({ playqueue: state.playqueue }),
+  {
+    changeSong,
+  },
+)
+export default class Player extends Component {
   constructor() {
     super()
     this.state = {
@@ -317,16 +335,3 @@ class Player extends Component {
     )
   }
 }
-
-const mapStateToProps = state => ({
-  playqueue: state.playqueue,
-})
-
-const mapDispatchToProps = {
-  changeSong,
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Player)

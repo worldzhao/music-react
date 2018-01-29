@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { getRecmdPlaylist } from '../config/api'
+
 // constant
 const CARD_LIST = 'CARD_LIST'
 const SCROLL_POINT = 'SCROLL_POINT'

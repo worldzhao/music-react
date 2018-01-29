@@ -18,7 +18,30 @@ function renderPlaylist(playlist) {
   ]
 }
 
-class PlaylistInfo extends Component {
+// const mapStateToProps = state => ({
+//   playlistinfo: state.playlistinfo,
+// })
+
+// const mapDispatchToProps = {
+//   getPlaylist,
+//   clearList,
+// }
+
+// export default connect(
+//   mapStateToProps,
+//   mapDispatchToProps,
+// )(PlaylistInfo)
+
+@connect(
+  state => ({
+    playlistinfo: state.playlistinfo,
+  }),
+  {
+    getPlaylist,
+    clearList,
+  },
+)
+export default class PlaylistInfo extends Component {
   componentDidMount() {
     const id = this
       .props
@@ -45,16 +68,3 @@ class PlaylistInfo extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  playlistinfo: state.playlistinfo,
-})
-
-const mapDispatchToProps = {
-  getPlaylist,
-  clearList,
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(PlaylistInfo)

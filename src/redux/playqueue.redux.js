@@ -154,7 +154,7 @@ function deleteSongAct(id) {
   return { type: DELETE_SONG, payload: id }
 }
 
-// logic operation SongList
+// logic operation
 export function playSong2Que(s) {
   return (dispatch) => {
     axios
@@ -197,14 +197,12 @@ export function addSong2Que(s) {
   }
 }
 
-// Player
 export function changeSong({ song, index }) {
   return (dispatch) => {
     dispatch(changeSongAct({ song, index }))
   }
 }
 
-// ReadyList
 export function deleteSong(id) {
   return (dispatch) => {
     dispatch(deleteSongAct(id))

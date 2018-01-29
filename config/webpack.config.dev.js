@@ -1,4 +1,4 @@
-'use strict';
+
 
 const autoprefixer = require('autoprefixer');
 const path = require('path');
@@ -118,11 +118,17 @@ module.exports = {
       {
         test: /\.(js|jsx|mjs)$/,
         enforce: 'pre',
-        loader: 'eslint-loader',
-        // 除去node_modules
-        exclude: [
-          path.resolve(__dirname, '../node_modules')
+        use: [
+          {
+            options: {
+              formatter: eslintFormatter,
+              eslintPath: require.resolve('eslint'),
+
+            },
+            loader: require.resolve('eslint-loader'),
+          },
         ],
+        include: paths.appSrc,
       },
       {
         // "oneOf" will traverse all following loaders until one will

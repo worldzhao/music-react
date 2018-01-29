@@ -3,7 +3,7 @@ import DrawerBlock from '../drawer-block/index'
 import { routeInfo } from '../../../config/router'
 import './style.styl'
 
-class Drawer extends Component {
+export default class Drawer extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -32,5 +32,3 @@ class Drawer extends Component {
     )
   }
 }
-
-export default Drawer

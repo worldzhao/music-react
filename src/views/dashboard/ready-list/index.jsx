@@ -5,7 +5,21 @@ import { changeSong, deleteSong } from '../../../redux/playqueue.redux'
 
 import './style.styl'
 
-class ReadyList extends Component {
+// const mapStateToProps = state => ({ playqueue: state.playqueue })
+
+// const mapDispatchToProps = {
+//   changeSong,
+//   deleteSong,
+// }
+
+@connect(
+  state => ({ playqueue: state.playqueue }),
+  {
+    changeSong,
+    deleteSong,
+  },
+)
+export default class ReadyList extends Component {
   playSong = (song, index) => {
     const flag = 'ready2play'
     this.props.changeSong({ song, index, flag })
@@ -64,12 +78,3 @@ class ReadyList extends Component {
     )
   }
 }
-
-const mapStateToProps = state => ({ playqueue: state.playqueue })
-
-const mapDispatchToProps = {
-  changeSong,
-  deleteSong,
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ReadyList)

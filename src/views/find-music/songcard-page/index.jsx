@@ -10,7 +10,25 @@ function renderCard(playlists) {
   return cards
 }
 
-class SongCardPage extends Component {
+// const mapStateToProps = state => ({
+//   songcardlist: state.songcardlist,
+// })
+
+// const mapDispatchToProps = {
+//   getCardList,
+//   keepScroll,
+// }
+// export default connect(mapStateToProps, mapDispatchToProps)(SongCardPage)
+@connect(
+  state => ({
+    songcardlist: state.songcardlist,
+  }),
+  {
+    getCardList,
+    keepScroll,
+  },
+)
+export default class SongCardPage extends Component {
   componentDidMount() {
     const {
       cardList, pageNum, limit, bRequest, scrollPoint,
@@ -45,13 +63,3 @@ class SongCardPage extends Component {
   }
 }
 
-
-const mapStateToProps = state => ({
-  songcardlist: state.songcardlist,
-})
-
-const mapDispatchToProps = {
-  getCardList,
-  keepScroll,
-}
-export default connect(mapStateToProps, mapDispatchToProps)(SongCardPage)

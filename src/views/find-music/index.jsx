@@ -6,7 +6,7 @@ import SpecialPage from './specicl-page/index'
 import SongCardPage from './songcard-page/index'
 import './style.styl'
 
-function FindMusic(props) {
+export default function FindMusic(props) {
   const { match } = props
   const { pathname } = props.location
   const navlist = [
@@ -35,5 +35,3 @@ function FindMusic(props) {
     </div>
   )
 }
-
-export default FindMusic

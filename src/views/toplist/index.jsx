@@ -1,22 +1,42 @@
-/* eslint-disable */
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import SpecialList from './special-list/index'
+import GlobalList from './global-list/index'
 import Loading from '../../component/loading/index'
 import Subtitle from '../../component/subtitle/index'
-import { connect } from 'react-redux'
 import { getToplist } from '../../redux/toplist.redux'
 import './style.styl'
 
+@connect(
+  state => ({ toplist: state.toplist }),
+  {
+    getToplist,
+  },
+)
 class Toplist extends Component {
   componentDidMount() {
-    // 这部分数据是可以缓存在redux中的
+    const { data } = this.props.toplist
+    if (!Object.keys(data).length) {
+      this.props.getToplist()
+    }
   }
   render() {
+    const { data } = this.props.toplist
     return (
-      <div className="toplist">
-        <Subtitle title="排行榜" />
+      <div>
+        {
+          Object.keys(data).length ?
+            <div className="toplist">
+              <Subtitle title="排行榜" />
+              <SpecialList special={data.special} />
+              <GlobalList global={data.global} />
+            </div> : <Loading />
+        }
       </div>
+
     )
   }
 }
 
 export default Toplist
+

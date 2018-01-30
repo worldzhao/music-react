@@ -10,15 +10,6 @@ function renderCard(playlists) {
   return cards
 }
 
-// const mapStateToProps = state => ({
-//   songcardlist: state.songcardlist,
-// })
-
-// const mapDispatchToProps = {
-//   getCardList,
-//   keepScroll,
-// }
-// export default connect(mapStateToProps, mapDispatchToProps)(SongCardPage)
 @connect(
   state => ({
     songcardlist: state.songcardlist,
@@ -31,21 +22,21 @@ function renderCard(playlists) {
 export default class SongCardPage extends Component {
   componentDidMount() {
     const {
-      cardList, pageNum, limit, bRequest, scrollPoint,
+      cardList, pageNum, limit, scrollPoint,
     } = this.props.songcardlist
     if (!cardList.length) {
-      this.props.getCardList(pageNum, limit, bRequest)
+      this.props.getCardList(pageNum, limit)
     }
     this.contentNode.scrollTop = scrollPoint
   }
 
   handleScroll = () => {
     // 可以用函数节流优化
-    const { pageNum, limit, bRequest } = this.props.songcardlist
     const { scrollTop, clientHeight, scrollHeight } = this.contentNode
     // 判断是否到达底部进行请求 同时要注意请求尚未回来时无法再次发出请求
-    if (scrollTop + clientHeight === scrollHeight && bRequest) {
-      this.props.getCardList(pageNum, limit, bRequest)
+    if (scrollTop + clientHeight === scrollHeight) {
+      const { pageNum, limit } = this.props.songcardlist
+      this.props.getCardList(pageNum, limit)
     }
     // 记录滚动点
     this.props.keepScroll(scrollTop)

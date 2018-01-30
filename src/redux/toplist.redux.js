@@ -12,7 +12,7 @@ const getToplistAct = data => ({
 
 // initial state
 const initState = {
-  toplist: null,
+  data: [],
 }
 
 // reducer
@@ -21,7 +21,7 @@ export function toplist(state = initState, action) {
     case TOP_LIST:
       return {
         ...state,
-        toplist: action.payload,
+        data: action.payload,
       }
     default:
       return {

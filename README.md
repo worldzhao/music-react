@@ -34,7 +34,7 @@
 
 4. 代码规范:
 
-    1. eslint: airbnb (可参见src目录下的.eslintrc文件)
+    1. eslint: airbnb (可参见根目录下的.eslintrc文件)
     2. 缩进空行等设置可参见项目根目录.editorconfig文件
 
 5. API:
@@ -52,10 +52,13 @@
 3. 我喜欢的音乐
 4. 歌手详情
 5. 最近播放
-6. 排行榜
+6. ~~排行榜~~
 
-## 预计添加功能
-1. 性能优化（服务端渲染 service worker 动画优化等）
+## TODO
+1. ~~使用修饰器语法优化connect~~
+2. 封装react-modal 提供更为完善的报错信息
+3. 封装分页组件 完善歌曲详情
+4. 性能优化（服务端渲染 service worker 动画优化等）
 
 ## 本地运行
 ```bash

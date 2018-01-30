@@ -29,9 +29,7 @@ export function swiperUrl() {
 }
 
 // 排行榜
-export function toplistUrl() {
-  return 'http://112.74.56.114:8888/NetEaseMusicServer/fuckzzw'
-}
+export const toplistUrl = 'http://112.74.56.114:8888/NetEaseMusicServer/fuckzzw'
 
 // 查找歌曲
 export function searchSong(keyword) {

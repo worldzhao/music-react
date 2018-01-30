@@ -1,0 +1,30 @@
+@import '../../../common/style/mixin.styl'
+
+.special-list
+  mx_flex()
+  color#818181
+  flex-wrap wrap
+  justify-content space-between
+  text-align left
+  .topic-block
+    border 1px solid rgba(7,17,27,0.2)
+    margin-bottom 30px
+    mx_flex()
+    mx_wh(48%,120px)
+    & > a
+      cursor default
+      .playlist-cover
+        mx_wh(120px,120px)
+    .top3
+      mx_brbox()
+      mx_flex_item(1)
+      mx_wh(1px,100%)
+      padding-top 30px
+      padding-left 10px
+      .top3-item
+        margin-bottom 5px
+        mx_hlh(20px,20px)
+        mx_single_ellipsis()
+        .artists
+          &>a
+            color #818181

@@ -6,10 +6,10 @@ const CARD_LIST = 'CARD_LIST'
 const SCROLL_POINT = 'SCROLL_POINT'
 
 // action creator
-function cardList(list, bRequest) {
+function cardList(list) {
   return {
     type: CARD_LIST,
-    payload: { list, bRequest },
+    payload: { list },
   }
 }
 
@@ -25,7 +25,6 @@ const initialState = {
   cardList: [],
   pageNum: 0,
   limit: 48,
-  bRequest: true,
   scrollPoint: 0,
 }
 
@@ -37,7 +36,6 @@ export function songcardlist(state = initialState, action) {
         ...state,
         cardList: [...state.cardList, ...action.payload.list],
         pageNum: state.pageNum + 1,
-        bRequest: !action.payload.bRequest,
       }
     case SCROLL_POINT:
       return {
@@ -50,11 +48,10 @@ export function songcardlist(state = initialState, action) {
 }
 
 // logic operation
-export function getCardList(pageNum, limit, br) {
+export function getCardList(pageNum, limit) {
   return (dispatch) => {
-    const bRequest = !br
     axios.get(getRecmdPlaylist(limit, pageNum)).then((res) => {
-      dispatch(cardList(res.data, bRequest))
+      dispatch(cardList(res.data))
     }).catch((error) => {
       console.log(error)
     })

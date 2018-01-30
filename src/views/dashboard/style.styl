@@ -5,12 +5,14 @@ html{
   background-color: $pageBgc
 }
 .dashboard
+  min-width 1000px
   .navbar
     mx_poftl(0, 0)
   .content
     background-color $pageBgc
     mx_postb($navBarHeight,$playerHeight)
     mx_flex()
+    min-width 1000px
     overflow auto
     width 100%
     .views
@@ -22,4 +24,5 @@ html{
       &::-webkit-scrollbar
         display none
   .player
+    min-width 1000px
     mx_pofbl(0, 0)

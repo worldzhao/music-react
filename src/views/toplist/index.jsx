@@ -4,39 +4,45 @@ import SpecialList from './special-list/index'
 import GlobalList from './global-list/index'
 import Loading from '../../component/loading/index'
 import Subtitle from '../../component/subtitle/index'
-import { getToplist } from '../../redux/toplist.redux'
+import { fetchToplist } from '../../redux/toplist.redux'
 import './style.styl'
+
+function renderTopicList(data) {
+  if (!data) return null
+  return (
+    <div className="toplist">
+      <Subtitle title="排行榜" />
+      <SpecialList special={data.special} />
+      <GlobalList global={data.global} />
+    </div>
+  )
+}
 
 @connect(
   state => ({ toplist: state.toplist }),
   {
-    getToplist,
+    fetchToplist,
   },
 )
-class Toplist extends Component {
+export default class Toplist extends Component {
   componentDidMount() {
     const { data } = this.props.toplist
-    if (!Object.keys(data).length) {
-      this.props.getToplist()
+    if (!data) {
+      this.props.fetchToplist()
     }
   }
   render() {
-    const { data } = this.props.toplist
+    const { data, isFetching } = this.props.toplist
     return (
       <div>
         {
-          Object.keys(data).length ?
-            <div className="toplist">
-              <Subtitle title="排行榜" />
-              <SpecialList special={data.special} />
-              <GlobalList global={data.global} />
-            </div> : <Loading />
+          isFetching ?
+            <Loading /> :
+            renderTopicList(data)
         }
       </div>
 
     )
   }
 }
-
-export default Toplist
 

@@ -2,42 +2,56 @@ import axios from 'axios'
 import { getRecmdPlaylist } from '../config/api'
 
 // constant
-const CARD_LIST = 'CARD_LIST'
-const SCROLL_POINT = 'SCROLL_POINT'
+const CARDLIST_FETCH_START = 'CARDLIST_FETCH_START'
+const CARDLIST_FETCH_END = 'CARDLIST_FETCH_END'
+const RECORD_SCROLL = 'RECORD_SCROLL'
 
 // action creator
-function cardList(list) {
+function fetchStartAct() {
   return {
-    type: CARD_LIST,
+    type: CARDLIST_FETCH_START,
+  }
+}
+
+function fetchEndAct(list) {
+  return {
+    type: CARDLIST_FETCH_END,
     payload: { list },
   }
 }
 
 function scrollPoint(scrollTop) {
   return {
-    type: SCROLL_POINT,
+    type: RECORD_SCROLL,
     payload: scrollTop,
   }
 }
 
 // initial state
-const initialState = {
+const initState = {
   cardList: [],
   pageNum: 0,
   limit: 48,
   scrollPoint: 0,
+  isFetching: false,
 }
 
 // reducer
-export function songcardlist(state = initialState, action) {
+export function songcardlist(state = initState, action) {
   switch (action.type) {
-    case CARD_LIST:
+    case CARDLIST_FETCH_START:
+      return {
+        ...state,
+        isFetching: true,
+      }
+    case CARDLIST_FETCH_END:
       return {
         ...state,
         cardList: [...state.cardList, ...action.payload.list],
         pageNum: state.pageNum + 1,
+        isFetching: false,
       }
-    case SCROLL_POINT:
+    case RECORD_SCROLL:
       return {
         ...state,
         scrollPoint: action.payload,
@@ -48,10 +62,11 @@ export function songcardlist(state = initialState, action) {
 }
 
 // logic operation
-export function getCardList(pageNum, limit) {
+export function fetchCardList(pageNum, limit) {
   return (dispatch) => {
+    dispatch(fetchStartAct())
     axios.get(getRecmdPlaylist(limit, pageNum)).then((res) => {
-      dispatch(cardList(res.data))
+      dispatch(fetchEndAct(res.data))
     }).catch((error) => {
       console.log(error)
     })

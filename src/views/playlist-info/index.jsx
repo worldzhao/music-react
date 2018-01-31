@@ -3,11 +3,12 @@ import { connect } from 'react-redux'
 import InfoHeader from './info-header/index'
 import InfoList from './info-list/index'
 import Loading from '../../component/loading/index'
-import { getPlaylist, clearList } from '../../redux/playlistinfo.redux'
+import { fetchPlaylist } from '../../redux/playlistinfo.redux'
 
 import './style.styl'
 
 function renderPlaylist(playlist) {
+  if (!playlist) return null
   const { tracks, coverImgUrl } = playlist
   return [
     <img src={coverImgUrl} alt="blur background" key="bgc" />,
@@ -18,27 +19,12 @@ function renderPlaylist(playlist) {
   ]
 }
 
-// const mapStateToProps = state => ({
-//   playlistinfo: state.playlistinfo,
-// })
-
-// const mapDispatchToProps = {
-//   getPlaylist,
-//   clearList,
-// }
-
-// export default connect(
-//   mapStateToProps,
-//   mapDispatchToProps,
-// )(PlaylistInfo)
-
 @connect(
   state => ({
     playlistinfo: state.playlistinfo,
   }),
   {
-    getPlaylist,
-    clearList,
+    fetchPlaylist,
   },
 )
 export default class PlaylistInfo extends Component {
@@ -49,18 +35,14 @@ export default class PlaylistInfo extends Component {
       .location
       .search
       .split('=')[1]
-    this.props.getPlaylist(id)
-  }
-
-  componentWillUnmount() {
-    this.props.clearList()
+    this.props.fetchPlaylist(id)
   }
 
   render() {
-    const { isRequest, playlist } = this.props.playlistinfo
+    const { isFetching, playlist } = this.props.playlistinfo
     return (
       <div className="playlist-wrapper">
-        {isRequest
+        {isFetching
           ? <Loading />
           : renderPlaylist(playlist)}
       </div>

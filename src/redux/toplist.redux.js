@@ -1,27 +1,39 @@
 import axios from 'axios'
 import { toplistUrl } from '../config/api'
 
-// constant
-const TOP_LIST = 'TOP_LIST'
+// constant 不能重名
+const TOPLIST_FETCH_START = 'TOPLIST_FETCH_START'
+const TOPLIST_FETCH_END = 'TOPLIST_FETCH_END'
 
 // action creator
-const getToplistAct = data => ({
-  type: TOP_LIST,
+const fetchStartAct = () => ({
+  type: TOPLIST_FETCH_START,
+})
+
+const fetchEndAct = data => ({
+  type: TOPLIST_FETCH_END,
   payload: data,
 })
 
 // initial state
 const initState = {
-  data: [],
+  data: null,
+  isFetching: false,
 }
 
 // reducer
 export function toplist(state = initState, action) {
   switch (action.type) {
-    case TOP_LIST:
+    case TOPLIST_FETCH_START:
+      return {
+        ...state,
+        isFetching: true,
+      }
+    case TOPLIST_FETCH_END:
       return {
         ...state,
         data: action.payload,
+        isFetching: false,
       }
     default:
       return {
@@ -31,10 +43,11 @@ export function toplist(state = initState, action) {
 }
 
 // logic operation
-export function getToplist() {
+export function fetchToplist() {
   return (dispatch) => {
+    dispatch(fetchStartAct())
     axios.get(toplistUrl).then((res) => {
-      dispatch(getToplistAct(res.data))
+      dispatch(fetchEndAct(res.data))
     }).catch((err) => {
       console.log('====================================')
       console.log(err)

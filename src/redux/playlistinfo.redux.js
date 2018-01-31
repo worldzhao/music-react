@@ -1,29 +1,29 @@
 import axios from 'axios'
-import { getPlaylistInfo } from '../config/api'
+import { playlistInfoUrl } from '../config/api'
 
 // constant
-const PLAYLIST = 'PLAYLIST'
-const CLEARLIST = 'CLEARLIST'
+const PLAYLIST_FENTCH_END = 'PLAYLIST_FENTCH_END'
+const PLAYLIST_FETCH_START = 'PLAYLIST_FETCH_START'
 
 // initial state
 const initState = {
   playlist: null,
-  isRequest: true,
+  isFetching: false,
 }
 
 // reducer
 export function playlistinfo(state = initState, action) {
   switch (action.type) {
-    case PLAYLIST:
+    case PLAYLIST_FENTCH_END:
       return {
         ...state,
         playlist: action.payload,
-        isRequest: false,
+        isFetching: false,
       }
-    case CLEARLIST:
+    case PLAYLIST_FETCH_START:
       return {
         ...state,
-        isRequest: true,
+        isFetching: true,
       }
     default:
       return {
@@ -33,34 +33,31 @@ export function playlistinfo(state = initState, action) {
 }
 
 // action creator
-function getPlaylistAct(playlist) {
-  return { type: PLAYLIST, payload: playlist }
+function FetchEndAct(playlist) {
+  return { type: PLAYLIST_FENTCH_END, payload: playlist }
 }
 
-function clearListAct() {
+function FetchStartAct() {
   return {
-    type: CLEARLIST,
+    type: PLAYLIST_FETCH_START,
   }
 }
 
 // logic operation
-export function getPlaylist(id) {
+export function fetchPlaylist(id) {
   return (dispatch) => {
+    // 异步开始
+    dispatch(FetchStartAct())
     axios
-      .get(getPlaylistInfo(id))
+      .get(playlistInfoUrl(id))
       .then((res) => {
-        dispatch(getPlaylistAct(res.data.playlist))
+        // 异步结束
+        dispatch(FetchEndAct(res.data.playlist))
       })
       .catch((err) => {
         console.log('====================================')
         console.log(err)
         console.log('====================================')
       })
-  }
-}
-
-export function clearList() {
-  return (dispatch) => {
-    dispatch(clearListAct())
   }
 }

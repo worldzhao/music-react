@@ -5,13 +5,6 @@ import { changeSong, deleteSong } from '../../../redux/playqueue.redux'
 
 import './style.styl'
 
-// const mapStateToProps = state => ({ playqueue: state.playqueue })
-
-// const mapDispatchToProps = {
-//   changeSong,
-//   deleteSong,
-// }
-
 @connect(
   state => ({ playqueue: state.playqueue }),
   {

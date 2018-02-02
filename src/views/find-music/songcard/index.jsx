@@ -9,7 +9,7 @@ export default function SongCard(props) {
   return (
     <div className="songcard">
       <div className="album-img">
-        <Link to={{ pathname: '/playlistinfo', search: `?id=${id}` }}>
+        <Link to={{ pathname: `/playlistinfo/${id}` }}>
           <img src={imgUrl} alt="playlist-cover" />
         </Link>
       </div>

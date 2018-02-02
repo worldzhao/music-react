@@ -1,5 +1,5 @@
 // 歌手信息 参数：歌手id
-export function getArtistInfo(artistid) {
+export function artistInfoUrl(artistid) {
   return `https://api.imjad.cn/cloudmusic/?type=artist&id=${artistid}`
 }
 

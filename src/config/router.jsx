@@ -65,12 +65,12 @@ export const routeInfo = [{
   },
   {
     index: 7,
-    path: '/playlistinfo',
+    path: '/playlistinfo/:id',
     component: PlaylistInfo,
   },
   {
     index: 8,
-    path: '/artistinfo',
+    path: '/artistinfo/:id',
     component: ArtistInfo,
   }],
 }]

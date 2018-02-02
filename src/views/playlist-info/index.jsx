@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import InfoHeader from './info-header/index'
-import InfoList from './info-list/index'
+import InfoList from '../../component/info-list/index'
 import Loading from '../../component/loading/index'
 import { fetchPlaylist } from '../../redux/playlistinfo.redux'
 
@@ -29,12 +29,7 @@ function renderPlaylist(playlist) {
 )
 export default class PlaylistInfo extends Component {
   componentDidMount() {
-    const id = this
-      .props
-      .history
-      .location
-      .search
-      .split('=')[1]
+    const { id } = this.props.match.params
     this.props.fetchPlaylist(id)
   }
 
@@ -42,11 +37,8 @@ export default class PlaylistInfo extends Component {
     const { isFetching, playlist } = this.props.playlistinfo
     return (
       <div className="playlist-wrapper">
-        {isFetching
-          ? <Loading />
-          : renderPlaylist(playlist)}
+        {isFetching ? <Loading /> : renderPlaylist(playlist)}
       </div>
     )
   }
 }
-

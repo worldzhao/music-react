@@ -32,7 +32,13 @@ export default class PlaylistInfo extends Component {
     const { id } = this.props.match.params
     this.props.fetchPlaylist(id)
   }
-
+  componentWillReceiveProps(nextProps) { // 处理组件相同路由切换页面不刷新的问题
+    const { id } = nextProps.match.params
+    const preId = this.props.match.params.id
+    if (id !== preId) {
+      nextProps.fetchPlaylist(id)
+    }
+  }
   render() {
     const { isFetching, playlist } = this.props.playlistinfo
     return (

@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { star } from '../../../redux/starredlist.redux'
 import Subtitle from '../../../component/subtitle/index'
 import { formatTimeStamp } from '../../../common/js/util'
 import './style.styl'
@@ -25,18 +27,14 @@ function renderCreator(playlist) {
   )
 }
 
-function renderOperationBtns(playlist) {
-  return (
-    <div className="operation-buttons">
-      <a><i className="icon-folder-plus" />收藏({playlist.subscribedCount})</a>
-      <a><i className="icon-spinner9" />评论({playlist.commentCount})</a>
-      <a><i className="icon-share2" />分享({playlist.shareCount})</a>
-      <a><i className="icon-folder-download" />下载全部</a>
-      <a>~更多</a>
-    </div>
-  )
-}
-
+@connect(
+  state => ({
+    starredlist: state.starredlist,
+  }),
+  {
+    star,
+  },
+)
 export default class Header extends Component {
   constructor() {
     super()
@@ -51,8 +49,19 @@ export default class Header extends Component {
     })
   };
 
+  beforeStar = () => {
+    const { playlist } = this.props
+    const { id, name, coverImgUrl } = playlist
+    const parseList = {
+      id,
+      name,
+      coverImgUrl,
+    }
+    this.props.star(parseList)
+  }
+
   render() {
-    const { playlist } = this.props; // eslint-disable-line
+    const { playlist } = this.props
     return (
       <div>
         <Subtitle title="歌单" />
@@ -61,7 +70,13 @@ export default class Header extends Component {
           <div className="info-header-right">
             <p className="title">{playlist.name}</p>
             {renderCreator(playlist)}
-            {renderOperationBtns(playlist)}
+            <div className="operation-buttons">
+              <a onClick={this.beforeStar}><i className="icon-folder-plus" />收藏({playlist.subscribedCount})</a>
+              <a><i className="icon-spinner9" />评论({playlist.commentCount})</a>
+              <a><i className="icon-share2" />分享({playlist.shareCount})</a>
+              <a><i className="icon-folder-download" />下载全部</a>
+              <a>~更多</a>
+            </div>
             <div className="tags">标签：
               {playlist.tags.map(v => <span key={v}>{v}</span>)}
             </div>

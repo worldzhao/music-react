@@ -2,17 +2,13 @@ import React from 'react'
 import { withRouter, Link } from 'react-router-dom'
 import './style.styl'
 
-const renderTitle = (title, isShow) => (
-  <h4 className={isShow ? '' : 'hide'}>{title}</h4>
-)
-
 function DrawerBlock(props) {
   const { route, isShow } = props
   const { title, items } = route
   return (
-    <div className="drawerblock">
+    <div className="drawer-block">
       {
-          title ? renderTitle(title, isShow) : null
+          title ? <h4 className={isShow ? '' : 'hide'}>{title}</h4> : null
         }
       <ul className="items">
         {

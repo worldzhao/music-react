@@ -11,6 +11,17 @@ const initState = {
   isFetching: false,
 }
 
+// action creator
+function fetchEndAct(playlist) {
+  return { type: PLAYLIST_FENTCH_END, payload: playlist }
+}
+
+function fetchStartAct() {
+  return {
+    type: PLAYLIST_FETCH_START,
+  }
+}
+
 // reducer
 export function playlistinfo(state = initState, action) {
   switch (action.type) {
@@ -32,27 +43,16 @@ export function playlistinfo(state = initState, action) {
   }
 }
 
-// action creator
-function FetchEndAct(playlist) {
-  return { type: PLAYLIST_FENTCH_END, payload: playlist }
-}
-
-function FetchStartAct() {
-  return {
-    type: PLAYLIST_FETCH_START,
-  }
-}
-
 // logic operation
 export function fetchPlaylist(id) {
   return (dispatch) => {
     // 异步开始
-    dispatch(FetchStartAct())
+    dispatch(fetchStartAct())
     axios
       .get(playlistInfoUrl(id))
       .then((res) => {
         // 异步结束
-        dispatch(FetchEndAct(res.data.playlist))
+        dispatch(fetchEndAct(res.data.playlist))
       })
       .catch((err) => {
         console.log('====================================')

@@ -1,12 +1,12 @@
 import React from 'react'
-import { withRouter, Switch, Redirect } from 'react-router-dom'
+import { withRouter, Redirect } from 'react-router-dom'
 import './style.styl'
 import { Routes } from '../../config/router'
 import HeadBar from './header/index'
 import Player from './player/index'
 import Drawer from './drawer/index'
 
-function Dashboard(props) {
+const Dashboard = (props) => {
   const { pathname } = props.location
   return (
     <div className="dashboard">
@@ -15,9 +15,7 @@ function Dashboard(props) {
       <div className="content">
         <Drawer />
         <div className="views">
-          <Switch>
-            <Routes />
-          </Switch>
+          <Routes />
         </div>
       </div>
       <Player />

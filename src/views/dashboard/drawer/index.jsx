@@ -23,8 +23,10 @@ export default class Drawer extends Component {
     return (
       <div className={`drawer ${isShow ? '' : 'hide'}`}>
         <i className="icon-menu" onClick={this.toggleDrawer} />
-        {routeInfo.map(route => <DrawerBlock key={route.title} route={route} isShow={isShow} />)}
-        <StarredBlock />
+        {routeInfo.map(route => (
+          <DrawerBlock key={route.title} route={route} isShow={isShow} />
+        ))}
+        <StarredBlock isShow={isShow} />
       </div>
     )
   }

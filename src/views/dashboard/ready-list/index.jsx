@@ -5,13 +5,10 @@ import { changeSong, deleteSong } from '../../../redux/playqueue.redux'
 
 import './style.styl'
 
-@connect(
-  state => ({ playqueue: state.playqueue }),
-  {
-    changeSong,
-    deleteSong,
-  },
-)
+@connect(state => ({ playqueue: state.playqueue }), {
+  changeSong,
+  deleteSong,
+})
 export default class ReadyList extends Component {
   playSong = (song, index) => {
     const flag = 'ready2play'
@@ -28,44 +25,41 @@ export default class ReadyList extends Component {
           <div>清空</div>
         </div>
         <ul className="list-body">
-          {playlist.map((v, index) =>
-            (
-              <li
-                key={v.id}
-                className={v.id === song.id ? 'body-item active' : 'body-item'}
-              >
-                <div
-                  className="song-name"
-                  onClick={() => {
-                this.playSong(v, index)
-              }}
-                >{v.name}
-                </div>
-                <div className="song-artist">
-                  {v
-                  .ar
-                  .map(artist => (
-                    <Link
-                      key={artist.id}
-                      to={{
-                      pathname: '/artistinfo',
-                      search: `?id=${artist.id}`,
-                    }}
-                    >{artist.name}
-                    </Link>))
-                }
-                </div>
-                <div className="delete-btn">
-                  <i
-                    className="icon-cross"
-                    onClick={() => {
-                  this.props.deleteSong(v.id)
+          {playlist.map((v, index) => (
+            <li
+              key={v.id}
+              className={v.id === song.id ? 'body-item active' : 'body-item'}
+            >
+              <div
+                className="song-name"
+                onClick={() => {
+                  this.playSong(v, index)
                 }}
-                  />
-                </div>
-              </li>
-             ))
-          }
+              >
+                {v.name}
+              </div>
+              <div className="song-artist">
+                {v.ar.map(artist => (
+                  <Link
+                    key={artist.id}
+                    to={{
+                      pathname: `/artistinfo/${artist.id}`,
+                    }}
+                  >
+                    {artist.name}
+                  </Link>
+                ))}
+              </div>
+              <div className="delete-btn">
+                <i
+                  className="icon-cross"
+                  onClick={() => {
+                    this.props.deleteSong(v.id)
+                  }}
+                />
+              </div>
+            </li>
+          ))}
         </ul>
       </div>
     )

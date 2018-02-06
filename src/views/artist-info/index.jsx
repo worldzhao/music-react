@@ -8,7 +8,7 @@ import { fetchArtistInfo } from '../../redux/artistinfo.redux'
 
 import './style.styl'
 
-function renderArtistInfo(artistDetail) {
+const renderArtistInfo = (artistDetail) => {
   if (!artistDetail) return null
   const { artist, hotSongs } = artistDetail
   return [
@@ -31,7 +31,8 @@ export default class ArtistInfo extends Component {
     const { id } = this.props.match.params
     this.props.fetchArtistInfo(id)
   }
-  componentWillReceiveProps(nextProps) { // 处理组件相同路由切换页面不刷新的问题
+  componentWillReceiveProps(nextProps) {
+    // 处理组件相同路由切换页面不刷新的问题
     const { id } = nextProps.match.params
     const preId = this.props.match.params.id
     if (id !== preId) {

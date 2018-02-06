@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 // 按路由拆分代码
 import Loadable from 'react-loadable'
 import Loading from '../component/loading/index'
@@ -119,5 +119,5 @@ export const Routes = () => {
     ))
     RouteContainer = [...RouteContainer, ...block]
   })
-  return RouteContainer
+  return <Switch>{RouteContainer}</Switch>
 }

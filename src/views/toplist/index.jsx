@@ -7,7 +7,7 @@ import Subtitle from '../../component/subtitle/index'
 import { fetchToplist } from '../../redux/toplist.redux'
 import './style.styl'
 
-function renderTopicList(data) {
+const renderTopicList = (data) => {
   if (!data) return null
   return (
     <div className="toplist">

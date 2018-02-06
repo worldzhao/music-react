@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import './style.styl'
 
-export default function SongCard(props) {
+const SongCard = (props) => {
   const {
     creator, id, imgUrl, title,
   } = props.playlist
@@ -18,3 +18,5 @@ export default function SongCard(props) {
     </div>
   )
 }
+
+export default SongCard

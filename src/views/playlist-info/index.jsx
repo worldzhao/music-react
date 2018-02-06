@@ -7,7 +7,7 @@ import { fetchPlaylist } from '../../redux/playlistinfo.redux'
 
 import './style.styl'
 
-function renderPlaylist(playlist) {
+const renderPlaylist = (playlist) => {
   if (!playlist) return null
   const { tracks, coverImgUrl } = playlist
   return [
@@ -32,7 +32,8 @@ export default class PlaylistInfo extends Component {
     const { id } = this.props.match.params
     this.props.fetchPlaylist(id)
   }
-  componentWillReceiveProps(nextProps) { // 处理组件相同路由切换页面不刷新的问题
+  componentWillReceiveProps(nextProps) {
+    // 处理组件相同路由切换页面不刷新的问题
     const { id } = nextProps.match.params
     const preId = this.props.match.params.id
     if (id !== preId) {

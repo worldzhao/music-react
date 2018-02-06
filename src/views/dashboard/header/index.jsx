@@ -14,9 +14,11 @@ const getTitle = (r, p) => {
   return title
 }
 
-function HeadBar(props) {
+const HeadBar = (props) => {
   const { pathname } = props.location
-  const title = getTitle(routeInfo, pathname) ? getTitle(routeInfo, pathname) : 'SoulBeats'
+  const title = getTitle(routeInfo, pathname)
+    ? getTitle(routeInfo, pathname)
+    : 'SoulBeats'
   return (
     <div className="headbar">
       <div className="left">

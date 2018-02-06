@@ -6,7 +6,7 @@ import SpecialPage from './specicl-page/index'
 import SongCardPage from './songcard-page/index'
 import './style.styl'
 
-export default function FindMusic(props) {
+const FindMusic = (props) => {
   const { match } = props
   const { pathname } = props.location
   const navlist = [
@@ -19,19 +19,20 @@ export default function FindMusic(props) {
       path: `${match.url}/playlist`,
       text: '歌单',
       component: SongCardPage,
-    }]
+    },
+  ]
   return (
     <div className="findMusic">
       {pathname === '/findmusic' ? <Redirect to="/findmusic/playlist" /> : null}
       <Subtitle title="发现音乐" />
       <NavTab navlist={navlist} />
       <div className="level2-views">
-        {
-            navlist.map(v => (
-              <Route key={v.path} path={v.path} component={v.component} />
-            ))
-          }
+        {navlist.map(v => (
+          <Route key={v.path} path={v.path} component={v.component} />
+        ))}
       </div>
     </div>
   )
 }
+
+export default FindMusic

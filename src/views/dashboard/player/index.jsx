@@ -62,24 +62,32 @@ export default class Player extends Component {
   setMode = () => {
     const { mode } = this.state
     switch (mode) {
+      // 列表循环 => 顺序播放
       case 'listloop':
         this.setState({
           mode: 'sequential',
           modeIcon: 'icon-spinner11',
         })
         break
+      // 顺序播放 => 单曲循环
       case 'sequential':
         this.setState({
           mode: 'singleCycle',
           modeIcon: 'icon-loop',
+        }, () => {
+          this.audio.loop = true
         })
         break
+      // 单曲循环 => 随机播放
       case 'singleCycle':
         this.setState({
           mode: 'shuffleplay',
           modeIcon: 'icon-shuffle',
+        }, () => {
+          this.audio.loop = false
         })
         break
+      // 随机播放 => 列表循环
       case 'shuffleplay':
         this.setState({
           mode: 'listloop',
@@ -189,15 +197,6 @@ export default class Player extends Component {
     }
     const song = playlist[index]
     this.props.changeSong({ song, index })
-
-    /*
-    this.setState({
-      index,
-      song
-    },()=>{
-      this.changeSongCallback()
-    })
-    */
   };
 
   changeSongCallback = () => {
@@ -226,9 +225,6 @@ export default class Player extends Component {
         } else {
           this.toPause()
         }
-        break
-      case 'singleCycle':
-        this.audio.loop = true
         break
       case 'shuffleplay':
         this.nextSong()

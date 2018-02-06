@@ -27,8 +27,7 @@ const SpecialList = (props) => {
                       <Link
                         key={Math.random() + artist.id}
                         to={{
-                          pathname: '/artistinfo',
-                          search: `?id=${artist.id}`,
+                          pathname: `/artistinfo/${artist.id}`,
                         }}
                       >
                         {' '}

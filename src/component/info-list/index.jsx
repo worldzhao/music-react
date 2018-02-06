@@ -5,23 +5,21 @@ import { addSong2Que, playSong2Que } from '../../redux/playqueue.redux'
 import { specIndex, formatDuration } from '../../common/js/util'
 import './style.styl'
 
-function renderArtist(song) {
-  return (
-    <div className="song-artist">
-      {song.ar.map(artist => (
-        <Link
-          key={Math.random() + artist.id}
-          to={{ pathname: `/artistinfo/${artist.id}` }}
-        >
-          {' '}
-          {artist.name}
-        </Link>
+const renderArtist = song => (
+  <div className="song-artist">
+    {song.ar.map(artist => (
+      <Link
+        key={Math.random() + artist.id}
+        to={{ pathname: `/artistinfo/${artist.id}` }}
+      >
+        {' '}
+        {artist.name}
+      </Link>
       ))}
-    </div>
-  )
-}
+  </div>
+)
 
-function SongList(props) {
+const SongList = (props) => {
   const { tracks, isShowAr = true } = props
   return (
     <div className="songList">
@@ -54,8 +52,8 @@ function SongList(props) {
   )
 }
 
-const mapStateToProps = state => ({
-  state,
+const mapStateToProps = () => ({
+  state: null,
 })
 
 const mapDispatchToProps = {

@@ -4,41 +4,12 @@ import { Route, Switch } from 'react-router-dom'
 import Loadable from 'react-loadable'
 import Loading from '../component/loading/index'
 
-const AsyncFindMusic = Loadable({
-  loader: () => import('../views/find-music/index'),
+const createLoadableComp = path => Loadable({
+  loader: () => import(`../views/${path}/index`),
   loading: Loading,
 })
-const AsyncPlaylistInfo = Loadable({
-  loader: () => import('../views/playlist-info/index'),
-  loading: Loading,
-})
-const AsyncToplist = Loadable({
-  loader: () => import('../views/toplist/index'),
-  loading: Loading,
-})
-const AsyncArtistInfo = Loadable({
-  loader: () => import('../views/artist-info/index'),
-  loading: Loading,
-})
-const AsyncLatestSong = Loadable({
-  loader: () => import('../views/latest-song/index'),
-  loading: Loading,
-})
-const AsyncSearch = Loadable({
-  loader: () => import('../views/search/index'),
-  loading: Loading,
-})
-const AsyncFavoMusic = Loadable({
-  loader: () => import('../views/favo-music/index'),
-  loading: Loading,
-})
-const AsyncAbout = Loadable({
-  loader: () => import('../views/about/index'),
-  loading: Loading,
-})
-
-// 此处有两种对象，一种是显式路由以及对应的组件，例如findmusic，是要做导航渲染的Link
-// 一种是仅仅是组件，没有导航，只是渲染Route,例如artistinfo
+// 此处有两种对象，一种是Link以及对应Route都要使用的信息对象，例如toplist
+// 一种是Route使用的信息对象，例如artistinfo
 export const routeInfo = [
   {
     title: null,
@@ -49,7 +20,7 @@ export const routeInfo = [
         text: '搜索',
         title: '搜索',
         icon: 'icon-search',
-        component: AsyncSearch,
+        component: createLoadableComp('search'),
       },
       {
         index: 2,
@@ -57,7 +28,7 @@ export const routeInfo = [
         text: '发现音乐',
         title: '发现音乐',
         icon: 'icon-music',
-        component: AsyncFindMusic,
+        component: createLoadableComp('find-music'),
       },
       {
         index: 3,
@@ -65,7 +36,7 @@ export const routeInfo = [
         text: '排行榜',
         title: '排行榜',
         icon: 'icon-star-full',
-        component: AsyncToplist,
+        component: createLoadableComp('toplist'),
       },
       {
         index: 4,
@@ -73,7 +44,7 @@ export const routeInfo = [
         text: '最近播放',
         title: '最近播放',
         icon: 'icon-clock',
-        component: AsyncLatestSong,
+        component: createLoadableComp('latest-song'),
       },
       {
         index: 5,
@@ -81,7 +52,7 @@ export const routeInfo = [
         text: '我喜欢的音乐',
         title: '我喜欢的音乐',
         icon: 'icon-heart',
-        component: AsyncFavoMusic,
+        component: createLoadableComp('favo-music'),
       },
       {
         index: 6,
@@ -89,17 +60,17 @@ export const routeInfo = [
         text: '关于',
         title: '关于',
         icon: 'icon-users',
-        component: AsyncAbout,
+        component: createLoadableComp('about'),
       },
       {
         index: 7,
         path: '/playlistinfo/:id',
-        component: AsyncPlaylistInfo,
+        component: createLoadableComp('playlist-info'),
       },
       {
         index: 8,
         path: '/artistinfo/:id',
-        component: AsyncArtistInfo,
+        component: createLoadableComp('artist-info'),
       },
     ],
   },

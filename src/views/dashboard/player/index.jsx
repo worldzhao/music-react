@@ -14,18 +14,6 @@ function renderAlbumImg(song) {
   )
 }
 
-// const mapStateToProps = state => ({
-//   playqueue: state.playqueue,
-// })
-
-// const mapDispatchToProps = {
-//   changeSong,
-// }
-
-// export default connect(
-//   mapStateToProps,
-//   mapDispatchToProps,
-// )(Player)
 @connect(
   state => ({ playqueue: state.playqueue }),
   {

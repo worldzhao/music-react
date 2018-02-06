@@ -8,6 +8,9 @@ import './style.styl'
 @connect(state => ({ playqueue: state.playqueue }), { changeSong, deleteSong })
 export default class ReadyList extends Component {
   render() {
+    console.log('====================================')
+    console.log('render ready-list')
+    console.log('====================================')
     const { playlist, song } = this.props.playqueue
     return (
       <div className="readylist">
@@ -18,7 +21,14 @@ export default class ReadyList extends Component {
         </div>
         <ul className="list-body">
           {playlist.map((v, index) => (
-            <Item key={v.id} v={v} song={song} index={index} {...this.props} />
+            <Item
+              key={v.id}
+              v={v}
+              song={song}
+              index={index}
+              changeSong={this.props.changeSong}
+              deleteSong={this.props.deleteSong}
+            />
           ))}
         </ul>
       </div>

@@ -5,10 +5,12 @@ import { Link } from 'react-router-dom'
 export default class Item extends PureComponent {
   playSong = (song, index) => {
     this.props.changeSong({ song, index })
-  };
+  }
 
   render() {
-    console.log('render')
+    console.log('====================================')
+    console.log('render ready-list-item')
+    console.log('====================================')
     const { v, song, index } = this.props
     return (
       <li

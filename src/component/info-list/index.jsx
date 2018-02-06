@@ -21,6 +21,9 @@ const renderArtist = song => (
 
 const SongList = (props) => {
   const { tracks, isShowAr = true } = props
+  console.log('====================================')
+  console.log('render songlist')
+  console.log('====================================')
   return (
     <div className="songList">
       <p className="play-all-btn">播放全部({tracks.length})</p>

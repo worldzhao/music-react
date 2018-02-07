@@ -3,6 +3,9 @@ import React from 'react'
 import './style.styl'
 
 const ArHeader = (props) => {
+  console.log('====================================')
+  console.log('render arheader')
+  console.log('====================================')
   const {
     img1v1Url,
     name,

@@ -16,13 +16,15 @@ $activeRed = #df3b3b
     font-size 14px
     mx_flex()
     mx_hlh(40px,40px)
-    padding-left 30px
+    padding 0 30px
     &>div:first-child
       mx_flex_item(3)
     &>div:nth-child(2)
       mx_flex_item(2)
     &>div:last-child
+      cursor default
       mx_flex_item(1)
+      text-align right
   .list-body
     .body-item
       mx_flex()

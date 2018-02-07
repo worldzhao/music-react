@@ -40,6 +40,9 @@ export default class ArtistInfo extends Component {
     }
   }
   render() {
+    console.log('====================================')
+    console.log('render artist-info')
+    console.log('====================================')
     const { isFetching, artistDetail } = this.props.artistinfo
     return (
       <div className="artist-info">

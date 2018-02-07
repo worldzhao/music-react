@@ -10,7 +10,7 @@ const GlobalList = (props) => {
       <ul className="global-list">
         {global.map(topic => (
           <li key={topic.id}>
-            <Link to={{ pathname: '/playlistinfo', search: `?id=${topic.id}` }}>
+            <Link to={{ pathname: `/playlistinfo/${topic.id}` }}>
               <img
                 src={topic.coverUrl}
                 alt="playlist-cover"

@@ -41,6 +41,9 @@ export default class PlaylistInfo extends Component {
     }
   }
   render() {
+    console.log('====================================')
+    console.log('render playlist-info')
+    console.log('====================================')
     const { isFetching, playlist } = this.props.playlistinfo
     return (
       <div className="playlist-wrapper">

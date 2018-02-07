@@ -10,7 +10,7 @@ const SpecialList = (props) => {
       <ul className="special-list">
         {special.map(topic => (
           <li className="topic-block" key={topic.id}>
-            <Link to={{ pathname: '/playlistinfo', search: `?id=${topic.id}` }}>
+            <Link to={{ pathname: `/playlistinfo/${topic.id}` }}>
               <img
                 src={topic.coverUrl}
                 alt="playlist-cover"

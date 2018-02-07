@@ -17,6 +17,9 @@ export default class StarredBlock extends Component {
     this.props.initStarredList()
   }
   render() {
+    console.log('====================================')
+    console.log('render star block')
+    console.log('====================================')
     const { items } = this.props.starredlist
     const { isShow } = this.props
     return (

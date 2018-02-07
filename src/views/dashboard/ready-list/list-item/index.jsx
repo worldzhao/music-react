@@ -4,13 +4,11 @@ import { Link } from 'react-router-dom'
 // 使用场景参考：https://zhuanlan.zhihu.com/p/32601923
 export default class Item extends PureComponent {
   playSong = (song, index) => {
-    this.props.changeSong({ song, index })
+    const flag = 'PLAY_SONG'
+    this.props.changeSong({ song, index, flag })
   }
 
   render() {
-    console.log('====================================')
-    console.log('render ready-list-item')
-    console.log('====================================')
     const { v, song, index } = this.props
     return (
       <li
@@ -33,7 +31,7 @@ export default class Item extends PureComponent {
                 pathname: `/artistinfo/${artist.id}`,
               }}
             >
-              {artist.name}
+              {`${artist.name} `}
             </Link>
           ))}
         </div>

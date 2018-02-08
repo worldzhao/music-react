@@ -12,18 +12,14 @@ const initState = {
 }
 
 // action creator
-function fetchEndAct(playlist) {
-  return { type: PLAYLIST_FENTCH_END, payload: playlist }
-}
+const fetchEndAct = playlist => ({ type: PLAYLIST_FENTCH_END, payload: playlist })
 
-function fetchStartAct() {
-  return {
-    type: PLAYLIST_FETCH_START,
-  }
-}
+const fetchStartAct = () => ({
+  type: PLAYLIST_FETCH_START,
+})
 
 // reducer
-export function playlistinfo(state = initState, action) {
+export const playlistinfo = (state = initState, action) => {
   switch (action.type) {
     case PLAYLIST_FENTCH_END:
       return {
@@ -44,20 +40,18 @@ export function playlistinfo(state = initState, action) {
 }
 
 // logic operation
-export function fetchPlaylist(id) {
-  return (dispatch) => {
-    // 异步开始
-    dispatch(fetchStartAct())
-    axios
-      .get(playlistInfoUrl(id))
-      .then((res) => {
-        // 异步结束
-        dispatch(fetchEndAct(res.data.playlist))
-      })
-      .catch((err) => {
-        console.log('====================================')
-        console.log(err)
-        console.log('====================================')
-      })
-  }
+export const fetchPlaylist = id => (dispatch) => {
+  // 异步开始
+  dispatch(fetchStartAct())
+  axios
+    .get(playlistInfoUrl(id))
+    .then((res) => {
+      // 异步结束
+      dispatch(fetchEndAct(res.data.playlist))
+    })
+    .catch((err) => {
+      console.log('====================================')
+      console.log(err)
+      console.log('====================================')
+    })
 }

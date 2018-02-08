@@ -22,7 +22,7 @@ const initState = {
 }
 
 // reducer
-export function toplist(state = initState, action) {
+export const toplist = (state = initState, action) => {
   switch (action.type) {
     case TOPLIST_FETCH_START:
       return {
@@ -43,15 +43,13 @@ export function toplist(state = initState, action) {
 }
 
 // logic operation
-export function fetchToplist() {
-  return (dispatch) => {
-    dispatch(fetchStartAct())
-    axios.get(toplistUrl).then((res) => {
-      dispatch(fetchEndAct(res.data))
-    }).catch((err) => {
-      console.log('====================================')
-      console.log(err)
-      console.log('====================================')
-    })
-  }
+export const fetchToplist = () => (dispatch) => {
+  dispatch(fetchStartAct())
+  axios.get(toplistUrl).then((res) => {
+    dispatch(fetchEndAct(res.data))
+  }).catch((err) => {
+    console.log('====================================')
+    console.log(err)
+    console.log('====================================')
+  })
 }

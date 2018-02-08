@@ -61,13 +61,9 @@ const initState = {
 }
 
 // action creator for async method [logic operation]
-function playSongAct(song) {
-  return { type: PLAY_SONG, payload: song }
-}
+const playSongAct = song => ({ type: PLAY_SONG, payload: song })
 
-function addSongAct(song) {
-  return { type: ADD_SONG, payload: song }
-}
+const addSongAct = song => ({ type: ADD_SONG, payload: song })
 
 // action creator [also logic operation]
 export const changeSong = ({ song, index, flag = '' }) => ({
@@ -86,7 +82,7 @@ export const clearQueue = () => ({
 })
 
 // reducer
-export function playqueue(state = initState, action) {
+export const playqueue = (state = initState, action) => {
   let delIndex
   const { playlist } = state
   const len = playlist.length
@@ -150,56 +146,52 @@ const isContain = (id, playlist) => {
 }
 
 // logic operation
-export function playSong2Que(s) {
-  return (dispatch, getState) => {
-    const { playlist } = getState().playqueue
-    // 歌曲列表中已经存在的歌曲不允许再次添加
-    if (isContain(s.id, playlist)) {
-      return
-    }
-    axios
-      .get(getMp3Url(s.id))
-      .then((res) => {
-        const { url } = res.data.data[0]
-        if (url) {
-          const song = {
-            ...s,
-            url,
-          }
-          dispatch(playSongAct(song))
-        } else {
-          alert('歌曲直链不存在')
-        }
-      })
-      .catch((err) => {
-        alert(`获取歌曲链接是发生错误：${err}`)
-      })
+export const playSong2Que = s => (dispatch, getState) => {
+  const { playlist } = getState().playqueue
+  // 歌曲列表中已经存在的歌曲不允许再次添加
+  if (isContain(s.id, playlist)) {
+    return
   }
+  axios
+    .get(getMp3Url(s.id))
+    .then((res) => {
+      const { url } = res.data.data[0]
+      if (url) {
+        const song = {
+          ...s,
+          url,
+        }
+        dispatch(playSongAct(song))
+      } else {
+        alert('歌曲直链不存在')
+      }
+    })
+    .catch((err) => {
+      alert(`获取歌曲链接是发生错误：${err}`)
+    })
 }
 
-export function addSong2Que(s) {
-  return (dispatch, getState) => {
-    const { playlist } = getState().playqueue
-    // 歌曲列表中已经存在的歌曲不允许再次添加
-    if (isContain(s.id, playlist)) {
-      return
-    }
-    axios
-      .get(getMp3Url(s.id))
-      .then((res) => {
-        const { url } = res.data.data[0]
-        if (url) {
-          const song = {
-            ...s,
-            url,
-          }
-          dispatch(addSongAct(song))
-        } else {
-          alert('歌曲直链不存在')
-        }
-      })
-      .catch((err) => {
-        alert(`获取歌曲链接是发生错误：${err}`)
-      })
+export const addSong2Que = s => (dispatch, getState) => {
+  const { playlist } = getState().playqueue
+  // 歌曲列表中已经存在的歌曲不允许再次添加
+  if (isContain(s.id, playlist)) {
+    return
   }
+  axios
+    .get(getMp3Url(s.id))
+    .then((res) => {
+      const { url } = res.data.data[0]
+      if (url) {
+        const song = {
+          ...s,
+          url,
+        }
+        dispatch(addSongAct(song))
+      } else {
+        alert('歌曲直链不存在')
+      }
+    })
+    .catch((err) => {
+      alert(`获取歌曲链接是发生错误：${err}`)
+    })
 }

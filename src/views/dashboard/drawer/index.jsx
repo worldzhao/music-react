@@ -26,7 +26,7 @@ export default class Drawer extends Component {
         {routeInfo.map(route => (
           <DrawerBlock key={route.title} route={route} isShow={isShow} />
         ))}
-        <StarredBlock isShow={isShow} />
+        {isShow ? <StarredBlock /> : null}
       </div>
     )
   }

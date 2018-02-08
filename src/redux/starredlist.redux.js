@@ -12,43 +12,31 @@ const starListAct = list => ({
 })
 
 // initial State
-const initState = {
-  items: [],
-}
+// 扁平化state 提高shouldComponentUpdate比较效率
+const initState = []
 
 // reducer
-export function starredlist(state = initState, action) {
+export const starredlist = (state = initState, action) => {
   switch (action.type) {
     case INIT_STARRED_LIST:
-      return {
-        ...state,
-        items: [...state.items, ...action.payload],
-      }
+      return [...state, ...action.payload]
     case STAR_LIST:
-      return {
-        ...state,
-        items: [...state.items, action.payload],
-      }
+      return [...state, action.payload]
     default:
-      return {
-        ...state,
-      }
+      return [...state]
   }
 }
 
 // login operation
 
 // 初始化本地数据操作
-export function initStarredList() {
-  return (dispatch) => {
-    const allStarredList =
-      JSON.parse(localStorage.getItem('allStarredList')) || []
-    dispatch(initStarredListAct(allStarredList))
-  }
+export const initStarredList = () => (dispatch) => {
+  const allStarredList = JSON.parse(localStorage.getItem('allStarredList')) || []
+  dispatch(initStarredListAct(allStarredList))
 }
 
 // 收藏歌单操作
-export function star(item) {
+export const star = (item) => {
   // 先处理本地存储
   let allStarredList = JSON.parse(localStorage.getItem('allStarredList'))
   if (!allStarredList) {

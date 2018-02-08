@@ -24,9 +24,8 @@ export function lyricUrl(id) {
 }
 
 // 轮播图
-export function swiperUrl() {
-  return 'http://112.74.56.114:8888/NetEaseMusicServer/image'
-}
+export const swiperUrl = 'http://112.74.56.114:8888/NetEaseMusicServer/image'
+
 
 // 排行榜
 export const toplistUrl = 'http://112.74.56.114:8888/NetEaseMusicServer/fuckzzw'

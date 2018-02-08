@@ -7,25 +7,19 @@ const CARDLIST_FETCH_END = 'CARDLIST_FETCH_END'
 const RECORD_SCROLL = 'RECORD_SCROLL'
 
 // action creator
-function fetchStartAct() {
-  return {
-    type: CARDLIST_FETCH_START,
-  }
-}
+const fetchStartAct = () => ({
+  type: CARDLIST_FETCH_START,
+})
 
-function fetchEndAct(list) {
-  return {
-    type: CARDLIST_FETCH_END,
-    payload: { list },
-  }
-}
-
-function scrollPoint(scrollTop) {
-  return {
-    type: RECORD_SCROLL,
-    payload: scrollTop,
-  }
-}
+const fetchEndAct = list => ({
+  type: CARDLIST_FETCH_END,
+  payload: { list },
+})
+// logic operation and action creator
+export const keepScroll = scrollTop => ({
+  type: RECORD_SCROLL,
+  payload: scrollTop,
+})
 
 // initial state
 const initState = {
@@ -37,7 +31,7 @@ const initState = {
 }
 
 // reducer
-export function songcardlist(state = initState, action) {
+export const songcardlist = (state = initState, action) => {
   switch (action.type) {
     case CARDLIST_FETCH_START:
       return {
@@ -62,19 +56,11 @@ export function songcardlist(state = initState, action) {
 }
 
 // logic operation
-export function fetchCardList(pageNum, limit) {
-  return (dispatch) => {
-    dispatch(fetchStartAct())
-    axios.get(getRecmdPlaylist(limit, pageNum)).then((res) => {
-      dispatch(fetchEndAct(res.data))
-    }).catch((error) => {
-      console.log(error)
-    })
-  }
-}
-
-export function keepScroll(scrollTop) {
-  return (dispatch) => {
-    dispatch(scrollPoint(scrollTop))
-  }
+export const fetchCardList = (pageNum, limit) => (dispatch) => {
+  dispatch(fetchStartAct())
+  axios.get(getRecmdPlaylist(limit, pageNum)).then((res) => {
+    dispatch(fetchEndAct(res.data))
+  }).catch((error) => {
+    console.log(error)
+  })
 }

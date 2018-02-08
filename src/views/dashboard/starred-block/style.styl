@@ -1,9 +1,11 @@
 @import '../../../common/style/mixin.styl'
 $linkFontSize = 14px
 $liHoverBgc = #e8e8eb
+$infoText = #666
 .starred-block
-  &.hide
-    display none
+  .nolist-info
+    mx_fc(12px,$infoText)
+    padding-left 45px
   .items
     .item
       height 40px

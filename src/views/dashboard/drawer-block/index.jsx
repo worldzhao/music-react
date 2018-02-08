@@ -14,7 +14,7 @@ const DrawerBlock = (props) => {
         items.map(item =>
             (item.icon ? (
               <li key={JSON.stringify(item)} className="item">
-                <NavLink to={item.path} activeClassName="selected">
+                <NavLink to={item.path}>
                   <i className={item.icon} />
                   {item.text}
                 </NavLink>

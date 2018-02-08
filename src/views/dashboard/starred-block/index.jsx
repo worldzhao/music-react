@@ -16,14 +16,16 @@ export default class StarredBlock extends Component {
   componentDidMount() {
     this.props.initStarredList()
   }
+  // re-render 优化test
+  shouldComponentUpdate(nextProps) {
+    // console.log(this.props.starredlist === nextProps.starredlist)
+    // false 引用类型 所以PureComponent会失效  扩展:immuable.js
+    return !(this.props.starredlist.length === nextProps.starredlist.length)
+  }
   render() {
-    console.log('====================================')
-    console.log('render star block')
-    console.log('====================================')
-    const { items } = this.props.starredlist
-    const { isShow } = this.props
+    const items = this.props.starredlist
     return (
-      <div className={isShow ? 'starred-block' : 'starred-block hide'}>
+      <div className="starred-block">
         {items.length ? (
           <ul className="items">
             {items.map(item => (
@@ -36,7 +38,7 @@ export default class StarredBlock extends Component {
             ))}
           </ul>
         ) : (
-          <p>没有收藏歌单哦</p>
+          <p className="nolist-info">还没有收藏歌单哦~</p>
         )}
       </div>
     )

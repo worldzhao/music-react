@@ -1,5 +1,5 @@
 import React from 'react'
-import { withRouter, Link } from 'react-router-dom'
+import { withRouter, NavLink } from 'react-router-dom'
 import './style.styl'
 
 const DrawerBlock = (props) => {
@@ -14,10 +14,10 @@ const DrawerBlock = (props) => {
         items.map(item =>
             (item.icon ? (
               <li key={JSON.stringify(item)} className="item">
-                <Link to={item.path}>
+                <NavLink to={item.path} activeClassName="selected">
                   <i className={item.icon} />
                   {item.text}
-                </Link>
+                </NavLink>
               </li>
             ) : null))}
       </ul>

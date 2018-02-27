@@ -4,15 +4,8 @@ import { connect } from 'react-redux'
 import { changeSong } from '../../../redux/playqueue.redux'
 import { formatDuration, formatCurrentTime } from '../../../common/js/util'
 import ReadyList from '../ready-list/index'
+import Rolling from '../../Rolling/index'
 import './style.styl'
-
-function renderAlbumImg(song) {
-  return (
-    <div className="album-img">
-      <img src={song.al.picUrl} alt="album-img" />
-    </div>
-  )
-}
 
 @connect(
   state => ({ playqueue: state.playqueue }),
@@ -33,6 +26,7 @@ export default class Player extends Component {
       mode: 'listloop',
       modeIcon: 'icon-loop2',
       showReadyList: false,
+      showRolling: false,
     }
   }
 
@@ -228,6 +222,12 @@ export default class Player extends Component {
     })
   };
 
+  toggleRolling = () => {
+    this.setState({
+      showRolling: !this.state.showRolling,
+    })
+  };
+
   togglePlay = () => {
     if (this.audio.paused || this.audio.ended) {
       this.toPlay()
@@ -243,12 +243,20 @@ export default class Player extends Component {
       curProgressBarWidth,
       curVolBarWidth,
       showReadyList,
+      showRolling,
     } = this.state
     const { song } = this.props.playqueue
-    return (
-      <div className="player">
-        {renderAlbumImg(song)}
-
+    const method = {
+      toggleRolling: this.toggleRolling,
+      preSong: this.preSong,
+      togglePlay: this.togglePlay,
+      nextSong: this.nextSong,
+    }
+    return [
+      <div className="player" key="player">
+        <div className="album-img" onClick={this.toggleRolling}>
+          <img src={song.al.picUrl} alt="album-img" />
+        </div>
         <div className="player-btns">
           <button className="pre-btn" onClick={this.preSong}><i className="icon-previous2" /></button>
           <button className="pp-btn" onClick={this.togglePlay}><i className={ppIcon} /></button>
@@ -313,9 +321,9 @@ export default class Player extends Component {
           <i className={modeIcon} onClick={this.setMode} />
           <i className="icon-list" onClick={this.toggleReadyList} />
         </div>
-
         {showReadyList ? <ReadyList /> : null}
-      </div>
-    )
+      </div>,
+      <Rolling key="rolling" showRolling={showRolling} {...method} {...this.props} {...this.state} />,
+    ]
   }
 }

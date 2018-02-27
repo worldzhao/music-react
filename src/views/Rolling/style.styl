@@ -1,0 +1,65 @@
+@import '../../common/style/mixin.styl'
+@import '../../common/style/variable.styl'
+
+.rolling
+  background-color rgb(255,255,255)
+  mx_brbox()
+  mx_poftl(0,-100%)
+  mx_wh(100%,100%)
+  overflow hidden
+  padding 30px 0 30px 0
+  transition all 0.6s
+  &.rolling-up
+    mx_poftl(0,0)
+    transform translateZ(0)
+  .bg
+    filter blur(20px)
+    mx_wh(100%,100%)
+    opacity 0.6
+    position absolute
+    z-index -1
+  .top-part
+    cursor default
+    background-color #000
+    mx_brbox()
+    mx_fc(14px, #fff)
+    mx_whlh(100%,30px,30px)
+    mx_postl(0,0)
+    padding 0 20px
+    .icon-arrow-left
+      cursor pointer
+    .title
+      display inline-block
+      margin-left 30px
+  .bottom-part
+    mx_posbl(0,0)
+    mx_wh(100%,16px)
+  .left-part
+    width 550px
+    position relative
+    .album-img
+      mx_wh(350px,350px)
+      mx_postl(80px,50%)
+      transform translateX(-50%)
+      transition all 0.4s
+      &.active
+        box-shadow 0px 0px 20px 4px rgba(0,0,0,0.3)
+        mx_wh(375px,375px)
+      &>img
+        mx_wh(100%,100%)
+    .player-btns
+      mx_flex()
+      mx_wh(350px,50px)
+      mx_postl(500px,50%)
+      transform translateX(-50%)
+      text-align center
+      &>button
+        background-color transparent
+        border none
+        font-size 40px
+        mx_flex_item(1)
+        outline none
+        color #fff
+  .right-part
+    margin-left 550px
+    border 1px solid #000

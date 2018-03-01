@@ -19,6 +19,7 @@
     "react/prop-types": [0],
     "jsx-a11y/media-has-caption": [0],
     "no-console": [0],
-    "linebreak-style": [0]
+    "linebreak-style": [0],
+    "jsx-a11y/accessible-emoji": [0]
   }
 }

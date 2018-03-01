@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { star } from '../../../redux/starredlist.redux'
+import { star, cancelStar } from '../../../redux/starredlist.redux'
 import Subtitle from '../../../component/subtitle/index'
 import { formatTimeStamp } from '../../../common/js/util'
 import './style.styl'
@@ -27,12 +27,24 @@ const renderCreator = playlist => (
   </div>
 )
 
+const checkStarred = (id) => {
+  const allStarredList = JSON.parse(localStorage.getItem('allStarredList'))
+  if (allStarredList) {
+    for (let i = 0; i < allStarredList.length; i += 1) {
+      const list = allStarredList[i]
+      if (list.id === id) return true
+    }
+  }
+  return false
+}
+
 @connect(
   state => ({
     starredlist: state.starredlist,
   }),
   {
     star,
+    cancelStar,
   },
 )
 export default class Header extends Component {
@@ -49,6 +61,7 @@ export default class Header extends Component {
     })
   };
 
+
   beforeStar = () => {
     const { playlist } = this.props
     const { id, name, coverImgUrl } = playlist
@@ -60,8 +73,15 @@ export default class Header extends Component {
     this.props.star(parseList)
   };
 
+  beforeCancelStar = () => {
+    const { playlist } = this.props
+    const { id } = playlist
+    this.props.cancelStar(id)
+  }
+
   render() {
     const { playlist } = this.props
+    const { id } = playlist
     return (
       <div>
         <Subtitle title="歌单" />
@@ -71,21 +91,12 @@ export default class Header extends Component {
             <p className="title">{playlist.name}</p>
             {renderCreator(playlist)}
             <div className="operation-buttons">
-              <a onClick={this.beforeStar}>
-                <i className="icon-folder-plus" />收藏({
-                  playlist.subscribedCount
-                })
-              </a>
-              <a>
-                <i className="icon-spinner9" />评论({playlist.commentCount})
-              </a>
-              <a>
-                <i className="icon-share2" />分享({playlist.shareCount})
-              </a>
-              <a>
-                <i className="icon-folder-download" />下载全部
-              </a>
-              <a>~更多</a>
+              {checkStarred(id) ? <a onClick={this.beforeCancelStar}>
+                💗取消收藏
+                                  </a> : <a onClick={this.beforeStar}>
+                💗收藏
+                                         </a>}
+
             </div>
             <div className="tags">
               标签：

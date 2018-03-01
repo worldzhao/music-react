@@ -19,7 +19,7 @@ const initState = []
 export const starredlist = (state = initState, action) => {
   switch (action.type) {
     case INIT_STARRED_LIST:
-      return [...state, ...action.payload]
+      return [...action.payload]
     case STAR_LIST:
       return [...state, action.payload]
     default:
@@ -47,5 +47,22 @@ export const star = (item) => {
   // 再处理redux
   return (dispatch) => {
     dispatch(starListAct(item))
+  }
+}
+
+// 取消收藏歌单
+export const cancelStar = (id) => {
+  let index
+  const allStarredList = JSON.parse(localStorage.getItem('allStarredList'))
+  for (let i = 0; i < allStarredList.length; i += 1) {
+    const list = allStarredList[i]
+    if (list.id === id) {
+      index = i
+    }
+  }
+  allStarredList.splice(index, 1)
+  localStorage.setItem('allStarredList', JSON.stringify(allStarredList))
+  return (dispatch) => {
+    dispatch(initStarredListAct(allStarredList))
   }
 }

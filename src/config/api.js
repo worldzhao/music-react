@@ -14,7 +14,7 @@ export function getRecmdPlaylist(limit = 24, pagenum) {
 }
 
 // 获取歌曲资源链接
-export function getMp3Url(id) {
+export function Mp3Url(id) {
   return `https://api.imjad.cn/cloudmusic/?type=song&id=${id}`
 }
 
@@ -44,4 +44,3 @@ export function searchArtist(keyword) {
 export function searchPlaylist(keyword) {
   return `https://api.imjad.cn/cloudmusic/?type=search&search_type=1000&s=${keyword}`
 }
-

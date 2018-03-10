@@ -1,10 +1,12 @@
 # music-react
 
-> 前言：在七月份初学vue的时候，用vue全家桶做了一个模仿网易云的音乐播放器，那是我学前端的第四个月，不懂工程构建/项目构建/代码规范/模块复用的思想，也能运行，功能也颇为完善，但是最近翻看其代码的时候实在惨不忍睹，于是删除了git仓库，用react重构了一遍，更加注重模块划分以及项目构建，并且引入了eslint与editorconfig规范自己的代码，目前还未重构完成（其实也就完成了主要的播放功能），所以没有打包发布。
+> 前言：在七月份初学vue的时候，用vue全家桶做了一个音乐播放器，那是我学前端的第四个月，不懂工程构建/项目构建/代码规范/模块复用的思想，也能运行，功能也颇为完善，但是最近翻看其代码的时候实在惨不忍睹，于是删除了git仓库，用react重构了一遍，更加注重模块划分以及项目构建，并且引入了eslint与editorconfig规范自己的代码，目前还未重构完成。
 
 ![推荐歌单.png](http://upload-images.jianshu.io/upload_images/4869616-d24aa08f95605b93.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ![歌单详情.png](http://upload-images.jianshu.io/upload_images/4869616-4a367530230faed0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+![播放详情.png](https://upload-images.jianshu.io/upload_images/4869616-4adbc1a037a854b6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
 ## 项目简介
@@ -50,14 +52,14 @@
 1. ~~歌手详情~~
 2. ~~排行榜~~
 3. ~~收藏歌单~~
-4. 我喜欢的音乐
-5. 最近播放
-6. 歌曲播放页面
+4. ~~歌词滚动~~
+5. 我喜欢的音乐
+6. 最近播放
 
 ## TODO
 1. ~~使用修饰器语法优化connect~~
-2. 封装modal组件
-3. 封装分页组件
+2. 封装message组件
+3. 封装轮播图组件
 4. 性能优化
     * ~~路由按需加载~~
     * 动画优化

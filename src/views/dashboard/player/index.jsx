@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { changeSong } from '../../../redux/playqueue.redux'
 import { formatDuration, formatCurrentTime } from '../../../common/js/util'
 import ReadyList from '../ready-list/index'
-import Rolling from '../../Rolling/index'
+import Rolling from '../../rolling/index'
 import './style.styl'
 
 @connect(
@@ -99,23 +99,22 @@ export default class Player extends Component {
     })
   };
 
-  setCurTime = (e) => {
+  setCurTime = (e, bar) => {
     // 不要用e.target.offsetWidth 莫名其妙 冒泡？
-    const distance = e.clientX - this.progressBar.offsetLeft
-    const scale = distance / this.progressBar.offsetWidth
+    const distance = e.clientX - bar.offsetLeft
+    const scale = distance / bar.offsetWidth
     // audio标签内有duration，数据对象中也有dt，不过dt = 1000 * duration
     this.audio.currentTime = this.audio.duration * scale
     this.setState({
-      curProgressBarWidth: `${distance}px`,
+      curProgressBarWidth: `${scale * 100}%`,
     })
   };
 
   syncTime = () => {
-    const progressBarWidth = this.progressBar.offsetWidth
     const { song } = this.props.playqueue
     const timeScale = (this.audio.currentTime * 1000) / song.dt
     this.setState({
-      curProgressBarWidth: `${progressBarWidth * timeScale}px`,
+      curProgressBarWidth: `${timeScale * 100}%`,
       cdt: formatCurrentTime(this.audio.currentTime),
     })
   };
@@ -243,14 +242,22 @@ export default class Player extends Component {
       curProgressBarWidth,
       curVolBarWidth,
       showReadyList,
-      showRolling,
     } = this.state
     const { song } = this.props.playqueue
-    const method = {
+    const extraProps = {
       toggleRolling: this.toggleRolling,
       preSong: this.preSong,
       togglePlay: this.togglePlay,
       nextSong: this.nextSong,
+      setCurTime: this.setCurTime,
+    }
+    if (this.audio) {
+      extraProps.currentTime = this.audio.currentTime
+    }
+    const allProps = {
+      ...this.state,
+      ...this.props,
+      ...extraProps,
     }
     return [
       <div className="player" key="player">
@@ -294,7 +301,7 @@ export default class Player extends Component {
               ref={(node) => {
               this.progressBar = node
             }}
-              onClick={this.setCurTime}
+              onClick={(e) => { this.setCurTime(e, this.progressBar) }}
             >
               <div className="current-progress" style={{ width: `${curProgressBarWidth}` }} />
             </div>
@@ -323,7 +330,7 @@ export default class Player extends Component {
         </div>
         {showReadyList ? <ReadyList /> : null}
       </div>,
-      <Rolling key="rolling" showRolling={showRolling} {...method} {...this.props} {...this.state} />,
+      <Rolling key="rolling" {...allProps} />,
     ]
   }
 }

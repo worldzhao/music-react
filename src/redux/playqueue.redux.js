@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { getMp3Url } from '../config/api'
+import { Mp3Url } from '../config/api'
 
 // constant
 const PLAY_SONG = 'PLAY_SONG'
@@ -153,7 +153,7 @@ export const playSong2Que = s => (dispatch, getState) => {
     return
   }
   axios
-    .get(getMp3Url(s.id))
+    .get(Mp3Url(s.id))
     .then((res) => {
       const { url } = res.data.data[0]
       if (url) {
@@ -178,7 +178,7 @@ export const addSong2Que = s => (dispatch, getState) => {
     return
   }
   axios
-    .get(getMp3Url(s.id))
+    .get(Mp3Url(s.id))
     .then((res) => {
       const { url } = res.data.data[0]
       if (url) {

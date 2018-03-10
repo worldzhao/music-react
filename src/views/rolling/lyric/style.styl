@@ -1,0 +1,19 @@
+@import '../../../common/style/mixin.styl';
+@import '../../../common/style/variable.styl';
+
+.lyric-block
+  height 500px
+  overflow hidden
+  position relative
+  .lyrics
+    mx_postl(0,30px)
+    font-size 16px
+    &.move-animate
+      transition all 1s
+    .line
+      height 28px
+      &.active
+        color yellow
+  .lyric-info
+    mx_fc(24px,#000)
+    mx_postl(100px,200px)

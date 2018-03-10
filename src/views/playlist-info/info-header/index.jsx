@@ -92,9 +92,9 @@ export default class Header extends Component {
             {renderCreator(playlist)}
             <div className="operation-buttons">
               {checkStarred(id) ? <a onClick={this.beforeCancelStar}>
-                💗取消收藏
+              ❤️ 取消收藏
                                   </a> : <a onClick={this.beforeStar}>
-                💗收藏
+                ♡ 收藏
                                          </a>}
 
             </div>

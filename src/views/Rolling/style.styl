@@ -7,33 +7,20 @@
   mx_poftl(0,-100%)
   mx_wh(100%,100%)
   overflow hidden
-  padding 30px 0 30px 0
   transition all 0.6s
   &.rolling-up
     mx_poftl(0,0)
     transform translateZ(0)
   .bg
-    filter blur(20px)
+    filter blur(30px)
     mx_wh(100%,100%)
     opacity 0.6
     position absolute
     z-index -1
-  .top-part
-    cursor default
-    background-color #000
-    mx_brbox()
-    mx_fc(14px, #fff)
-    mx_whlh(100%,30px,30px)
-    mx_postl(0,0)
-    padding 0 20px
-    .icon-arrow-left
-      cursor pointer
-    .title
-      display inline-block
-      margin-left 30px
-  .bottom-part
-    mx_posbl(0,0)
-    mx_wh(100%,16px)
+  .goback
+    color #6f6565
+    cursor pointer
+    mx_postr(10px,20px)
   .left-part
     width 550px
     position relative
@@ -56,10 +43,32 @@
       &>button
         background-color transparent
         border none
-        font-size 40px
+        text-shadow 2px 1px 5px #000
+        mx_fc(40px,#fff)
         mx_flex_item(1)
         outline none
-        color #fff
+     .progress-wrapper
+        mx_brbox()
+        mx_postl(600px,0)
+        mx_wh(100%, 30px)
+        padding 12px 20px
+        .progress-bar
+          mx_bar(100%, 6px)
+          .current-progress
+            mx_bar_child()
   .right-part
     margin-left 550px
-    border 1px solid #000
+    padding 40px 0 0 100px
+    .song-name
+      margin-bottom 20px
+      mx_fc(32px,#463a3a)
+      mx_single_ellipsis()
+    .info-block
+      width 80%
+      border-bottom 1px solid rgba(7,17,27,0.2)
+      padding-bottom 10px
+      &>span
+        margin-right 30px
+        mx_fc(14px,#5f5959)
+        &>a
+          color #1c47b7

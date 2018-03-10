@@ -1,23 +1,36 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { fetchLyric } from '../../redux/lyric.redux'
+import LyricBlock from './lyric/index'
 import './style.styl'
 
+@connect(
+  state => ({ lyric: state.lyric }),
+  { fetchLyric },
+)
 export default class Rolling extends Component {
   componentDidMount() {
-    // do sth
+    this.props.fetchLyric(this.props.playqueue.song.id)
+  }
+  componentWillReceiveProps(nextProps) {
+    const { id } = nextProps.playqueue.song
+    const preId = this.props.playqueue.song.id
+    if (id !== preId) {
+      nextProps.fetchLyric(id)
+    }
   }
   render() {
     const { song } = this.props.playqueue
     const {
-      toggleRolling, showRolling, preSong, togglePlay, nextSong, ppIcon,
+      toggleRolling, showRolling, preSong, togglePlay, nextSong, ppIcon, curProgressBarWidth,
+      setCurTime, currentTime, lyric,
     } = this.props
     const coverImg = song.al.picUrl
     return (
       <div className={showRolling ? 'rolling rolling-up' : 'rolling'}>
+        <i className="icon-cross goback" onClick={toggleRolling} />
         <img src={coverImg} alt="bg" className="bg" />
-        <div className="top-part" onClick={toggleRolling}>
-          <i className="icon-arrow-left" />
-          <span className="title">返回</span>
-        </div>
         <div className="left-part">
           <div className={ppIcon === 'icon-play3' ? 'album-img' : 'album-img active'}>
             <img src={coverImg} alt="album-img" />
@@ -27,14 +40,34 @@ export default class Rolling extends Component {
             <button className="pp-btn" onClick={togglePlay}><i className={ppIcon} /></button>
             <button className="next-icon" onClick={nextSong}><i className="icon-next2" /></button>
           </div>
+          <div className="progress-wrapper">
+            <div
+              className="progress-bar"
+              ref={(node) => {
+              this.progressBar = node
+            }}
+              onClick={(e) => { setCurTime(e, this.progressBar) }}
+            >
+              <div className="current-progress" style={{ width: `${curProgressBarWidth}` }} />
+            </div>
+          </div>
         </div>
 
         <div className="right-part">
-          <div className="song-info">歌曲信息</div>
-          <div className="lyric-block">歌词详情</div>
+          <div className="song-info">
+            <div className="song-name">
+              {song.name}
+            </div>
+            <div className="info-block">
+              <span>专辑：<Link key={song.al.id} to={{ pathname: `/albuminfo/${song.al.id}` }}> {song.al.name} </Link></span>
+              <span>歌手：{song
+                .ar
+                .map(v => <Link key={v.id} to={{ pathname: `/artistinfo/${v.id}` }}> {v.name} </Link>)}
+              </span>
+            </div>
+          </div>
+          <LyricBlock lyric={lyric} currentTime={currentTime} />
         </div>
-
-        <div className="bottom-part">这是底部</div>
       </div>
     )
   }

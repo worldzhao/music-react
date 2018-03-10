@@ -40,10 +40,6 @@ export default class PlaylistInfo extends Component {
       nextProps.fetchPlaylist(id)
     }
   }
-  shouldComponentUpdate(nextPorps) {
-    console.log(this.props.isFetching === nextPorps.isFetching)
-    return !(this.props.playlistinfo.isFetching === nextPorps.playlistinfo.isFetching)
-  }
   render() {
     const { isFetching, playlist } = this.props.playlistinfo
     return (

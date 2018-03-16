@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import InfoHeader from './info-header/index'
-import InfoList from '../../component/info-list/index'
-import Loading from '../../component/loading/index'
+import InfoHeader from './info-header/'
+import InfoList from '../../component/info-list/'
+import Loading from '../../component/loading/'
 import { fetchPlaylist } from '../../redux/playlistinfo.redux'
 
 import './style.styl'

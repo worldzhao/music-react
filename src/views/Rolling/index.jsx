@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchLyric } from '../../redux/lyric.redux'
-import LyricBlock from './lyric/index'
+import LyricBlock from './lyric/'
 import './style.styl'
 
 @connect(

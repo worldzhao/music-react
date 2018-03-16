@@ -1,9 +1,9 @@
 import React from 'react'
 import { Route, Redirect } from 'react-router-dom'
-import Subtitle from '../../component/subtitle/index'
-import NavTab from './nab-tab/index'
-import SpecialPage from './specicl-page/index'
-import SongCardPage from './songcard-page/index'
+import Subtitle from '../../component/subtitle/'
+import NavTab from './nab-tab/'
+import SpecialPage from './specicl-page/'
+import SongCardPage from './songcard-page/'
 import './style.styl'
 
 const FindMusic = (props) => {

@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import SpecialList from './special-list/index'
-import GlobalList from './global-list/index'
-import Loading from '../../component/loading/index'
-import Subtitle from '../../component/subtitle/index'
+import SpecialList from './special-list/'
+import GlobalList from './global-list/'
+import Loading from '../../component/loading/'
+import Subtitle from '../../component/subtitle/'
 import { fetchToplist } from '../../redux/toplist.redux'
 import './style.styl'
 

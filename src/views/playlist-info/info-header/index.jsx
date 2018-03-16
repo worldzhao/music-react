@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { star, cancelStar } from '../../../redux/starredlist.redux'
-import Subtitle from '../../../component/subtitle/index'
+import Subtitle from '../../../component/subtitle/'
 import { formatTimeStamp } from '../../../common/js/util'
 import './style.styl'
 

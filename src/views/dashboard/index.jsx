@@ -2,9 +2,9 @@ import React from 'react'
 import { withRouter, Redirect } from 'react-router-dom'
 import './style.styl'
 import { Routes } from '../../config/router'
-import HeadBar from './header/index'
-import Player from './player/index'
-import Drawer from './drawer/index'
+import HeadBar from './header/'
+import Player from './player/'
+import Drawer from './drawer/'
 
 const Dashboard = (props) => {
   const { pathname } = props.location

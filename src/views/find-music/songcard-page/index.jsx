@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchCardList, keepScroll } from '../../../redux/songcardlist.redux'
-import SongCard from '../songcard/index'
-import Loading from '../../../component/loading/index'
+import SongCard from '../songcard/'
+import Loading from '../../../component/loading/'
 import './style.styl'
 
 const renderCard = (playlists) => {

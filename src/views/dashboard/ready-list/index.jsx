@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import Item from './list-item/index'
+import Item from './list-item/'
 import { changeSong, deleteSong, clearQueue } from '../../../redux/playqueue.redux'
 
 import './style.styl'

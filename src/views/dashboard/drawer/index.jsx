@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import DrawerBlock from '../drawer-block/index'
-import StarredBlock from '../starred-block/index'
+import DrawerBlock from '../drawer-block/'
+import StarredBlock from '../starred-block/'
 import { routeInfo } from '../../../config/router'
 import './style.styl'
 

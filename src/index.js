@@ -6,9 +6,9 @@ import thunk from 'redux-thunk'
 import { BrowserRouter } from 'react-router-dom'
 import { composeWithDevTools } from 'redux-devtools-extension' // eslint-disable-line
 
-import reducers from './redux/index'
+import reducers from './redux/'
 
-import Dashboard from './views/dashboard/index'
+import Dashboard from './views/dashboard/'
 import './common/style/reset.css'
 import './common/style/fonts.css'
 

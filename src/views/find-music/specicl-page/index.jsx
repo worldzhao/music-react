@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Slider from 'react-slick'
-import Loading from '../../../component/loading/index'
+import Loading from '../../../component/loading/'
 import { fetchSwiperImg } from '../../../redux/swiper.redux'
 
 import './style.styl'

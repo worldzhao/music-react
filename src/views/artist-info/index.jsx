@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import ArHeader from './ar-header/index'
-import HotSongs from '../../component/info-list/index'
-import Subtitle from '../../component/subtitle/index'
-import Loading from '../../component/loading/index'
+import ArHeader from './ar-header/'
+import HotSongs from '../../component/info-list/'
+import Subtitle from '../../component/subtitle/'
+import Loading from '../../component/loading/'
 import { fetchArtistInfo } from '../../redux/artistinfo.redux'
 
 import './style.styl'

@@ -2,10 +2,10 @@ import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 // 按路由拆分代码
 import Loadable from 'react-loadable'
-import Loading from '../component/loading/index'
+import Loading from '../component/loading/'
 
 const createLoadableComp = path => Loadable({
-  loader: () => import(`../views/${path}/index`),
+  loader: () => import(`../views/${path}/`),
   loading: Loading,
 })
 // 此处有两种对象，一种是Link以及对应Route都要使用的信息对象，例如toplist

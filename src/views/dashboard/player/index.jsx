@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { changeSong } from '../../../redux/playqueue.redux'
 import { formatDuration, formatCurrentTime } from '../../../common/js/util'
 import ReadyList from '../ready-list/'
-import Rolling from '../../rolling/'
+import Rolling from '../../lyric-box/'
 import './style.styl'
 
 @connect(

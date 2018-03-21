@@ -1,104 +1,123 @@
 // 定义字体大小,字体颜色
-mx_fc($size, $color)
+mx_fc($size, $color) {
   font-size: $size;
   color: $color;
+}
 
 // 定义宽高
-mx_wh($width, $height)
+mx_wh($width, $height) {
   width: $width;
   height: $height;
+}
 
 // 定义宽高行高
-mx_whlh($width, $height, $line-height)
+mx_whlh($width, $height, $line-height) {
   width: $width;
   height: $height;
   line-height: $line-height;
+}
 
 // 定义高行高
-mx_hlh($height, $line-height)
+mx_hlh($height, $line-height) {
   height: $height;
   line-height: $line-height;
-//绝对定位居中
-mx_posc()
-  position:absolute;
-  left:50%;
-  top:50%;
-  transform:translate(-50%,-50%);
+}
+
+// 绝对定位居中
+mx_posc() {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
 
 // 绝对定位定义top,left值
-mx_postl($top, $left)
+mx_postl($top, $left) {
   position: absolute;
   top: $top;
   left: $left;
+}
 
 // 绝对定位定义top,right值
-mx_postr($top, $right)
+mx_postr($top, $right) {
   position: absolute;
   top: $top;
   right: $right;
+}
 
-mx_postb($top, $bottom)
+mx_postb($top, $bottom) {
   position: absolute;
   top: $top;
   bottom: $bottom;
+}
 
 // 绝对定位定义bottom,left值
-mx_posbl($bottom, $left)
+mx_posbl($bottom, $left) {
   position: absolute;
   bottom: $bottom;
   left: $left;
+}
 
 // 绝对定位定义bottom,right值
-mx_posbr($bottom, $right)
+mx_posbr($bottom, $right) {
   position: absolute;
   bottom: $bottom;
   right: $right;
+}
 
 // fixed定位定义top,left值
-mx_poftl($top, $left)
+mx_poftl($top, $left) {
   position: fixed;
   top: $top;
   left: $left;
+}
 
 // fixed定位定义top,right值
-mx_poftr($top, $right)
+mx_poftr($top, $right) {
   position: fixed;
   top: $top;
   right: $right;
+}
 
 // fixed定位定义bottom,left值
-mx_pofbl($bottom, $left)
+mx_pofbl($bottom, $left) {
   position: fixed;
   bottom: $bottom;
   left: $left;
+}
 
 // fixed定位定义bottom,right值
-mx_pofbr($bottom, $right)
+mx_pofbr($bottom, $right) {
   position: fixed;
   bottom: $bottom;
   right: $right;
+}
 
-mx_poftb($top, $bottom)
+mx_poftb($top, $bottom) {
   position: fixed;
   bottom: $bottom;
   top: $top;
+}
+
 // flex 布局盒模型
-mx_flex()
+mx_flex() {
   display: -webkit-box;
   display: -moz-box;
   display: flex;
-/* flex容器 */
+}
 
 // flex 布局宽度
-mx_flex_item($num)
+/* flex容器 */
+mx_flex_item($num) {
   -webkit-box-flex: $num;
   -moz-box-flex: $num;
   flex: $num;
   box-flex: $num;
   min-width: 0;
+}
 
 // flex布局容器属性设置
-mx_flex_content()
+mx_flex_content() {
   -moz-flex-direction: row;
   -o-flex-direction: row;
   -webkit-box-orient: horizontal;
@@ -110,9 +129,10 @@ mx_flex_content()
   -webkit-box-pack: justify;
   -moz-box-pack: justify;
   justify-content: space-between;
+}
 
 // flex 水平垂直居中
-mx_flex_mid()
+mx_flex_mid() {
   display: -webkit-box;
   display: -moz-box;
   display: flex;
@@ -122,53 +142,63 @@ mx_flex_mid()
   -webkit-box-align: center;
   -moz-box-align: center;
   align-items: center;
+}
 
 // 圆角
-mx_bdrs($radius)
+mx_bdrs($radius) {
   border-radius: $radius;
+}
 
 // 边框
-mx_bd($num, $color)
+mx_bd($num, $color) {
   border: $num solid $color;
+}
 
 // border-box
-mx_brbox()
+mx_brbox() {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
+}
 
 // 多行文本显示省略号
-mx_more_ellipsis()
+mx_more_ellipsis() {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
+}
 
 // 单行文本显示省略号
-mx_single_ellipsis()
+mx_single_ellipsis() {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
 
-mx_page_mg()
-  margin 20px 30px
+mx_page_mg() {
+  margin: 20px 30px;
+}
 
-@keyframes roll{
-  from{
+@keyframes roll {
+  from {
     transform: rotate(0deg);
   }
-  to{
+
+  to {
     transform: rotate(360deg);
   }
 }
 
-mx_bar($width, $height)
-  background-color #e5e5e5
-  border-radius 10px
-  cursor pointer
-  mx_wh($width, $height)
-  overflow hidden
+mx_bar($width, $height) {
+  background-color: #e5e5e5;
+  border-radius: 10px;
+  cursor: pointer;
+  mx_wh($width, $height);
+  overflow: hidden;
+}
 
-mx_bar_child()
-  height 6px
-  background-color #df3b3b
+mx_bar_child() {
+  height: 6px;
+  background-color: #df3b3b;
+}

@@ -2,7 +2,7 @@
 @import '../../common/style/variable.styl'
 
 .rolling
-  background-color rgb(255,255,255)
+  background-color #f4f4f6
   mx_brbox()
   mx_poftl(0,-100%)
   mx_wh(100%,100%)
@@ -12,15 +12,17 @@
     mx_poftl(0,0)
     transform translateZ(0)
   .bg
-    filter blur(30px)
-    mx_wh(100%,100%)
-    opacity 0.6
-    position absolute
-    z-index -1
+    margin: -20px;
+    filter: blur(10px);
+    width: 120%;
+    height: 120%;
+    opacity: 0.3;
+    position: absolute;
+    z-index: -1;
   .goback
     color #6f6565
     cursor pointer
-    mx_postr(10px,20px)
+    mx_postr(6px,20px)
   .left-part
     width 550px
     position relative

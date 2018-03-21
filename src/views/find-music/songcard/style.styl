@@ -1,18 +1,25 @@
-@import '../../../common/style/mixin.styl'
+@import '../../../common/style/mixin.styl';
 
-.songcard
-  mx_wh(145px,200px)
-  margin-right 20px
-  margin-bottom 30px
-  overflow hidden
-  .album-img
-    mx_wh(100%,145px)
-    margin-bottom 10px
-  .title
-    mx_hlh(16px,16px)
-    mx_fc(16px,#000)
-    mx_single_ellipsis()
-    margin-bottom 10px
-  .creator
-    mx_fc(12px,#a4a4a5);
-    text-align left
+.songcard {
+  mx_wh(145px, 200px);
+  margin-right: 20px;
+  margin-bottom: 30px;
+  overflow: hidden;
+
+  .album-img {
+    mx_wh(100%, 145px);
+    margin-bottom: 10px;
+  }
+
+  .title {
+    mx_hlh(16px, 16px);
+    mx_fc(16px, #000);
+    mx_single_ellipsis();
+    margin-bottom: 10px;
+  }
+
+  .creator {
+    mx_fc(12px, #a4a4a5);
+    text-align: left;
+  }
+}

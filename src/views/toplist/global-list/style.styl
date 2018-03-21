@@ -1,21 +1,30 @@
-@import '../../../common/style/mixin.styl'
+@import '../../../common/style/mixin.styl';
 
-.global-list
-  flex-wrap wrap
-  mx_flex()
-  mx_fc(15px,#000)
-  & > li
-    mx_wh(150px,180px)
-    margin-bottom 30px
-    margin-right 20px
-    overflow hidden
-    & > a
-      cursor default
-      display block
-      height 100%
-      .playlist-cover
-        margin-bottom 10px
-        mx_wh(100%,150px)
-      .topic-name
-        display block
-        mx_single_ellipsis()
+.global-list {
+  flex-wrap: wrap;
+  mx_flex();
+  mx_fc(15px, #000);
+
+  & > li {
+    mx_wh(150px, 180px);
+    margin-bottom: 30px;
+    margin-right: 20px;
+    overflow: hidden;
+
+    & > a {
+      cursor: default;
+      display: block;
+      height: 100%;
+
+      .playlist-cover {
+        margin-bottom: 10px;
+        mx_wh(100%, 150px);
+      }
+
+      .topic-name {
+        display: block;
+        mx_single_ellipsis();
+      }
+    }
+  }
+}

@@ -1,26 +1,27 @@
-@import '../../../common/style/mixin.styl'
-@import '../../../common/style/variable.styl'
+@import '../../../common/style/mixin.styl';
+@import '../../../common/style/variable.styl';
 
-$drawerBgc = #f7f7f7
-$drawerWidth = 15%
-$hideWidth = 35px
-$toggleBtnFontSize = 16px
+$drawerBgc = #f7f7f7;
+$drawerWidth = 15%;
+$hideWidth = 35px;
+$toggleBtnFontSize = 16px;
 
-.drawer
-  background-color $drawerBgc
-  text-align left
-  overflow-y auto
-  overflow-x hidden
-  width $drawerWidth
-  &.hide
-    width $hideWidth
-    overflow hidden
-  & > i
-    cursor pointer
-    mx_fc($toggleBtnFontSize, $toggleBtnColor)
-    mx_hlh(45px, 45px)
-    margin-left 10px
+.drawer {
+  background-color: $drawerBgc;
+  text-align: left;
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: $drawerWidth;
 
+  &.hide {
+    width: $hideWidth;
+    overflow: hidden;
+  }
 
-
-
+  & > i {
+    cursor: pointer;
+    mx_fc($toggleBtnFontSize, $toggleBtnColor);
+    mx_hlh(45px, 45px);
+    margin-left: 10px;
+  }
+}

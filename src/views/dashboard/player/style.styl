@@ -1,70 +1,110 @@
-@import '../../../common/style/mixin.styl'
-@import '../../../common/style/variable.styl'
+@import '../../../common/style/mixin.styl';
+@import '../../../common/style/variable.styl';
 
+.player {
+  background-color: #fff;
+  border: 1px solid rgba(7, 17, 27, 0.2);
+  mx_wh(100%, $playerHeight);
+  mx_brbox();
+  mx_flex();
 
-.player
-  background-color #fff
-  border 1px solid rgba(7, 17, 27, 0.2)
-  mx_wh(100%, $playerHeight)
-  mx_brbox()
-  mx_flex()
-  .album-img
-    cursor pointer
-    mx_wh(60px, 60px)
-    & > img
-      mx_wh(100%, 100%)
-  .player-btns
-    mx_flex()
-    mx_flex_mid()
-    padding 14px
-    width 170px
-    & > button
-      background-color $redBgc
-      border-radius 50%
-      cursor pointer
-      outline none
-      mx_wh(40px, 40px)
-      &.pp-btn
-        margin 0 16px 0 16px
-      & > i
-        mx_fc(16px, #fff)
-  .player-state
-    mx_flex_item(6)
-    .song-info
-      font-size 12px
-      mx_brbox()
-      mx_wh(100%, 30px)
-      padding 9px 20px
-      .song-artist
-        margin-left 10px
-      .song-duration
-        float: right
-      & > div
-        display inline-block
-    .progress-wrapper
-      mx_brbox()
-      mx_wh(100%, 30px)
-      padding 12px 20px
-      .progress-bar
-        mx_bar(100%, 6px)
-        .current-progress
-          mx_bar_child()
-  .vol-wrapper
-    mx_flex_item(2)
-    padding 37px 20px 0
-    .vol
-      align-items center
-      height 16px
-      mx_brbox()
-      mx_flex()
-      .vol-bar
-        mx_bar(80%, 6px)
-        .current-vol
-          mx_bar_child()
-  .player-mode
-    mx_flex_item(1)
-    mx_flex()
-    align-items center
-    &>i
-      color #999
-      margin-left 18%
+  .album-img {
+    cursor: pointer;
+    mx_wh(60px, 60px);
+
+    & > img {
+      mx_wh(100%, 100%);
+    }
+  }
+
+  .player-btns {
+    mx_flex();
+    mx_flex_mid();
+    padding: 14px;
+    width: 170px;
+
+    & > button {
+      background-color: $redBgc;
+      border-radius: 50%;
+      cursor: pointer;
+      outline: none;
+      mx_wh(40px, 40px);
+
+      &.pp-btn {
+        margin: 0 16px 0 16px;
+      }
+
+      & > i {
+        mx_fc(16px, #fff);
+      }
+    }
+  }
+
+  .player-state {
+    mx_flex_item(6);
+
+    .song-info {
+      font-size: 12px;
+      mx_brbox();
+      mx_wh(100%, 30px);
+      padding: 9px 20px;
+
+      .song-artist {
+        margin-left: 10px;
+      }
+
+      .song-duration {
+        float: right;
+      }
+
+      & > div {
+        display: inline-block;
+      }
+    }
+
+    .progress-wrapper {
+      mx_brbox();
+      mx_wh(100%, 30px);
+      padding: 12px 20px;
+
+      .progress-bar {
+        mx_bar(100%, 6px);
+
+        .current-progress {
+          mx_bar_child();
+        }
+      }
+    }
+  }
+
+  .vol-wrapper {
+    mx_flex_item(2);
+    padding: 37px 20px 0;
+
+    .vol {
+      align-items: center;
+      height: 16px;
+      mx_brbox();
+      mx_flex();
+
+      .vol-bar {
+        mx_bar(80%, 6px);
+
+        .current-vol {
+          mx_bar_child();
+        }
+      }
+    }
+  }
+
+  .player-mode {
+    mx_flex_item(1);
+    mx_flex();
+    align-items: center;
+
+    &>i {
+      color: #999;
+      margin-left: 18%;
+    }
+  }
+}

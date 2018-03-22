@@ -53,7 +53,7 @@ export default class LyricBlock extends Component {
     this.state = {
       activeLines: [],
       top: 40,
-      moveAnimate: true,
+
     }
   }
   componentWillReceiveProps(nextProps) {
@@ -68,7 +68,6 @@ export default class LyricBlock extends Component {
                 .join()
                 .split('')
                 .map(() => 0),
-              moveAnimate: false,
             },
             () => {
               const copyLines = this.state.activeLines.slice()
@@ -76,7 +75,7 @@ export default class LyricBlock extends Component {
               this.setState({
                 activeLines: [...copyLines],
                 top: 40 + (i * -28),
-                moveAnimate: true,
+
               })
             },
           )
@@ -91,11 +90,11 @@ export default class LyricBlock extends Component {
     }
     const lyricStr = lyricObj.lrc.lyric
     this.formatLyrics = parseLyric(lyricStr)
-    const { activeLines, top, moveAnimate } = this.state
+    const { activeLines, top } = this.state
     return (
       <ul
         style={{ top: `${top}px` }}
-        className={moveAnimate ? 'move-animate lyrics' : 'lyrics'}
+        className="move-animate lyrics"
       >
         {this.formatLyrics.map((line, index) => (
           <li

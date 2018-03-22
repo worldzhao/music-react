@@ -1,0 +1,44 @@
+.zzw-swiper {
+  height: 336px;
+  margin: 0 auto;
+  overflow: hidden;
+  position: relative;
+
+  .zzw-swiper-box {
+    position: absolute;
+    left: 0;
+
+    &>div {
+      float: left;
+    }
+
+    &.move-animation {
+      transition: all 0.4s;
+    }
+
+    &.stop-animation {
+      transition: all 0s;
+    }
+  }
+
+  .zzw-swiper-pre-arrow, .zzw-swiper-next-arrow {
+    background: rgba(7, 17, 27, 0.3);
+    color: #fff;
+    cursor: pointer;
+    font-size: 60px;
+    line-height: 60px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%) scaleX(0.4);
+    width: 30px;
+    z-index: 2;
+  }
+
+  .zzw-swiper-pre-arrow {
+    left: 0;
+  }
+
+  .zzw-swiper-next-arrow {
+    right: 0;
+  }
+}

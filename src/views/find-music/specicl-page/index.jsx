@@ -1,33 +1,20 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import Slider from 'react-slick'
+import Swiper from '../../../component/Swiper/Swiper'
 import Loading from '../../../component/loading/'
 import { fetchSwiperImg } from '../../../redux/swiper.redux'
 
 import './style.styl'
 
-const renderSwiper = (items) => {
-  if (!items.length) return null
-  const settings = {
-    adaptiveHeight: true,
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: true,
-    fade: true,
-  }
-  return (
-    <Slider {...settings}>
-      {items.map(item => (
-        <div key={item.imgurl}>
-          <img src={item.imgurl} alt="slick" style={{ margin: '0 auto' }} />
-        </div>
-      ))}
-    </Slider>
-  )
-}
+const renderSwiper = items => (
+  <Swiper>
+    {items.map(item => (
+      <div key={item.imgurl}>
+        <img src={item.imgurl} alt="slick" style={{ margin: '0 auto' }} />
+      </div>
+    ))}
+  </Swiper>
+)
 
 @connect(
   state => ({
@@ -46,9 +33,10 @@ export default class SwiperPage extends Component {
   }
   render() {
     const { isFetching, items } = this.props.swiperObj
+
     return (
       <div className="special-page">
-        {isFetching ? <Loading /> : renderSwiper(items)}
+        {isFetching ? <Loading /> : items.length && renderSwiper(items)}
       </div>
     )
   }

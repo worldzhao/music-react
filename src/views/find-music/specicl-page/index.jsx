@@ -10,7 +10,7 @@ const renderSwiper = items => (
   <Swiper>
     {items.map(item => (
       <div key={item.imgurl}>
-        <img src={item.imgurl} alt="slick" style={{ margin: '0 auto' }} />
+        <img src={item.imgurl} alt="slick" />
       </div>
     ))}
   </Swiper>

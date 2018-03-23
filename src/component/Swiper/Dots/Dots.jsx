@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PureComponent } from 'react'
 import cx from 'classnames'
 import './Dots.styl'
 
@@ -7,12 +7,13 @@ const dotsSizeMap = {
   small: 'haiqiu-swiper-dot-small',
   large: 'haiqiu-swiper-dot-large',
 }
-export default class Dots extends Component {
+export default class Dots extends (Component || PureComponent) {
   state = {
     dotArr: [],
   };
 
-  componentDidMount() {
+  // no-did-mount-set-state
+  componentWillMount() {
     const { dotsNum } = this.props
     const dotArr = new Array(dotsNum + 1)
       .join()
@@ -31,7 +32,6 @@ export default class Dots extends Component {
   componentWillReceiveProps(nextProps) {
     const { dotArr } = this.state
     const { index, dotsNum } = nextProps
-
     dotArr.forEach((dot) => {
       const d = dot
       d.status = false
@@ -56,8 +56,8 @@ export default class Dots extends Component {
 
   // 点击dots滚动
   slide = (nextIndex) => {
-    const { dotsHandler } = this.props
-    dotsHandler(nextIndex)
+    const { handleDotsClick } = this.props
+    handleDotsClick(nextIndex)
   };
 
   render() {

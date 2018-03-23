@@ -1,4 +1,5 @@
 import React, { Component, PureComponent } from 'react'
+import Dots from './Dots/Dots'
 import './Swiper.styl'
 
 export default class Swiper extends (Component || PureComponent) {
@@ -72,21 +73,23 @@ export default class Swiper extends (Component || PureComponent) {
           )
         },
       )
-    } else {
-      this.setState(
-        {
-          index: index - 1,
-        },
-        () => {
-          this.move()
-        },
-      )
+      return false
     }
+    this.setState(
+      {
+        index: index - 1,
+      },
+      () => {
+        this.move()
+      },
+    )
+    return true
   };
 
   next = () => {
     const { index, distance } = this.state
-    if (index === this.props.children.length + 1) {
+    const { children } = this.props
+    if (index === children.length + 1) {
       // 1. 瞬间切换到开头对应图片
       // 2. 然后继续向后滚动
       this.setState(
@@ -105,17 +108,74 @@ export default class Swiper extends (Component || PureComponent) {
           )
         },
       )
-    } else {
+      return false
+    }
+    this.setState(
+      {
+        index: index + 1,
+      },
+      () => {
+        this.move()
+      },
+    )
+    return true
+  };
+
+  dotsHandler = (nextIndex) => {
+    const { index, distance } = this.state
+    const { children } = this.props
+    if (index === 0) {
+      // 1. 瞬间切换到结尾对应图片
+      // 2. 然后继续向前滚动
       this.setState(
         {
-          index: index + 1,
+          left: -(children.length * distance),
+          index: children.length,
         },
         () => {
-          this.move()
+          this.setState(
+            {
+              index: nextIndex,
+            },
+            () => {
+              this.move()
+            },
+          )
         },
       )
+      return false
     }
-  };
+
+    if (index === children.length + 1) {
+      this.setState(
+        {
+          left: -1 * distance,
+          index: 1,
+        },
+        () => {
+          this.setState(
+            {
+              index: nextIndex,
+            },
+            () => {
+              this.move()
+            },
+          )
+        },
+      )
+      return false
+    }
+
+    this.setState(
+      {
+        index: nextIndex,
+      },
+      () => {
+        this.move()
+      },
+    )
+    return true
+  }
 
   move = () => {
     const { index, distance } = this.state
@@ -162,7 +222,7 @@ export default class Swiper extends (Component || PureComponent) {
   };
 
   render() {
-    const { left, distance } = this.state
+    const { left, distance, index } = this.state
     const { children } = this.props
     const imgNum = children.length
     const boxWidth = (imgNum + 2) * distance
@@ -190,6 +250,7 @@ export default class Swiper extends (Component || PureComponent) {
         <span className="zzw-swiper-next-arrow" onClick={this.next}>
           &gt;
         </span>
+        <Dots dotsNum={imgNum} dotsHandler={this.dotsHandler} index={index} />
       </div>
     )
   }

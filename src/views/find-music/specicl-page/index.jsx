@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { fetchSwiperImg } from '../../../redux/swiper.redux'
 import Swiper from '../../../component/Swiper/Swiper'
 import Loading from '../../../component/loading/'
-import { fetchSwiperImg } from '../../../redux/swiper.redux'
 
 import './style.styl'
 

@@ -1,0 +1,24 @@
+.zzw-swiper-dots-box {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  .zzw-swiper-dot {
+    background: #000;
+    border-radius: 50%;
+    cursor: pointer;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    margin: 5px;
+
+    &.active {
+      background-color: #fff;
+    }
+  }
+
+  &.span {
+    visibility: hidden;
+  }
+}

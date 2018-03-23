@@ -13,23 +13,8 @@ export default class Swiper extends (Component || PureComponent) {
     distance: 730,
   };
 
-  componentWillMount() {
-    // 如果把页面切换到别的页面，导致轮播图所在页面失焦，过一段时间再切回来会发现轮播狂转。
-    // 原因是页面失焦以后，setInterval停止运行，但是如果切回来就会一次性把该走的一次性走完。
-    // 解决的方法:当页面失焦时停止轮播，页面聚焦时开始轮播。
-    window.onblur = () => {
-      clearInterval(this.autoTimer)
-      cancelAnimationFrame(this.timer)
-    }
-
-    window.onfocus = () => {
-      // 清除 componentDidMount 中autoPlay的定时器
-      clearInterval(this.autoTimer)
-      this.autoPlay()
-    }
-  }
-
   componentDidMount() {
+    this.removeAutoPlaySideEffect()
     this.autoPlay()
   }
 
@@ -48,6 +33,22 @@ export default class Swiper extends (Component || PureComponent) {
       }, speed)
     }
   };
+
+  removeAutoPlaySideEffect = () => {
+    // 如果把页面切换到别的页面，导致轮播图所在页面失焦，过一段时间再切回来会发现轮播狂转。
+    // 原因是页面失焦以后，setInterval停止运行，但是如果切回来就会一次性把该走的一次性走完。
+    // 解决的方法:当页面失焦时停止轮播，页面聚焦时开始轮播。
+    window.onblur = () => {
+      clearInterval(this.autoTimer)
+      cancelAnimationFrame(this.timer)
+    }
+
+    window.onfocus = () => {
+      // 清除 componentDidMount 中autoPlay的定时器
+      clearInterval(this.autoTimer)
+      this.autoPlay()
+    }
+  }
 
   pre = () => {
     const { index, distance } = this.state
@@ -166,7 +167,12 @@ export default class Swiper extends (Component || PureComponent) {
     const imgNum = children.length
     const boxWidth = (imgNum + 2) * distance
     return (
-      <div className="zzw-swiper" style={{ width: `${distance}px` }}>
+      <div
+        className="zzw-swiper"
+        style={{ width: `${distance}px` }}
+        onMouseOver={() => { clearInterval(this.autoTimer) }}
+        onMouseOut={() => { this.autoPlay() }}
+      >
         <span className="zzw-swiper-pre-arrow" onClick={this.pre}>
           &lt;
         </span>

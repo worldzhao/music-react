@@ -1,17 +1,53 @@
-import React, { Component } from 'react'
+import React, { Component, PureComponent } from 'react'
 import './Swiper.styl'
 
-export default class Swiper extends Component {
+export default class Swiper extends (Component || PureComponent) {
+  static defaultProps = {
+    auto: true,
+    speed: 3000,
+  };
+
   state = {
     index: 1,
     left: -730,
     distance: 730,
   };
-  componentDidMount() {
-    console.log('====================================')
-    console.log('轮播图组件')
-    console.log('====================================')
+
+  componentWillMount() {
+    // 如果把页面切换到别的页面，导致轮播图所在页面失焦，过一段时间再切回来会发现轮播狂转。
+    // 原因是页面失焦以后，setInterval停止运行，但是如果切回来就会一次性把该走的一次性走完。
+    // 解决的方法:当页面失焦时停止轮播，页面聚焦时开始轮播。
+    window.onblur = () => {
+      clearInterval(this.autoTimer)
+      cancelAnimationFrame(this.timer)
+    }
+
+    window.onfocus = () => {
+      // 清除 componentDidMount 中autoPlay的定时器
+      clearInterval(this.autoTimer)
+      this.autoPlay()
+    }
   }
+
+  componentDidMount() {
+    this.autoPlay()
+  }
+
+  componentWillUnmount() {
+    // 做项目的过程中，来回切换页面时，一直遇到Can only update a mounted or mounting component 这个问题
+    // 原因是当离开页面以后，组件已经被卸载，存在定时器，执行setState时无法找到渲染组件。
+    window.onblur()
+    this.setState = () => {}
+  }
+
+  autoPlay = () => {
+    const { auto, speed } = this.props
+    if (auto) {
+      this.autoTimer = setInterval(() => {
+        this.next()
+      }, speed)
+    }
+  };
 
   pre = () => {
     const { index, distance } = this.state
@@ -19,19 +55,22 @@ export default class Swiper extends Component {
     if (index === 0) {
       // 1. 瞬间切换到结尾对应图片
       // 2. 然后继续向前滚动
-      this.setState({
-        left: -(children.length * distance),
-        index: children.length,
-      }, () => {
-        this.setState(
-          {
-            index: this.state.index - 1,
-          },
-          () => {
-            this.move()
-          },
-        )
-      })
+      this.setState(
+        {
+          left: -(children.length * distance),
+          index: children.length,
+        },
+        () => {
+          this.setState(
+            {
+              index: this.state.index - 1,
+            },
+            () => {
+              this.move()
+            },
+          )
+        },
+      )
     } else {
       this.setState(
         {
@@ -49,19 +88,22 @@ export default class Swiper extends Component {
     if (index === this.props.children.length + 1) {
       // 1. 瞬间切换到开头对应图片
       // 2. 然后继续向后滚动
-      this.setState({
-        left: -distance,
-        index: 1,
-      }, () => {
-        this.setState(
-          {
-            index: this.state.index + 1,
-          },
-          () => {
-            this.move()
-          },
-        )
-      })
+      this.setState(
+        {
+          left: -1 * distance,
+          index: 1,
+        },
+        () => {
+          this.setState(
+            {
+              index: this.state.index + 1,
+            },
+            () => {
+              this.move()
+            },
+          )
+        },
+      )
     } else {
       this.setState(
         {

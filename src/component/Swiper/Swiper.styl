@@ -21,22 +21,35 @@
     }
   }
 
-  .haiqiu-swiper-pre-arrow, .haiqiu-swiper-next-arrow {
-    color: #fff;
+  .haiqiu-swiper-arrow {
+    border-radius: 50%;
     cursor: pointer;
-    font-size: 60px;
     position: absolute;
     top: 50%;
-    transform: translateY(-50%) scaleX(0.4);
+    transform: translateY(-50%);
     width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    font-size: 20px;
     z-index: 2;
   }
 
-  .haiqiu-swiper-pre-arrow {
+  .haiqiu-swiper-arrow-dark {
+    background-color rgba(10,10,10,0.5)
+    color: #fff;
+  }
+
+  .haiqiu-swiper-arrow-light {
+    background-color rgba(255,255,255,0.5)
+    color: #000;
+  }
+
+  .haiqiu-swiper-arrow-pre {
     left: 0;
   }
 
-  .haiqiu-swiper-next-arrow {
+  .haiqiu-swiper-arrow-next {
     right: 0;
   }
 }

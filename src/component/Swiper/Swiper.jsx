@@ -1,8 +1,13 @@
 import React, { Component, PureComponent } from 'react'
 import PropTypes from 'prop-types'
+import cx from 'classnames'
 import Dots from './Dots/Dots'
 import './Swiper.styl'
 
+const arrowsTypeMap = {
+  dark: 'haiqiu-swiper-arrow-dark',
+  light: 'haiqiu-swiper-arrow-light',
+}
 export default class Swiper extends (Component || PureComponent) {
   static propTypes = {
     autoplay: PropTypes.bool,
@@ -18,10 +23,11 @@ export default class Swiper extends (Component || PureComponent) {
   static defaultProps = {
     autoplay: true,
     autoplayInterval: 3000,
-    arrows: false,
-    dots: true,
+    arrows: true,
+    dots: false,
     dotsColor: '#31A896',
     dotsSize: 'normal',
+    arrowsType: 'light',
   };
 
   state = {
@@ -166,7 +172,7 @@ export default class Swiper extends (Component || PureComponent) {
       if (left === finalLeft) {
         cancelAnimationFrame(this.timer) // 用完定时器，清除定时器
         if (Object.prototype.toString.call(onChange) === '[object Function]') {
-          onChange()
+          onChange(index, index - 1)
         }
         return true
       }
@@ -184,7 +190,7 @@ export default class Swiper extends (Component || PureComponent) {
   render() {
     const { left, distance, index } = this.state
     const {
-      children, arrows, dots, dotsSize, dotsColor,
+      children, arrows, dots, dotsSize, dotsColor, arrowsType,
     } = this.props
     const imgNum = children.length
     const boxWidth = (imgNum + 2) * distance
@@ -195,6 +201,9 @@ export default class Swiper extends (Component || PureComponent) {
       dotsNum: imgNum,
       dotsHandler: this.dotsHandler,
     }
+
+    const preArrCls = cx('haiqiu-swiper-arrow', 'haiqiu-swiper-arrow-pre', `${arrowsTypeMap[arrowsType]}`)
+    const nextArrCls = cx('haiqiu-swiper-arrow', 'haiqiu-swiper-arrow-next', `${arrowsTypeMap[arrowsType]}`)
     return (
       <div
         className="haiqiu-swiper"
@@ -202,7 +211,7 @@ export default class Swiper extends (Component || PureComponent) {
         onMouseOver={() => { clearInterval(this.autoTimer) }}
         onMouseOut={() => { this.autoPlay() }}
       >
-        {arrows && <span className="haiqiu-swiper-pre-arrow" onClick={this.pre}>&lt;</span>}
+        {arrows && <span className={preArrCls} onClick={this.pre}>&lt;</span>}
         <div
           className="haiqiu-swiper-box"
           style={{
@@ -214,7 +223,7 @@ export default class Swiper extends (Component || PureComponent) {
           {children}
           {children[0]}
         </div>
-        {arrows && <span className="haiqiu-swiper-next-arrow" onClick={this.next}>&gt;</span>}
+        {arrows && <span className={nextArrCls} onClick={this.next}>&gt;</span>}
         {dots && <Dots {...dotsSetting} />}
       </div>
     )

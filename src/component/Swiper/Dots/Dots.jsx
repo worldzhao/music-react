@@ -26,24 +26,22 @@ export default class Dots extends Component {
   componentWillReceiveProps(nextProps) {
     const { dotArr } = this.state;
     const { index, dotsNum } = nextProps;
+
+    dotArr.forEach(dot => {
+      dot.status = false;
+      if (dot.index === index) {
+        dot.status = true;
+      }
+    });
+
     if (index === 0) {
-      dotArr.forEach(dot => {
-        dot.status = false;
-      });
       dotArr[dotArr.length - 1].status = true;
-    } else if (index === dotsNum + 1) {
-      dotArr.forEach(dot => {
-        dot.status = false;
-      });
-      dotArr[0].status = true;
-    } else {
-      dotArr.forEach(dot => {
-        dot.status = false;
-        if (dot.index === index) {
-          dot.status = true;
-        }
-      });
     }
+
+    if (index === dotsNum + 1) {
+      dotArr[0].status = true;
+    }
+
     const dotArrCopy = dotArr.slice();
     this.setState({
       dotArr: dotArrCopy

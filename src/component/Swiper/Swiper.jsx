@@ -57,32 +57,15 @@ export default class Swiper extends (Component || PureComponent) {
     if (index === 0) {
       // 1. 瞬间切换到结尾对应图片
       // 2. 然后继续向前滚动
-      this.setState(
-        {
-          left: -(children.length * distance),
-          index: children.length,
-        },
-        () => {
-          this.setState(
-            {
-              index: this.state.index - 1,
-            },
-            () => {
-              this.move()
-            },
-          )
-        },
-      )
+      this.setState({
+        left: -(children.length * distance),
+        index: children.length,
+      }, () => {
+        this.pre()
+      })
       return false
     }
-    this.setState(
-      {
-        index: index - 1,
-      },
-      () => {
-        this.move()
-      },
-    )
+    this.animateBox(index - 1)
     return true
   };
 
@@ -98,54 +81,36 @@ export default class Swiper extends (Component || PureComponent) {
           index: 1,
         },
         () => {
-          this.setState(
-            {
-              index: this.state.index + 1,
-            },
-            () => {
-              this.move()
-            },
-          )
+          this.next()
         },
       )
       return false
     }
-    this.setState(
-      {
-        index: index + 1,
-      },
-      () => {
-        this.move()
-      },
-    )
+    this.animateBox(index + 1)
     return true
   };
 
   dotsHandler = (nextIndex) => {
     const { index, distance } = this.state
     const { children } = this.props
+
+    // 1. 瞬间切换到结尾对应图片
+    // 2. 然后继续滚动
     if (index === 0) {
-      // 1. 瞬间切换到结尾对应图片
-      // 2. 然后继续向前滚动
       this.setState(
         {
           left: -(children.length * distance),
           index: children.length,
         },
         () => {
-          this.setState(
-            {
-              index: nextIndex,
-            },
-            () => {
-              this.move()
-            },
-          )
+          this.animateBox(nextIndex)
         },
       )
       return false
     }
 
+    // 1. 瞬间切换到头部对应图片
+    // 2. 然后继续滚动
     if (index === children.length + 1) {
       this.setState(
         {
@@ -153,55 +118,29 @@ export default class Swiper extends (Component || PureComponent) {
           index: 1,
         },
         () => {
-          this.setState(
-            {
-              index: nextIndex,
-            },
-            () => {
-              this.move()
-            },
-          )
+          this.animateBox(nextIndex)
         },
       )
       return false
     }
 
+    this.animateBox(nextIndex)
+    return true
+  }
+
+  animateBox = (index) => {
     this.setState(
       {
-        index: nextIndex,
+        index,
       },
       () => {
         this.move()
       },
     )
-    return true
   }
 
   move = () => {
     const { index, distance } = this.state
-    // 配合css3 transition 存在局限性
-    // this.setState({
-    //   left: -index * distance,
-    // })
-
-    // 使用定时器
-    // clearInterval(this.timer) // 要用定时器，先清定时器
-    // this.timer = setInterval(() => {
-    //   const { left } = this.state
-    //   const finalLeft = -index * distance
-    //   if (left === finalLeft) {
-    //     clearInterval(this.timer) // 用完定时器，清除定时器
-    //     return true
-    //   }
-    //   let distx = (finalLeft - left) / 10
-    //   distx = distx > 0 ? Math.ceil(distx) : Math.floor(distx)
-    //   this.setState({
-    //     left: left + distx,
-    //   })
-    //   return false
-    // }, 17)
-
-    // 使用requestAnimationFrame
     cancelAnimationFrame(this.timer) // 要用定时器，先清定时器
     const render = () => {
       const { left } = this.state

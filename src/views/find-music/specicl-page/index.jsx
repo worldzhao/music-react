@@ -6,15 +6,28 @@ import Loading from '../../../component/loading/'
 
 import './style.styl'
 
-const renderSwiper = items => (
-  <Swiper>
-    {items.map(item => (
-      <div key={item.imgurl}>
-        <img src={item.imgurl} alt="slick" />
-      </div>
+const renderSwiper = (items) => {
+  const setting = {
+    width: 1000,
+    height: 336,
+    autoplay: true,
+    autoplayInterval: 3000,
+    arrows: true,
+    arrowsType: 'dark',
+    dots: true,
+    dotsColor: 'red',
+    dotsSize: 'large',
+  }
+  return (
+    <Swiper {...setting}>
+      {items.map(item => (
+        <div key={item.imgurl}>
+          <img src={item.imgurl} alt="slick" />
+        </div>
     ))}
-  </Swiper>
-)
+    </Swiper>
+  )
+}
 
 @connect(
   state => ({

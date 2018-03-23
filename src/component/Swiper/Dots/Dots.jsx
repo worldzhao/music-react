@@ -1,74 +1,82 @@
-/*eslint-disable */
-import React, { Component } from "react";
-import "./Dots.styl";
+import React, { Component } from 'react'
+import cx from 'classnames'
+import './Dots.styl'
 
+const dotsSizeMap = {
+  normal: 'haiqiu-swiper-dot-normal',
+  small: 'haiqiu-swiper-dot-small',
+  large: 'haiqiu-swiper-dot-large',
+}
 export default class Dots extends Component {
   state = {
-    dotArr: []
+    dotArr: [],
   };
 
   componentDidMount() {
-    const { dotsNum } = this.props;
+    const { dotsNum } = this.props
     const dotArr = new Array(dotsNum + 1)
       .join()
-      .split("")
+      .split('')
       .map((v, i) => ({
         index: i + 1,
-        status: false
-      }));
-    dotArr[0].status = true;
+        status: false,
+      }))
+    dotArr[0].status = true
     this.setState({
-      dotArr
-    });
+      dotArr,
+    })
   }
 
   // dots跟随变化
   componentWillReceiveProps(nextProps) {
-    const { dotArr } = this.state;
-    const { index, dotsNum } = nextProps;
+    const { dotArr } = this.state
+    const { index, dotsNum } = nextProps
 
-    dotArr.forEach(dot => {
-      dot.status = false;
-      if (dot.index === index) {
-        dot.status = true;
+    dotArr.forEach((dot) => {
+      const d = dot
+      d.status = false
+      if (d.index === index) {
+        d.status = true
       }
-    });
+    })
 
     if (index === 0) {
-      dotArr[dotArr.length - 1].status = true;
+      dotArr[dotArr.length - 1].status = true
     }
 
     if (index === dotsNum + 1) {
-      dotArr[0].status = true;
+      dotArr[0].status = true
     }
 
-    const dotArrCopy = dotArr.slice();
+    const dotArrCopy = dotArr.slice()
     this.setState({
-      dotArr: dotArrCopy
-    });
+      dotArr: dotArrCopy,
+    })
   }
 
   // 点击dots滚动
-  slide = nextIndex => {
-    const { dotsHandler } = this.props;
-    dotsHandler(nextIndex);
+  slide = (nextIndex) => {
+    const { dotsHandler } = this.props
+    dotsHandler(nextIndex)
   };
 
   render() {
-    const { dotArr } = this.state;
-
+    const { dotArr } = this.state
+    const { dotsSize, dotsColor } = this.props
+    const dotsCls = cx(`${dotsSizeMap[dotsSize]}`, 'haiqiu-swiper-dot')
     return (
-      <div className="zzw-swiper-dots-box">
+      <div className="haiqiu-swiper-dots-box">
         {dotArr.map(v => (
           <div
-            className={v.status ? "zzw-swiper-dot active" : "zzw-swiper-dot"}
+            className={dotsCls}
+            style={{ background: v.status ? `${dotsColor}` : '#e5e5e5' }}
             key={v.index}
             onClick={() => {
-              this.slide(v.index);
+              this.slide(v.index)
             }}
           />
         ))}
       </div>
-    );
+    )
   }
 }

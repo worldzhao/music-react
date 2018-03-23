@@ -21,6 +21,7 @@
     "no-console": [0],
     "linebreak-style": [0],
     "jsx-a11y/accessible-emoji": [0],
-    "jsx-a11y/mouse-events-have-key-events": [0]
+    "jsx-a11y/mouse-events-have-key-events": [0],
+    "react/no-did-mount-set-state": [0]
   }
 }

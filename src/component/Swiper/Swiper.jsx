@@ -1,11 +1,27 @@
 import React, { Component, PureComponent } from 'react'
+import PropTypes from 'prop-types'
 import Dots from './Dots/Dots'
 import './Swiper.styl'
 
 export default class Swiper extends (Component || PureComponent) {
+  static propTypes = {
+    autoplay: PropTypes.bool,
+    autoplayInterval: PropTypes.number,
+    dots: PropTypes.bool,
+    dotsColor: PropTypes.string,
+    dotsSize: PropTypes.oneOf(['normal', 'small', 'large']),
+    arrows: PropTypes.bool,
+    arrowsType: PropTypes.oneOf(['dark', 'light']),
+    onChange: PropTypes.func,
+  };
+
   static defaultProps = {
-    auto: true,
-    speed: 3000,
+    autoplay: true,
+    autoplayInterval: 3000,
+    arrows: false,
+    dots: true,
+    dotsColor: '#31A896',
+    dotsSize: 'normal',
   };
 
   state = {
@@ -27,11 +43,11 @@ export default class Swiper extends (Component || PureComponent) {
   }
 
   autoPlay = () => {
-    const { auto, speed } = this.props
-    if (auto) {
+    const { autoplay, autoplayInterval } = this.props
+    if (autoplay) {
       this.autoTimer = setInterval(() => {
         this.next()
-      }, speed)
+      }, autoplayInterval)
     }
   };
 
@@ -143,10 +159,15 @@ export default class Swiper extends (Component || PureComponent) {
     const { index, distance } = this.state
     cancelAnimationFrame(this.timer) // 要用定时器，先清定时器
     const render = () => {
+      const { onChange } = this.props
       const { left } = this.state
       const finalLeft = -index * distance
+      // 达到目的地
       if (left === finalLeft) {
         cancelAnimationFrame(this.timer) // 用完定时器，清除定时器
+        if (Object.prototype.toString.call(onChange) === '[object Function]') {
+          onChange()
+        }
         return true
       }
       let distx = (finalLeft - left) / 10
@@ -162,21 +183,28 @@ export default class Swiper extends (Component || PureComponent) {
 
   render() {
     const { left, distance, index } = this.state
-    const { children } = this.props
+    const {
+      children, arrows, dots, dotsSize, dotsColor,
+    } = this.props
     const imgNum = children.length
     const boxWidth = (imgNum + 2) * distance
+    const dotsSetting = {
+      index,
+      dotsSize,
+      dotsColor,
+      dotsNum: imgNum,
+      dotsHandler: this.dotsHandler,
+    }
     return (
       <div
-        className="zzw-swiper"
+        className="haiqiu-swiper"
         style={{ width: `${distance}px` }}
         onMouseOver={() => { clearInterval(this.autoTimer) }}
         onMouseOut={() => { this.autoPlay() }}
       >
-        <span className="zzw-swiper-pre-arrow" onClick={this.pre}>
-          &lt;
-        </span>
+        {arrows && <span className="haiqiu-swiper-pre-arrow" onClick={this.pre}>&lt;</span>}
         <div
-          className="zzw-swiper-box"
+          className="haiqiu-swiper-box"
           style={{
             width: `${boxWidth}px`,
             left: `${left}px`,
@@ -186,10 +214,8 @@ export default class Swiper extends (Component || PureComponent) {
           {children}
           {children[0]}
         </div>
-        <span className="zzw-swiper-next-arrow" onClick={this.next}>
-          &gt;
-        </span>
-        <Dots dotsNum={imgNum} dotsHandler={this.dotsHandler} index={index} />
+        {arrows && <span className="haiqiu-swiper-next-arrow" onClick={this.next}>&gt;</span>}
+        {dots && <Dots {...dotsSetting} />}
       </div>
     )
   }

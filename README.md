@@ -59,7 +59,7 @@
 ## TODO
 1. ~~使用修饰器语法优化connect~~
 2. 封装message组件
-3. 封装轮播图组件
+3. ~~封装轮播图组件~~[react-tiny-swiepr](https://github.com/worldzhao/react-tiny-swiper)
 4. 性能优化
     * ~~路由按需加载~~
     * 动画优化

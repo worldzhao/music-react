@@ -15,7 +15,7 @@ import './common/style/fonts.css'
 const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)))
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
+    <BrowserRouter basename="music-react">
       <Dashboard />
     </BrowserRouter>
   </Provider>

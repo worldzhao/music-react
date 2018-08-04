@@ -5,7 +5,6 @@ import {
   PLAYER_CHANGE_SONG,
   PLAYER_CLEAR_QUEUE,
   PLAYER_DELETE_SONG,
-  STAR_LIST,
   INIT_STARRED_LIST,
 } from './actionTypes'
 import { Mp3Url } from '../../config/api'
@@ -86,11 +85,6 @@ const initStarredListAct = allList => ({
   payload: allList,
 })
 
-const starListAct = list => ({
-  type: STAR_LIST,
-  payload: list,
-})
-
 // 初始化本地数据操作
 export const initStarredList = () => (dispatch) => {
   const allStarredList = JSON.parse(localStorage.getItem('allStarredList')) || []
@@ -98,22 +92,16 @@ export const initStarredList = () => (dispatch) => {
 }
 
 // 收藏歌单操作
-export const star = (item) => {
+export const star = item => (dispatch) => {
   // 先处理本地存储
-  let allStarredList = JSON.parse(localStorage.getItem('allStarredList'))
-  if (!allStarredList) {
-    allStarredList = []
-  }
+  const allStarredList = JSON.parse(localStorage.getItem('allStarredList')) || []
   allStarredList.push(item)
   localStorage.setItem('allStarredList', JSON.stringify(allStarredList))
-  // 再处理redux
-  return (dispatch) => {
-    dispatch(starListAct(item))
-  }
+  dispatch(initStarredListAct(allStarredList))
 }
 
 // 取消收藏歌单
-export const cancelStar = (id) => {
+export const cancelStar = id => (dispatch) => {
   let index
   const allStarredList = JSON.parse(localStorage.getItem('allStarredList'))
   for (let i = 0; i < allStarredList.length; i += 1) {
@@ -124,7 +112,5 @@ export const cancelStar = (id) => {
   }
   allStarredList.splice(index, 1)
   localStorage.setItem('allStarredList', JSON.stringify(allStarredList))
-  return (dispatch) => {
-    dispatch(initStarredListAct(allStarredList))
-  }
+  dispatch(initStarredListAct(allStarredList))
 }

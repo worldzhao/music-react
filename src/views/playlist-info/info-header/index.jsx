@@ -30,15 +30,19 @@ const checkStarred = (id) => {
   if (allStarredList) {
     for (let i = 0; i < allStarredList.length; i += 1) {
       const list = allStarredList[i]
-      if (list.id === id) return true
+      if (list.id === id) {
+        console.log(true)
+        return true
+      }
     }
   }
+  console.log(false)
   return false
 }
 
 @connect(
   state => ({
-    starredlist: state.starredlist,
+    starredList: state.playQueue.starredList,
   }),
   {
     star,

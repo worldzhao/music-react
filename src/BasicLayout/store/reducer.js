@@ -4,7 +4,6 @@ import {
   PLAYER_CHANGE_SONG,
   PLAYER_CLEAR_QUEUE,
   PLAYER_DELETE_SONG,
-  STAR_LIST,
   INIT_STARRED_LIST,
 } from './actionTypes'
 
@@ -132,8 +131,6 @@ export default (state = initState, action) => {
       }
     case INIT_STARRED_LIST:
       return { ...state, starredList: [...action.payload] }
-    case STAR_LIST:
-      return { ...state, starredList: [...state.starredList, ...action.payload] }
     default:
       return state
   }

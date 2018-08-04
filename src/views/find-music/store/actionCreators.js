@@ -14,7 +14,7 @@ export const getKeepScrollAction = scrollTop => ({
 
 export const fetchCardList = (pageNum, limit) => (dispatch) => {
   axios.get(getRecmdPlaylist(limit, pageNum)).then((res) => {
-    dispatch(getCardListAction(res.data))
+    dispatch(getCardListAction(res.data.playlists))
   })
 }
 

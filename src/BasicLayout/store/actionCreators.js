@@ -85,6 +85,7 @@ const initStarredListAct = allList => ({
   type: INIT_STARRED_LIST,
   payload: allList,
 })
+
 const starListAct = list => ({
   type: STAR_LIST,
   payload: list,

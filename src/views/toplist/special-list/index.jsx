@@ -11,11 +11,7 @@ const SpecialList = (props) => {
         {special.map(topic => (
           <li className="topic-block" key={topic.id}>
             <Link to={{ pathname: `/playlistinfo/${topic.id}` }}>
-              <img
-                src={topic.coverUrl}
-                alt="playlist-cover"
-                className="playlist-cover"
-              />
+              <img src={topic.coverUrl} alt="playlist-cover" className="playlist-cover" />
             </Link>
             <ul className="top3">
               {topic.songs.map((s, i) => (
@@ -30,7 +26,6 @@ const SpecialList = (props) => {
                           pathname: `/artistinfo/${artist.id}`,
                         }}
                       >
-                        {' '}
                         {artist.name}
                       </Link>
                     ))}

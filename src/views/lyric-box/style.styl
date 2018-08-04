@@ -3,11 +3,12 @@
 
 .rolling {
   background-color: #f4f4f6;
+  mx_flex();
   mx_brbox();
   mx_poftl(0, -100%);
   mx_wh(100%, 100%);
   overflow: hidden;
-  transition: all 0.6s;
+  transition: all 0.2s;
 
   &.rolling-up {
     mx_poftl(0, 0);
@@ -31,14 +32,20 @@
   }
 
   .left-part {
-    width: 550px;
+    mx_flex_item(1);
     position: relative;
+
+    .vertical {
+      position: absolute;
+      top: 200px;
+      left: 50%;
+      transform: translate(-50%, 0);
+    }
 
     .album-img {
       mx_wh(350px, 350px);
-      mx_postl(80px, 50%);
-      transform: translateX(-50%);
       transition: all 0.4s;
+      margin-bottom: 20px;
 
       &.active {
         box-shadow: 0px 0px 20px 4px rgba(0, 0, 0, 0.3);
@@ -53,9 +60,8 @@
     .player-btns {
       mx_flex();
       mx_wh(350px, 50px);
-      mx_postl(500px, 50%);
-      transform: translateX(-50%);
       text-align: center;
+      margin-bottom: 20px;
 
       &>button {
         background-color: transparent;
@@ -69,7 +75,6 @@
 
     .progress-wrapper {
       mx_brbox();
-      mx_postl(600px, 0);
       mx_wh(100%, 30px);
       padding: 12px 20px;
 
@@ -84,8 +89,9 @@
   }
 
   .right-part {
-    margin-left: 550px;
-    padding: 40px 0 0 100px;
+    mx_flex_item(1);
+    mx_brbox();
+    padding: 40px 200px 0 100px;
 
     .song-name {
       margin-bottom: 20px;

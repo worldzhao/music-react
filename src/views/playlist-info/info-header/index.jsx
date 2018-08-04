@@ -91,7 +91,7 @@ export default class Header extends Component {
               {checkStarred(id) ? (
                 <a onClick={this.beforeCancelStar}>❤️ 取消收藏</a>
               ) : (
-                <a onClick={this.beforeStar}>♡ 收藏</a>
+                <a onClick={this.beforeStar}>💗 收藏</a>
               )}
             </div>
             <div className="tags">

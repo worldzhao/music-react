@@ -21,15 +21,14 @@ const FindMusic = (props) => {
       component: SongCardPage,
     },
   ]
+
   return (
     <div className="findMusic">
       {pathname === '/findmusic' ? <Redirect to="/findmusic/playlist" /> : null}
       <Subtitle title="发现音乐" />
       <NavTab navlist={navlist} />
       <div className="level2-views">
-        {navlist.map(v => (
-          <Route key={v.path} path={v.path} component={v.component} />
-        ))}
+        {navlist.map(v => <Route key={v.path} path={v.path} component={v.component} />)}
       </div>
     </div>
   )

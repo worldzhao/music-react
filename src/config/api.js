@@ -8,11 +8,6 @@ export function playlistInfoUrl(playlistid) {
   return `https://api.imjad.cn/cloudmusic/?type=playlist&id=${playlistid}`
 }
 
-// 推荐歌单 参数 limit pagenum
-export function getRecmdPlaylist(limit = 24, pagenum) {
-  return `http://112.74.56.114:8888/NetEaseMusicServer/index?limit=${limit}&pagenum=${pagenum}`
-}
-
 // 获取歌曲资源链接
 export function Mp3Url(id) {
   return `https://api.imjad.cn/cloudmusic/?type=song&id=${id}`
@@ -23,12 +18,24 @@ export function lyricUrl(id) {
   return `https://api.imjad.cn/cloudmusic/?type=lyric&id=${id}`
 }
 
-// 轮播图
-export const swiperUrl = 'http://112.74.56.114:8888/NetEaseMusicServer/image'
+// 推荐歌单 参数 limit pagenum
+// export function getRecmdPlaylist(limit = 24, pagenum) {
+//   return `http://112.74.56.114:8888/NetEaseMusicServer/index?limit=${limit}&pagenum=${pagenum}`
+// }
 
+// 轮播图
+// export const swiperUrl = 'http://112.74.56.114:8888/NetEaseMusicServer/image'
 
 // 排行榜
-export const toplistUrl = 'http://112.74.56.114:8888/NetEaseMusicServer/fuckzzw'
+// export const toplistUrl = 'http://112.74.56.114:8888/NetEaseMusicServer/fuckzzw'
+
+export function getRecmdPlaylist() {
+  return '/api/recommend.json'
+}
+
+export const swiperUrl = '/api/swiper.json'
+
+export const toplistUrl = '/api/toplist.json'
 
 // 查找歌曲
 export function searchSong(keyword) {

@@ -4,17 +4,17 @@ import './style.styl'
 
 const SongCard = (props) => {
   const {
-    creator, id, imgUrl, title,
+    creator, id, coverImgUrl, name,
   } = props.playlist
   return (
     <div className="songcard">
       <div className="album-img">
         <Link to={{ pathname: `/playlistinfo/${id}` }}>
-          <img src={imgUrl} alt="playlist-cover" />
+          <img src={coverImgUrl} alt="playlist-cover" />
         </Link>
       </div>
-      <p className="title">{title}</p>
-      <p className="creator">by {creator}</p>
+      <p className="title">{name}</p>
+      <p className="creator">by {creator.nickname}</p>
     </div>
   )
 }

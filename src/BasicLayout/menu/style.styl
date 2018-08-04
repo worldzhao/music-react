@@ -1,0 +1,70 @@
+@import '../../common/style/mixin.styl';
+@import '../../common/style/variable.styl';
+
+$drawerBgc = #f7f7f7;
+$drawerWidth = 15%;
+$hideWidth = 35px;
+$toggleBtnFontSize = 16px;
+
+.drawer {
+  background-color: $drawerBgc;
+  text-align: left;
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: $drawerWidth;
+
+  &.hide {
+    width: $hideWidth;
+    overflow: hidden;
+  }
+
+  & > i {
+    cursor: pointer;
+    mx_fc($toggleBtnFontSize, $toggleBtnColor);
+    mx_hlh(45px, 45px);
+    margin-left: 10px;
+  }
+}
+
+$linkFontSize = 14px;
+$liHoverBgc = #e8e8eb;
+
+.drawer-block {
+  & > h4 {
+    margin-left: 10px;
+    mx_whlh(100%, 45px, 45px);
+    mx_fc($linkFontSize, $toggleBtnColor);
+    overflow: hidden;
+
+    &.hide {
+      display: none;
+    }
+  }
+
+  .items {
+    .item {
+      height: 40px;
+      mx_brbox();
+      padding-left: 12px;
+
+      &:hover {
+        background-color: $liHoverBgc;
+      }
+
+      & > a {
+        display: inline-block;
+        mx_fc($linkFontSize, #000);
+        mx_whlh(100%, 40px, 40px);
+        overflow: hidden;
+
+        &.active {
+          color: $neteaseRed;
+        }
+
+        &>i {
+          margin-right: 16px;
+        }
+      }
+    }
+  }
+}

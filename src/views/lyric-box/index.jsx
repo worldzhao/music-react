@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { fetchLyric } from '../../redux/lyric.redux'
+import { fetchLyric } from './store/actionCreators'
 import LyricBlock from './lyric/'
 import './style.styl'
 
@@ -11,17 +11,17 @@ import './style.styl'
 )
 export default class Rolling extends Component {
   componentDidMount() {
-    this.props.fetchLyric(this.props.playqueue.song.id)
+    this.props.fetchLyric(this.props.playQueue.song.id)
   }
   componentWillReceiveProps(nextProps) {
-    const { id } = nextProps.playqueue.song
-    const preId = this.props.playqueue.song.id
+    const { id } = nextProps.playQueue.song
+    const preId = this.props.playQueue.song.id
     if (id !== preId) {
       nextProps.fetchLyric(id)
     }
   }
   render() {
-    const { song } = this.props.playqueue
+    const { song } = this.props.playQueue
     const {
       toggleRolling, showRolling, preSong, togglePlay, nextSong, ppIcon, curProgressBarWidth,
       setCurTime, currentTime, lyric,

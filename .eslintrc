@@ -22,6 +22,7 @@
     "linebreak-style": [0],
     "jsx-a11y/accessible-emoji": [0],
     "jsx-a11y/mouse-events-have-key-events": [0],
-    "no-unused-expressions": [0]
+    "no-unused-expressions": [0],
+    "import/prefer-default-export": [0]
   }
 }

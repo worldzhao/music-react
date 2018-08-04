@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import toolbox from 'react-tiny-swiper'
-import { fetchSwiperImg } from '../../../redux/swiper.redux'
-import Loading from '../../../component/loading/'
+import { fetchSwiperImg } from '../store/actionCreators'
 
 import './style.styl'
 
@@ -25,14 +24,14 @@ const renderSwiper = (items) => {
         <div key={item.imgurl}>
           <img src={item.imgurl} alt="slick" />
         </div>
-    ))}
+      ))}
     </Swiper>
   )
 }
 
 @connect(
   state => ({
-    swiperObj: state.swiper,
+    findMusic: state.findMusic,
   }),
   {
     fetchSwiperImg,
@@ -40,18 +39,14 @@ const renderSwiper = (items) => {
 )
 export default class SwiperPage extends Component {
   componentDidMount() {
-    const { items } = this.props.swiperObj
-    if (!items.length) {
+    const { swiperImg } = this.props.findMusic
+    if (!swiperImg.length) {
       this.props.fetchSwiperImg()
     }
   }
   render() {
-    const { isFetching, items } = this.props.swiperObj
+    const { swiperImg } = this.props.findMusic
 
-    return (
-      <div className="special-page">
-        {isFetching ? <Loading /> : items.length && renderSwiper(items)}
-      </div>
-    )
+    return <div className="special-page">{swiperImg.length && renderSwiper(swiperImg)}</div>
   }
 }

@@ -1,17 +1,20 @@
-@import '../../common/style/mixin.styl'
-@import '../../common/style/variable.styl'
+@import '../../common/style/mixin.styl';
+@import '../../common/style/variable.styl';
 
-.rolling
-  background-color #f4f4f6
-  mx_brbox()
-  mx_poftl(0,-100%)
-  mx_wh(100%,100%)
-  overflow hidden
-  transition all 0.6s
-  &.rolling-up
-    mx_poftl(0,0)
-    transform translateZ(0)
-  .bg
+.rolling {
+  background-color: #f4f4f6;
+  mx_brbox();
+  mx_poftl(0, -100%);
+  mx_wh(100%, 100%);
+  overflow: hidden;
+  transition: all 0.6s;
+
+  &.rolling-up {
+    mx_poftl(0, 0);
+    transform: translateZ(0);
+  }
+
+  .bg {
     margin: -20px;
     filter: blur(10px);
     width: 120%;
@@ -19,58 +22,90 @@
     opacity: 0.3;
     position: absolute;
     z-index: -1;
-  .goback
-    color #6f6565
-    cursor pointer
-    mx_postr(6px,20px)
-  .left-part
-    width 550px
-    position relative
-    .album-img
-      mx_wh(350px,350px)
-      mx_postl(80px,50%)
-      transform translateX(-50%)
-      transition all 0.4s
-      &.active
-        box-shadow 0px 0px 20px 4px rgba(0,0,0,0.3)
-        mx_wh(375px,375px)
-      &>img
-        mx_wh(100%,100%)
-    .player-btns
-      mx_flex()
-      mx_wh(350px,50px)
-      mx_postl(500px,50%)
-      transform translateX(-50%)
-      text-align center
-      &>button
-        background-color transparent
-        border none
-        text-shadow 2px 1px 5px #000
-        mx_fc(40px,#fff)
-        mx_flex_item(1)
-        outline none
-     .progress-wrapper
-        mx_brbox()
-        mx_postl(600px,0)
-        mx_wh(100%, 30px)
-        padding 12px 20px
-        .progress-bar
-          mx_bar(100%, 6px)
-          .current-progress
-            mx_bar_child()
-  .right-part
-    margin-left 550px
-    padding 40px 0 0 100px
-    .song-name
-      margin-bottom 20px
-      mx_fc(32px,#463a3a)
-      mx_single_ellipsis()
-    .info-block
-      width 80%
-      border-bottom 1px solid rgba(7,17,27,0.2)
-      padding-bottom 10px
-      &>span
-        margin-right 30px
-        mx_fc(14px,#5f5959)
-        &>a
-          color #1c47b7
+  }
+
+  .goback {
+    color: #6f6565;
+    cursor: pointer;
+    mx_postr(6px, 20px);
+  }
+
+  .left-part {
+    width: 550px;
+    position: relative;
+
+    .album-img {
+      mx_wh(350px, 350px);
+      mx_postl(80px, 50%);
+      transform: translateX(-50%);
+      transition: all 0.4s;
+
+      &.active {
+        box-shadow: 0px 0px 20px 4px rgba(0, 0, 0, 0.3);
+        mx_wh(375px, 375px);
+      }
+
+      &>img {
+        mx_wh(100%, 100%);
+      }
+    }
+
+    .player-btns {
+      mx_flex();
+      mx_wh(350px, 50px);
+      mx_postl(500px, 50%);
+      transform: translateX(-50%);
+      text-align: center;
+
+      &>button {
+        background-color: transparent;
+        border: none;
+        text-shadow: 2px 1px 5px #000;
+        mx_fc(40px, #fff);
+        mx_flex_item(1);
+        outline: none;
+      }
+    }
+
+    .progress-wrapper {
+      mx_brbox();
+      mx_postl(600px, 0);
+      mx_wh(100%, 30px);
+      padding: 12px 20px;
+
+      .progress-bar {
+        mx_bar(100%, 6px);
+
+        .current-progress {
+          mx_bar_child();
+        }
+      }
+    }
+  }
+
+  .right-part {
+    margin-left: 550px;
+    padding: 40px 0 0 100px;
+
+    .song-name {
+      margin-bottom: 20px;
+      mx_fc(32px, #463a3a);
+      mx_single_ellipsis();
+    }
+
+    .info-block {
+      width: 80%;
+      border-bottom: 1px solid rgba(7, 17, 27, 0.2);
+      padding-bottom: 10px;
+
+      &>span {
+        margin-right: 30px;
+        mx_fc(14px, #5f5959);
+
+        &>a {
+          color: #1c47b7;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,89 @@
+@import '../../common/style/mixin.styl';
+@import '../../common/style/variable.styl';
+
+$activeRed = #df3b3b;
+
+.readylist {
+  background-color: #fff;
+  border: 1px solid rgba(7, 17, 27, 0.2);
+  font-size: 12px;
+  mx_posbr(50px, 0);
+  mx_wh(475px, 430px);
+  text-align: left;
+  overflow: auto;
+  z-index: 1000;
+
+  .list-head {
+    border-bottom: 1px solid rgba(7, 17, 27, 0.2);
+    font-size: 14px;
+    mx_flex();
+    mx_hlh(40px, 40px);
+    padding: 0 30px;
+
+    &>div:first-child {
+      mx_flex_item(3);
+    }
+
+    &>div:nth-child(2) {
+      mx_flex_item(2);
+    }
+
+    &>div:last-child {
+      cursor: default;
+      mx_flex_item(1);
+      text-align: right;
+    }
+  }
+
+  .list-body {
+    .body-item {
+      mx_flex();
+      mx_hlh(45px, 45px);
+      padding: 0 30px;
+
+      .song-name {
+        cursor: pointer;
+        mx_flex_item(3);
+        mx_single_ellipsis();
+      }
+
+      .song-artist {
+        mx_flex_item(2);
+        mx_single_ellipsis();
+      }
+
+      .delete-btn {
+        color: #b7b7b8;
+        mx_flex_item(1);
+        text-align: right;
+      }
+
+      &:hover {
+        background-color: #e8e8eb;
+      }
+
+      &.active {
+        position: relative;
+
+        .song-name, .delete-btn {
+          color: $activeRed;
+        }
+
+        .song-artist {
+          &>a {
+            color: $activeRed;
+          }
+        }
+      }
+
+      &.active::before {
+        background-color: $activeRed;
+        content: '';
+        display: block;
+        mx_wh(3px, 30px);
+        mx_postl(50%, 0);
+        transform: translate(0, -50%);
+      }
+    }
+  }
+}

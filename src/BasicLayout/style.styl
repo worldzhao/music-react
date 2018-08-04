@@ -1,0 +1,40 @@
+@import '../common/style/mixin.styl';
+@import '../common/style/variable.styl';
+
+html {
+  background-color: $pageBgc;
+}
+
+.basic-layout {
+  min-width: 1000px;
+
+  .navbar {
+    mx_poftl(0, 0);
+  }
+
+  .content {
+    background-color: $pageBgc;
+    mx_postb($navBarHeight, $playerHeight);
+    mx_flex();
+    min-width: 1000px;
+    overflow: auto;
+    width: 100%;
+
+    .views {
+      mx_brbox();
+      mx_flex_item(1);
+      overflow-x: hidden;
+      overflow-y: auto;
+      position: relative;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+  }
+
+  .player {
+    min-width: 1000px;
+    mx_pofbl(0, 0);
+  }
+}

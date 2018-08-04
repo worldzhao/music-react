@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import InfoHeader from './info-header/'
 import InfoList from '../../component/info-list/'
-import Loading from '../../component/loading/'
-import { fetchPlaylist } from '../../redux/playlistinfo.redux'
+import { fetchPlaylist } from './store/actionCreators'
 
 import './style.styl'
 
@@ -21,7 +20,7 @@ const renderPlaylist = (playlist) => {
 
 @connect(
   state => ({
-    playlistinfo: state.playlistinfo,
+    playlistInfo: state.playlistInfo,
   }),
   {
     fetchPlaylist,
@@ -41,11 +40,7 @@ export default class PlaylistInfo extends Component {
     }
   }
   render() {
-    const { isFetching, playlist } = this.props.playlistinfo
-    return (
-      <div className="playlist-wrapper">
-        {isFetching ? <Loading /> : renderPlaylist(playlist)}
-      </div>
-    )
+    const { playlist } = this.props.playlistInfo
+    return <div className="playlist-wrapper">{renderPlaylist(playlist)}</div>
   }
 }

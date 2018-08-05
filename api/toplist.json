@@ -1,0 +1,992 @@
+{
+  "success": true,
+  "error": null,
+  "result": {
+    "special": [
+      {
+        "id": 19723756,
+        "coverUrl":
+          "http://p1.music.126.net/DrRIg6CrgDfVLEph9SNh7w==/18696095720518497.jpg?param=150y150",
+        "songs": [
+          {
+            "name": "I Like You",
+            "id": 1298432374,
+            "pst": 0,
+            "t": 0,
+            "ar": [
+              {
+                "id": 188141,
+                "name": "满舒克",
+                "tns": [],
+                "alias": []
+              }
+            ],
+            "alia": [],
+            "pop": 0,
+            "st": 0,
+            "rt": null,
+            "fee": 0,
+            "v": 3,
+            "crbt": null,
+            "cf": "",
+            "al": {
+              "id": 72015381,
+              "name": "I Like You",
+              "picUrl": "http://p1.music.126.net/Zt7hdP0DJYFdmuD4wpggnw==/109951163439852858.jpg",
+              "tns": [],
+              "pic_str": "109951163439852858",
+              "pic": 109951163439852860
+            },
+            "dt": 194260,
+            "h": {
+              "br": 320000,
+              "fid": 0,
+              "size": 7773040,
+              "vd": -3
+            },
+            "m": {
+              "br": 192000,
+              "fid": 0,
+              "size": 4663841,
+              "vd": -3
+            },
+            "l": {
+              "br": 128000,
+              "fid": 0,
+              "size": 3109242,
+              "vd": -3
+            },
+            "a": null,
+            "cd": "1",
+            "no": 1,
+            "rtUrl": null,
+            "ftype": 0,
+            "rtUrls": [],
+            "djId": 0,
+            "copyright": 0,
+            "s_id": 0,
+            "rtype": 0,
+            "rurl": null,
+            "mst": 9,
+            "cp": 22020,
+            "mv": 0,
+            "publishTime": 1533225600000
+          },
+          {
+            "name": "Walk Thru Fire",
+            "id": 1297498908,
+            "pst": 0,
+            "t": 0,
+            "ar": [
+              {
+                "id": 747030,
+                "name": "Vicetone",
+                "tns": [],
+                "alias": []
+              },
+              {
+                "id": 1181020,
+                "name": "Meron Ryan",
+                "tns": [],
+                "alias": []
+              }
+            ],
+            "alia": [],
+            "pop": 0,
+            "st": 0,
+            "rt": null,
+            "fee": 8,
+            "v": 3,
+            "crbt": null,
+            "cf": "",
+            "al": {
+              "id": 72052436,
+              "name": "Walk Thru Fire",
+              "picUrl": "http://p1.music.126.net/SZFvPTbtIWaO2Dz1ytOeAw==/109951163433090567.jpg",
+              "tns": [],
+              "pic_str": "109951163433090567",
+              "pic": 109951163433090560
+            },
+            "dt": 194482,
+            "h": {
+              "br": 320000,
+              "fid": 0,
+              "size": 7782444,
+              "vd": -3
+            },
+            "m": {
+              "br": 192000,
+              "fid": 0,
+              "size": 4669484,
+              "vd": -3
+            },
+            "l": {
+              "br": 128000,
+              "fid": 0,
+              "size": 3113004,
+              "vd": -3
+            },
+            "a": null,
+            "cd": "1",
+            "no": 1,
+            "rtUrl": null,
+            "ftype": 0,
+            "rtUrls": [],
+            "djId": 0,
+            "copyright": 1,
+            "s_id": 0,
+            "rtype": 0,
+            "rurl": null,
+            "mst": 9,
+            "cp": 729016,
+            "mv": 5965258,
+            "publishTime": 1533225600007
+          },
+          {
+            "name": "Is This Love?",
+            "id": 1297750170,
+            "pst": 0,
+            "t": 0,
+            "ar": [
+              {
+                "id": 10200,
+                "name": "郁可唯",
+                "tns": [],
+                "alias": []
+              }
+            ],
+            "alia": ["电视剧《爱情进化论》情感主题曲"],
+            "pop": 100,
+            "st": 0,
+            "rt": null,
+            "fee": 8,
+            "v": 4,
+            "crbt": null,
+            "cf": "",
+            "al": {
+              "id": 72070692,
+              "name": "爱情进化论 电视剧原声带",
+              "picUrl": "http://p1.music.126.net/tTpgtOYQhkXy710yYb1-qg==/109951163436434768.jpg",
+              "tns": [],
+              "pic_str": "109951163436434768",
+              "pic": 109951163436434770
+            },
+            "dt": 281882,
+            "h": {
+              "br": 320000,
+              "fid": 0,
+              "size": 11277627,
+              "vd": -2
+            },
+            "m": {
+              "br": 192000,
+              "fid": 0,
+              "size": 6766594,
+              "vd": -1
+            },
+            "l": {
+              "br": 128000,
+              "fid": 0,
+              "size": 4511077,
+              "vd": -1
+            },
+            "a": null,
+            "cd": "",
+            "no": 3,
+            "rtUrl": null,
+            "ftype": 0,
+            "rtUrls": [],
+            "djId": 0,
+            "copyright": 0,
+            "s_id": 0,
+            "rtype": 0,
+            "rurl": null,
+            "mst": 9,
+            "cp": 677020,
+            "mv": 5965210,
+            "publishTime": 1533139200007
+          }
+        ]
+      },
+      {
+        "id": 3779629,
+        "coverUrl":
+          "http://p1.music.126.net/N2HO5xfYEqyQ8q6oxCw8IQ==/18713687906568048.jpg?param=150y150",
+        "songs": [
+          {
+            "name": "星球坠落 (Live)",
+            "id": 1296583188,
+            "pst": 0,
+            "t": 0,
+            "ar": [
+              {
+                "id": 1203045,
+                "name": "艾热",
+                "tns": [],
+                "alias": []
+              },
+              {
+                "id": 12079219,
+                "name": "李佳隆",
+                "tns": [],
+                "alias": []
+              }
+            ],
+            "alia": [],
+            "pop": 100,
+            "st": 0,
+            "rt": null,
+            "fee": 0,
+            "v": 62,
+            "crbt": null,
+            "cf": "",
+            "al": {
+              "id": 71852210,
+              "name": "中国新说唱 第3期",
+              "picUrl": "http://p1.music.126.net/4k-pMEO-en8IE6PdJoAYfg==/109951163429466895.jpg",
+              "tns": [],
+              "pic_str": "109951163429466895",
+              "pic": 109951163429466900
+            },
+            "dt": 169033,
+            "h": {
+              "br": 320000,
+              "fid": 0,
+              "size": 6763668,
+              "vd": -2
+            },
+            "m": {
+              "br": 192000,
+              "fid": 0,
+              "size": 4058218,
+              "vd": -2
+            },
+            "l": {
+              "br": 128000,
+              "fid": 0,
+              "size": 2705493,
+              "vd": -1
+            },
+            "a": null,
+            "cd": "",
+            "no": 6,
+            "rtUrl": null,
+            "ftype": 0,
+            "rtUrls": [],
+            "djId": 0,
+            "copyright": 2,
+            "s_id": 0,
+            "rtype": 0,
+            "rurl": null,
+            "mst": 9,
+            "cp": 1376818,
+            "mv": 0,
+            "publishTime": 1532707200007
+          },
+          {
+            "name": "陷阱",
+            "id": 1294899063,
+            "pst": 0,
+            "t": 0,
+            "ar": [
+              {
+                "id": 28083340,
+                "name": "王北车",
+                "tns": [],
+                "alias": []
+              }
+            ],
+            "alia": [],
+            "pop": 100,
+            "st": 0,
+            "rt": null,
+            "fee": 8,
+            "v": 3,
+            "crbt": null,
+            "cf": "",
+            "al": {
+              "id": 71856830,
+              "name": "陷阱",
+              "picUrl": "http://p1.music.126.net/1hyPx7SxIQH8nnsIhcgmfQ==/109951163415300959.jpg",
+              "tns": [],
+              "pic_str": "109951163415300959",
+              "pic": 109951163415300960
+            },
+            "dt": 280949,
+            "h": {
+              "br": 320000,
+              "fid": 0,
+              "size": 11241056,
+              "vd": -1
+            },
+            "m": {
+              "br": 192000,
+              "fid": 0,
+              "size": 6744651,
+              "vd": -1
+            },
+            "l": {
+              "br": 128000,
+              "fid": 0,
+              "size": 4496448,
+              "vd": -1
+            },
+            "a": null,
+            "cd": "1",
+            "no": 1,
+            "rtUrl": null,
+            "ftype": 0,
+            "rtUrls": [],
+            "djId": 0,
+            "copyright": 0,
+            "s_id": 0,
+            "rtype": 0,
+            "rurl": null,
+            "mst": 9,
+            "cp": 0,
+            "mv": 0,
+            "publishTime": 1531929600007
+          },
+          {
+            "name": "Unicorn",
+            "id": 1297486087,
+            "pst": 0,
+            "t": 0,
+            "ar": [
+              {
+                "id": 12493781,
+                "name": "Lil Ghost小鬼",
+                "tns": [],
+                "alias": []
+              }
+            ],
+            "alia": [],
+            "pop": 100,
+            "st": 0,
+            "rt": null,
+            "fee": 0,
+            "v": 1,
+            "crbt": null,
+            "cf": "",
+            "al": {
+              "id": 72053635,
+              "name": "Unicorn",
+              "picUrl": "http://p1.music.126.net/76Jy_x0UMBtaq6RuNv7VVA==/109951163434384128.jpg",
+              "tns": [],
+              "pic_str": "109951163434384128",
+              "pic": 109951163434384130
+            },
+            "dt": 206896,
+            "h": {
+              "br": 320000,
+              "fid": 0,
+              "size": 8278770,
+              "vd": 0
+            },
+            "m": {
+              "br": 192000,
+              "fid": 0,
+              "size": 4967280,
+              "vd": 0
+            },
+            "l": {
+              "br": 128000,
+              "fid": 0,
+              "size": 3311534,
+              "vd": 0
+            },
+            "a": null,
+            "cd": "",
+            "no": 1,
+            "rtUrl": null,
+            "ftype": 0,
+            "rtUrls": [],
+            "djId": 0,
+            "copyright": 2,
+            "s_id": 0,
+            "rtype": 0,
+            "rurl": null,
+            "mst": 9,
+            "cp": 1380821,
+            "mv": 0,
+            "publishTime": 1532966400007
+          }
+        ]
+      },
+      {
+        "id": 2884035,
+        "coverUrl":
+          "http://p1.music.126.net/sBzD11nforcuh1jdLSgX7g==/18740076185638788.jpg?param=150y150",
+        "songs": [
+          {
+            "name": "大器晚成",
+            "id": 1296548142,
+            "pst": 0,
+            "t": 0,
+            "ar": [
+              {
+                "id": 1060132,
+                "name": "柳爽",
+                "tns": [],
+                "alias": []
+              }
+            ],
+            "alia": [],
+            "pop": 100,
+            "st": 0,
+            "rt": null,
+            "fee": 0,
+            "v": 2,
+            "crbt": null,
+            "cf": "",
+            "al": {
+              "id": 71853223,
+              "name": "大器晚成",
+              "picUrl": "http://p1.music.126.net/JSg0oQKv39D_veAP5Gt-CA==/109951163428013457.jpg",
+              "tns": [],
+              "pic_str": "109951163428013457",
+              "pic": 109951163428013460
+            },
+            "dt": 209046,
+            "h": {
+              "br": 320000,
+              "fid": 0,
+              "size": 8364452,
+              "vd": 0
+            },
+            "m": {
+              "br": 192000,
+              "fid": 0,
+              "size": 5018689,
+              "vd": 0
+            },
+            "l": {
+              "br": 128000,
+              "fid": 0,
+              "size": 3345807,
+              "vd": 0
+            },
+            "a": null,
+            "cd": "",
+            "no": 0,
+            "rtUrl": null,
+            "ftype": 0,
+            "rtUrls": [],
+            "djId": 0,
+            "copyright": 2,
+            "s_id": 0,
+            "mv": 0,
+            "rtype": 0,
+            "rurl": null,
+            "cp": 0,
+            "mst": 9,
+            "publishTime": 1532793600007
+          },
+          {
+            "name": "你必须在一个荒唐的夜，骑着摩托穿过下雨的街",
+            "id": 1297492096,
+            "pst": 0,
+            "t": 0,
+            "ar": [
+              {
+                "id": 1032016,
+                "name": "风子",
+                "tns": [],
+                "alias": []
+              }
+            ],
+            "alia": [],
+            "pop": 100,
+            "st": 0,
+            "rt": null,
+            "fee": 8,
+            "v": 2,
+            "crbt": null,
+            "cf": "",
+            "al": {
+              "id": 72056632,
+              "name": "你必须在一个荒唐的夜，骑着摩托穿过下雨的街",
+              "picUrl": "http://p1.music.126.net/Zi04CChOlCvgmhzjbNTqlw==/109951163433313953.jpg",
+              "tns": [],
+              "pic_str": "109951163433313953",
+              "pic": 109951163433313950
+            },
+            "dt": 296307,
+            "h": {
+              "br": 320000,
+              "fid": 0,
+              "size": 11855456,
+              "vd": 0
+            },
+            "m": {
+              "br": 192000,
+              "fid": 0,
+              "size": 7113291,
+              "vd": 0
+            },
+            "l": {
+              "br": 128000,
+              "fid": 0,
+              "size": 4742208,
+              "vd": 0
+            },
+            "a": null,
+            "cd": "",
+            "no": 2,
+            "rtUrl": null,
+            "ftype": 0,
+            "rtUrls": [],
+            "djId": 0,
+            "copyright": 1,
+            "s_id": 0,
+            "mv": 0,
+            "rtype": 0,
+            "rurl": null,
+            "cp": 748010,
+            "mst": 9,
+            "publishTime": 1532966400007
+          },
+          {
+            "name": "Weekend",
+            "id": 1294889789,
+            "pst": 0,
+            "t": 0,
+            "ar": [
+              {
+                "id": 12001060,
+                "name": "Vinida (万妮达)",
+                "tns": [],
+                "alias": []
+              }
+            ],
+            "alia": [],
+            "pop": 100,
+            "st": 0,
+            "rt": null,
+            "fee": 0,
+            "v": 1,
+            "crbt": null,
+            "cf": "",
+            "al": {
+              "id": 71853100,
+              "name": "Weekend",
+              "picUrl": "http://p1.music.126.net/qFa_GD5cD56Qla86AjHNfA==/109951163424714221.jpg",
+              "tns": [],
+              "pic_str": "109951163424714221",
+              "pic": 109951163424714220
+            },
+            "dt": 196237,
+            "h": {
+              "br": 320000,
+              "fid": 0,
+              "size": 7852452,
+              "vd": 0
+            },
+            "m": {
+              "br": 192000,
+              "fid": 0,
+              "size": 4711489,
+              "vd": 0
+            },
+            "l": {
+              "br": 128000,
+              "fid": 0,
+              "size": 3141007,
+              "vd": 0
+            },
+            "a": null,
+            "cd": "",
+            "no": 0,
+            "rtUrl": null,
+            "ftype": 0,
+            "rtUrls": [],
+            "djId": 0,
+            "copyright": 0,
+            "s_id": 0,
+            "mv": 0,
+            "rtype": 0,
+            "rurl": null,
+            "cp": 22020,
+            "mst": 9,
+            "publishTime": 1532534400007
+          }
+        ]
+      },
+      {
+        "id": 3778678,
+        "coverUrl":
+          "http://p1.music.126.net/GhhuF6Ep5Tq9IEvLsyCN7w==/18708190348409091.jpg?param=150y150",
+        "songs": [
+          {
+            "name": "星球坠落 (Live)",
+            "id": 1296583188,
+            "pst": 0,
+            "t": 0,
+            "ar": [
+              {
+                "id": 1203045,
+                "name": "艾热",
+                "tns": [],
+                "alias": []
+              },
+              {
+                "id": 12079219,
+                "name": "李佳隆",
+                "tns": [],
+                "alias": []
+              }
+            ],
+            "alia": [],
+            "pop": 100,
+            "st": 0,
+            "rt": null,
+            "fee": 0,
+            "v": 62,
+            "crbt": null,
+            "cf": "",
+            "al": {
+              "id": 71852210,
+              "name": "中国新说唱 第3期",
+              "picUrl": "http://p1.music.126.net/4k-pMEO-en8IE6PdJoAYfg==/109951163429466895.jpg",
+              "tns": [],
+              "pic_str": "109951163429466895",
+              "pic": 109951163429466900
+            },
+            "dt": 169033,
+            "h": {
+              "br": 320000,
+              "fid": 0,
+              "size": 6763668,
+              "vd": -2
+            },
+            "m": {
+              "br": 192000,
+              "fid": 0,
+              "size": 4058218,
+              "vd": -2
+            },
+            "l": {
+              "br": 128000,
+              "fid": 0,
+              "size": 2705493,
+              "vd": -1
+            },
+            "a": null,
+            "cd": "",
+            "no": 6,
+            "rtUrl": null,
+            "ftype": 0,
+            "rtUrls": [],
+            "djId": 0,
+            "copyright": 2,
+            "s_id": 0,
+            "rtype": 0,
+            "rurl": null,
+            "mst": 9,
+            "cp": 1376818,
+            "mv": 0,
+            "publishTime": 1532707200007
+          },
+          {
+            "name": "往后余生（翻自 马良）",
+            "id": 571338279,
+            "pst": 0,
+            "t": 0,
+            "ar": [
+              {
+                "id": 14312549,
+                "name": "王贰浪",
+                "tns": [],
+                "alias": []
+              }
+            ],
+            "alia": [],
+            "pop": 100,
+            "st": 0,
+            "rt": null,
+            "fee": 8,
+            "v": 4,
+            "crbt": null,
+            "cf": "",
+            "al": {
+              "id": 39591091,
+              "name": "往后余生",
+              "picUrl": "http://p1.music.126.net/hTiVEeQTUSsc-YGF3o6ItQ==/109951163337847600.jpg",
+              "tns": [],
+              "pic_str": "109951163337847600",
+              "pic": 109951163337847600
+            },
+            "dt": 231785,
+            "h": {
+              "br": 320000,
+              "fid": 0,
+              "size": 9274558,
+              "vd": 0
+            },
+            "m": {
+              "br": 192000,
+              "fid": 0,
+              "size": 5564752,
+              "vd": 0
+            },
+            "l": {
+              "br": 128000,
+              "fid": 0,
+              "size": 3709849,
+              "vd": 0
+            },
+            "a": null,
+            "cd": "",
+            "no": 1,
+            "rtUrl": null,
+            "ftype": 0,
+            "rtUrls": [],
+            "djId": 0,
+            "copyright": 0,
+            "s_id": 0,
+            "rtype": 0,
+            "rurl": null,
+            "mst": 9,
+            "cp": 1372820,
+            "mv": 0,
+            "publishTime": 1528387200007
+          },
+          {
+            "name": "最好",
+            "id": 1294910785,
+            "pst": 0,
+            "t": 0,
+            "ar": [
+              {
+                "id": 5781,
+                "name": "薛之谦",
+                "tns": [],
+                "alias": []
+              }
+            ],
+            "alia": [],
+            "pop": 100,
+            "st": 0,
+            "rt": null,
+            "fee": 0,
+            "v": 1,
+            "crbt": null,
+            "cf": "",
+            "al": {
+              "id": 71857047,
+              "name": "最好",
+              "picUrl": "http://p1.music.126.net/MiQK3PYtBUG-_-c8Y59q0Q==/109951163424768306.jpg",
+              "tns": [],
+              "pic_str": "109951163424768306",
+              "pic": 109951163424768300
+            },
+            "dt": 255501,
+            "h": {
+              "br": 320000,
+              "fid": 0,
+              "size": 10222280,
+              "vd": -1
+            },
+            "m": {
+              "br": 192000,
+              "fid": 0,
+              "size": 6133386,
+              "vd": 0
+            },
+            "l": {
+              "br": 128000,
+              "fid": 0,
+              "size": 4088938,
+              "vd": 0
+            },
+            "a": null,
+            "cd": "",
+            "no": 0,
+            "rtUrl": null,
+            "ftype": 0,
+            "rtUrls": [],
+            "djId": 0,
+            "copyright": 0,
+            "s_id": 0,
+            "rtype": 0,
+            "rurl": null,
+            "mst": 9,
+            "cp": 22036,
+            "mv": 0,
+            "publishTime": 1532534400007
+          }
+        ]
+      }
+    ],
+    "global": [
+      {
+        "id": 2323534945,
+        "coverUrl":
+          "http://p1.music.126.net/VsWZ7MPgAzvH16DE1Lv8lg==/109951163435036902.jpg?param=150y150",
+        "name": "说唱TOP榜"
+      },
+      {
+        "id": 1978921795,
+        "coverUrl":
+          "http://p1.music.126.net/5tgOCD4jiPKBGt7znJl-2g==/18822539557941307.jpg?param=150y150",
+        "name": "云音乐电音榜"
+      },
+      {
+        "id": 991319590,
+        "coverUrl":
+          "http://p1.music.126.net/RChr5NydlXafIV1GVEHJdg==/19073228207465342.jpg?param=150y150",
+        "name": "云音乐嘻哈榜"
+      },
+      {
+        "id": 2250011882,
+        "coverUrl":
+          "http://p1.music.126.net/bZvjH5KTuvAT0YXlVa-RtQ==/109951163326845001.jpg?param=150y150",
+        "name": "抖音排行榜"
+      },
+      {
+        "id": 2023401535,
+        "coverUrl":
+          "http://p1.music.126.net/0_6_Efe9m0D0NtghOxinUg==/109951163089272193.jpg?param=150y150",
+        "name": "英国Q杂志中文版周榜"
+      },
+      {
+        "id": 71385702,
+        "coverUrl":
+          "http://p1.music.126.net/vttjtRjL75Q4DEnjRsO8-A==/18752170813539664.jpg?param=150y150",
+        "name": "云音乐ACG音乐榜"
+      },
+      {
+        "id": 2006508653,
+        "coverUrl":
+          "http://p1.music.126.net/CUqQp33MZf_m0BwH4u0V6A==/109951163078922993.jpg?param=150y150",
+        "name": "电竞音乐榜"
+      },
+      {
+        "id": 2323534977,
+        "coverUrl":
+          "http://p1.music.126.net/VsWZ7MPgAzvH16DE1Lv8lg==/109951163435036902.jpg?param=150y150",
+        "name": "说唱TOP榜"
+      },
+      {
+        "id": 1978921797,
+        "coverUrl":
+          "http://p1.music.126.net/5tgOCD4jiPKBGt7znJl-2g==/18822539557941307.jpg?param=150y150",
+        "name": "云音乐电音榜"
+      },
+      {
+        "id": 991319598,
+        "coverUrl":
+          "http://p1.music.126.net/RChr5NydlXafIV1GVEHJdg==/19073228207465342.jpg?param=150y150",
+        "name": "云音乐嘻哈榜"
+      },
+      {
+        "id": 2250011889,
+        "coverUrl":
+          "http://p1.music.126.net/bZvjH5KTuvAT0YXlVa-RtQ==/109951163326845001.jpg?param=150y150",
+        "name": "抖音排行榜"
+      },
+      {
+        "id": 2023401531,
+        "coverUrl":
+          "http://p1.music.126.net/0_6_Efe9m0D0NtghOxinUg==/109951163089272193.jpg?param=150y150",
+        "name": "英国Q杂志中文版周榜"
+      },
+      {
+        "id": 71385703,
+        "coverUrl":
+          "http://p1.music.126.net/vttjtRjL75Q4DEnjRsO8-A==/18752170813539664.jpg?param=150y150",
+        "name": "云音乐ACG音乐榜"
+      },
+      {
+        "id": 2006508654,
+        "coverUrl":
+          "http://p1.music.126.net/CUqQp33MZf_m0BwH4u0V6A==/109951163078922993.jpg?param=150y150",
+        "name": "电竞音乐榜"
+      },
+      {
+        "id": 2323534946,
+        "coverUrl":
+          "http://p1.music.126.net/VsWZ7MPgAzvH16DE1Lv8lg==/109951163435036902.jpg?param=150y150",
+        "name": "说唱TOP榜"
+      },
+      {
+        "id": 1978921796,
+        "coverUrl":
+          "http://p1.music.126.net/5tgOCD4jiPKBGt7znJl-2g==/18822539557941307.jpg?param=150y150",
+        "name": "云音乐电音榜"
+      },
+      {
+        "id": 991319593,
+        "coverUrl":
+          "http://p1.music.126.net/RChr5NydlXafIV1GVEHJdg==/19073228207465342.jpg?param=150y150",
+        "name": "云音乐嘻哈榜"
+      },
+      {
+        "id": 2250011890,
+        "coverUrl":
+          "http://p1.music.126.net/bZvjH5KTuvAT0YXlVa-RtQ==/109951163326845001.jpg?param=150y150",
+        "name": "抖音排行榜"
+      },
+      {
+        "id": 2023401530,
+        "coverUrl":
+          "http://p1.music.126.net/0_6_Efe9m0D0NtghOxinUg==/109951163089272193.jpg?param=150y150",
+        "name": "英国Q杂志中文版周榜"
+      },
+      {
+        "id": 71385701,
+        "coverUrl":
+          "http://p1.music.126.net/vttjtRjL75Q4DEnjRsO8-A==/18752170813539664.jpg?param=150y150",
+        "name": "云音乐ACG音乐榜"
+      },
+      {
+        "id": 2006508658,
+        "coverUrl":
+          "http://p1.music.126.net/CUqQp33MZf_m0BwH4u0V6A==/109951163078922993.jpg?param=150y150",
+        "name": "电竞音乐榜"
+      },
+      {
+        "id": 2323534923,
+        "coverUrl":
+          "http://p1.music.126.net/VsWZ7MPgAzvH16DE1Lv8lg==/109951163435036902.jpg?param=150y150",
+        "name": "说唱TOP榜"
+      },
+      {
+        "id": 1978921715,
+        "coverUrl":
+          "http://p1.music.126.net/5tgOCD4jiPKBGt7znJl-2g==/18822539557941307.jpg?param=150y150",
+        "name": "云音乐电音榜"
+      },
+      {
+        "id": 991319566,
+        "coverUrl":
+          "http://p1.music.126.net/RChr5NydlXafIV1GVEHJdg==/19073228207465342.jpg?param=150y150",
+        "name": "云音乐嘻哈榜"
+      },
+      {
+        "id": 2250011834,
+        "coverUrl":
+          "http://p1.music.126.net/bZvjH5KTuvAT0YXlVa-RtQ==/109951163326845001.jpg?param=150y150",
+        "name": "抖音排行榜"
+      },
+      {
+        "id": 2023401525,
+        "coverUrl":
+          "http://p1.music.126.net/0_6_Efe9m0D0NtghOxinUg==/109951163089272193.jpg?param=150y150",
+        "name": "英国Q杂志中文版周榜"
+      },
+      {
+        "id": 71385776,
+        "coverUrl":
+          "http://p1.music.126.net/vttjtRjL75Q4DEnjRsO8-A==/18752170813539664.jpg?param=150y150",
+        "name": "云音乐ACG音乐榜"
+      },
+      {
+        "id": 2006508687,
+        "coverUrl":
+          "http://p1.music.126.net/CUqQp33MZf_m0BwH4u0V6A==/109951163078922993.jpg?param=150y150",
+        "name": "电竞音乐榜"
+      }
+    ]
+  }
+}

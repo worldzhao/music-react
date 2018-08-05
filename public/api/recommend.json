@@ -1,5 +1,7 @@
 {
-  "playlists": [
+  "success": true,
+  "error": null,
+  "result": [
     {
       "name": "好(✪",
       "id": 2347228428,

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { star, cancelStar } from '../../../BasicLayout/store/actionCreators'
+import { star, cancelStar } from '../../../basicLayout/store/actionCreators'
 import Subtitle from '../../../component/subtitle/'
 import { formatTimeStamp } from '../../../common/js/util'
 import './style.styl'
@@ -31,12 +31,10 @@ const checkStarred = (id) => {
     for (let i = 0; i < allStarredList.length; i += 1) {
       const list = allStarredList[i]
       if (list.id === id) {
-        console.log(true)
         return true
       }
     }
   }
-  console.log(false)
   return false
 }
 

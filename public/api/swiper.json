@@ -1,13 +1,17 @@
-[
-  { "imgurl": "http://p1.music.126.net/LgBdYNIeC3ESWRAfzxE1Sw==/109951163441043802.jpg" },
+{
+  "success": true,
+  "error": null,
+  "result": [
+    { "imgurl": "http://p1.music.126.net/LgBdYNIeC3ESWRAfzxE1Sw==/109951163441043802.jpg" },
 
-  { "imgurl": "http://p1.music.126.net/Om2vC3YvpjDhJiD7cjtGEA==/109951163441043275.jpg" },
+    { "imgurl": "http://p1.music.126.net/Om2vC3YvpjDhJiD7cjtGEA==/109951163441043275.jpg" },
 
-  { "imgurl": "http://p1.music.126.net/OnHL4uVHIEPb7IXlxTUihg==/109951163441050065.jpg" },
+    { "imgurl": "http://p1.music.126.net/OnHL4uVHIEPb7IXlxTUihg==/109951163441050065.jpg" },
 
-  { "imgurl": "http://p1.music.126.net/cB8aQhj3h51WtVaNCkrbCQ==/109951163441048615.jpg" },
+    { "imgurl": "http://p1.music.126.net/cB8aQhj3h51WtVaNCkrbCQ==/109951163441048615.jpg" },
 
-  { "imgurl": "http://p1.music.126.net/ujdGOcdNO3cCTs1Y9_5TLQ==/109951163441042340.jpg" },
+    { "imgurl": "http://p1.music.126.net/ujdGOcdNO3cCTs1Y9_5TLQ==/109951163441042340.jpg" },
 
-  { "imgurl": "http://p1.music.126.net/YDgTftX1ceBLnLnM6BuMTA==/109951163441040444.jpg" }
-]
+    { "imgurl": "http://p1.music.126.net/YDgTftX1ceBLnLnM6BuMTA==/109951163441040444.jpg" }
+  ]
+}

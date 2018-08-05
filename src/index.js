@@ -1,18 +1,19 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
-import { BrowserRouter } from 'react-router-dom'
-import BasicLayout from './BasicLayout'
-import store from './store'
+import { ConnectedRouter } from 'connected-react-router'
+import BasicLayout from './basicLayout'
+import store, { history } from './store'
+import './config/axios'
 
 import './common/style/reset.css'
 import './common/style/fonts.css'
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter basename="music-react">
+    <ConnectedRouter history={history}>
       <BasicLayout />
-    </BrowserRouter>
+    </ConnectedRouter>
   </Provider>,
   document.getElementById('root'),
 )

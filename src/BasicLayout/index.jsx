@@ -1,24 +1,27 @@
 import React from 'react'
-import { withRouter, Redirect } from 'react-router-dom'
+import { Switch, Redirect, Route } from 'react-router-dom'
 import { Routes, Links } from '../router'
+import NotFound from '../views/404'
 import HeadBar from './header'
 import Player from './player'
 import Menu from './menu'
 import './style.styl'
 
-const BasicLayout = (props) => {
-  const { pathname } = props.location
-  return (
-    <div className="basic-layout">
-      {pathname === '/' ? <Redirect to="/findmusic/playlist" /> : null}
-      <HeadBar />
-      <div className="content">
-        <Menu>{Links}</Menu>
-        <div className="views">{Routes}</div>
+const BasicLayout = () => (
+  <div className="basic-layout">
+    <HeadBar />
+    <div className="content">
+      <Menu>{Links}</Menu>
+      <div className="views">
+        <Switch>
+          <Redirect from="/" exact to="/findmusic/playlist" />
+          {Routes}
+          <Route component={NotFound} />
+        </Switch>
       </div>
-      <Player />
     </div>
-  )
-}
+    <Player />
+  </div>
+)
 
-export default withRouter(BasicLayout)
+export default BasicLayout

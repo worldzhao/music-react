@@ -14,7 +14,8 @@ export const getKeepScrollAction = scrollTop => ({
 
 export const fetchCardList = (pageNum, limit) => (dispatch) => {
   axios.get(getRecmdPlaylist(limit, pageNum)).then((res) => {
-    dispatch(getCardListAction(res.data.playlists))
+    const { data } = res
+    dispatch(getCardListAction(data.result))
   })
 }
 
@@ -25,6 +26,7 @@ export const getSwiperImgAction = swiperImg => ({
 
 export const fetchSwiperImg = () => (dispatch) => {
   axios.get(swiperUrl).then((res) => {
-    dispatch(getSwiperImgAction(res.data))
+    const { data } = res
+    dispatch(getSwiperImgAction(data.result))
   })
 }

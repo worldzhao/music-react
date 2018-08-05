@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import Loadable from 'react-loadable'
 import Loading from '../component/loading'
 
@@ -13,5 +13,5 @@ export default (routes) => {
   const Routes = routes.map(r => (
     <Route key={r.path} path={r.path} component={createLoadableComp(r.view)} />
   ))
-  return <Switch>{Routes}</Switch>
+  return Routes
 }

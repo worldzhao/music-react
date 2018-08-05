@@ -1,3 +1,6 @@
+@import '../../common/style/mixin.styl';
+@import '../../common/style/variable.styl';
+
 .findMusic {
   margin: 20px 30px;
 
@@ -10,6 +13,27 @@
 
     &::-webkit-scrollbar {
       display: none;
+    }
+  }
+
+  .navtab {
+    border-bottom: 1px solid rgba(7, 17, 27, 0.2);
+    margin-bottom: 14px;
+    overflow: hidden;
+
+    .item {
+      float: left;
+      margin-right: 25px;
+
+      & > a {
+        display: block;
+        mx_fc(16px, #000);
+        mx_hlh(45px, 45px);
+
+        &.active {
+          border-bottom: 2px solid $neteaseRed;
+        }
+      }
     }
   }
 }

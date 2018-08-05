@@ -1,19 +1,50 @@
-import React, { Component } from 'react'
+import React, { Fragment, Component } from 'react'
 import { connect } from 'react-redux'
-import ArHeader from './ar-header/'
-import HotSongs from '../../component/info-list/'
-import Subtitle from '../../component/subtitle/'
+import HotSongs from '../../component/info-list'
+import Subtitle from '../../component/subtitle'
 import { getArtistInfoEffect } from './store/actionCreators'
 import './style.styl'
+
+const Header = (props) => {
+  const {
+    img1v1Url, name, musicSize, albumSize, mvSize, briefDesc,
+  } = props.artist
+  return (
+    <div className="ar-header">
+      <div className="avatar">
+        <img src={img1v1Url} alt="artist-avatar" />
+      </div>
+
+      <div className="num">
+        <span className="name">{name}</span>
+        <span>
+          <i className="icon-music" />歌曲数:{musicSize}
+        </span>
+        <span>
+          <i className="icon-shocked" />专辑数:{albumSize}
+        </span>
+        <span>
+          <i className="icon-film" />MV数:{mvSize}
+        </span>
+      </div>
+
+      <div className="desc">
+        <p>{briefDesc}</p>
+      </div>
+    </div>
+  )
+}
 
 const renderArtistInfo = (artistDetail) => {
   if (!artistDetail) return null
   const { artist, hotSongs } = artistDetail
-  return [
-    <Subtitle title="歌手信息" key="artist-title" />,
-    <ArHeader artist={artist} key="artist-info" />,
-    <HotSongs tracks={hotSongs} isShowAr={false} key="artist-hot-songs" />,
-  ]
+  return (
+    <Fragment>
+      <Subtitle title="歌手信息" />
+      <Header artist={artist} />
+      <HotSongs tracks={hotSongs} isShowAr={false} />
+    </Fragment>
+  )
 }
 // @connect(
 //   state => ({

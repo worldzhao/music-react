@@ -21,7 +21,7 @@ const SpecialList = (props) => {
                   <span className="artists">
                     {s.ar.map(artist => (
                       <Link
-                        key={Math.random() + artist.id}
+                        key={artist.id}
                         to={{
                           pathname: `/artistinfo/${artist.id}`,
                         }}

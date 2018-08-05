@@ -9,6 +9,7 @@ const getToplistAction = data => ({
 
 export const fetchToplist = () => (dispatch) => {
   axios.get(toplistUrl).then((res) => {
-    dispatch(getToplistAction(res.data))
+    const { data } = res
+    dispatch(getToplistAction(data.result))
   })
 }

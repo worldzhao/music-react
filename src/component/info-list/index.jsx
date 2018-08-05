@@ -1,15 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { addSong2Que, playSong2Que } from '../../BasicLayout/store/actionCreators'
+import { addSong2Que, playSong2Que } from '../../basicLayout/store/actionCreators'
 import { specIndex, formatDuration } from '../../common/js/util'
 import './style.styl'
 
 const renderArtist = song => (
   <div className="song-artist">
     {song.ar.map(artist => (
-      <Link key={Math.random() + artist.id} to={{ pathname: `/artistinfo/${artist.id}` }}>
-        {' '}
+      <Link key={artist.id} to={{ pathname: `/artistinfo/${artist.id}` }}>
         {artist.name}
       </Link>
     ))}

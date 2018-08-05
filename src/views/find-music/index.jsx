@@ -1,12 +1,26 @@
 import React from 'react'
-import { Route, Redirect } from 'react-router-dom'
+import { Route, NavLink, Redirect, withRouter } from 'react-router-dom'
 import Subtitle from '../../component/subtitle/'
-import NavTab from './nab-tab/'
 import SpecialPage from './specicl-page/'
 import SongCardPage from './songcard-page/'
 import './style.styl'
 
-const FindMusic = (props) => {
+const NavTab = (props) => {
+  const { navlist } = props
+  return (
+    <div className="navtab">
+      <ul className="items">
+        {navlist.map(v => (
+          <li key={v.path} className="item">
+            <NavLink to={v.path}>{v.text}</NavLink>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}
+
+function FindMusic(props) {
   const { match } = props
   const { pathname } = props.location
   const navlist = [
@@ -34,4 +48,4 @@ const FindMusic = (props) => {
   )
 }
 
-export default FindMusic
+export default withRouter(FindMusic)

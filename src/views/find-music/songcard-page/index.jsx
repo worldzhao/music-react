@@ -39,14 +39,12 @@ export default class SongCardPage extends Component {
 
   handleScroll = () => {
     // 可以用函数节流优化
-    // const {
-    //   scrollTop, clientHeight, scrollHeight, isFetching,
-    // } = this.contentNode
-    // 判断是否到达底部进行请求 同时要注意请求尚未回来时无法再次发出请求
-    // if (scrollTop + clientHeight === scrollHeight && !isFetching) {
-    //   const { pageNum, limit } = this.props.findMusic
-    //   this.props.fetchCardList(pageNum, limit)
-    // }
+    const { scrollTop, clientHeight, scrollHeight } = this.contentNode
+    // 判断是否到达底部进行请求 同时 请求尚未回来时无法再次发出请求 flag
+    if (scrollTop + clientHeight === scrollHeight) {
+      const { pageNum, limit } = this.props.findMusic
+      this.props.fetchCardList(pageNum, limit)
+    }
   }
 
   render() {

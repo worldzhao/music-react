@@ -293,8 +293,7 @@ export default class Player extends Component {
             <div className="song-artist">
               {song.ar.map(v => (
                 <Link key={v.id} to={{ pathname: `/artistinfo/${v.id}` }}>
-                  {' '}
-                  {v.name}{' '}
+                  {v.name}
                 </Link>
               ))}
             </div>

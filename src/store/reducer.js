@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import { reducer as playQueueReducer } from '../BasicLayout/store'
+import { reducer as playQueueReducer } from '../basicLayout/store'
 import { reducer as artistInfoReducer } from '../views/artist-info/store'
 import { reducer as findMusicReducer } from '../views/find-music/store'
 import { reducer as toplistReducer } from '../views/toplist/store'

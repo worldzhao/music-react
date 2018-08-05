@@ -99,7 +99,7 @@ export default class LyricBlock extends Component {
         {this.formatLyrics.map((line, index) => (
           <li
             className={activeLines[index] === 1 ? 'line active' : 'line'}
-            key={line[0] + Math.random()}
+            key={line[0]}
           >
             {line[1]}
           </li>

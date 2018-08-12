@@ -16,7 +16,7 @@
     1.  views: views 目录用于存放项目功能模块的页面，需要根据路由配置情况以及页面复杂程度大小分割子级目录
     2.  config: config 目录存放一些配置目录，比如 API 信息以及 axios 拦截器设置
     3.  router: 路由信息文件夹
-    4.  basicLayout: 页面基本布局，根据 router 文件夹暴露的路由信息进行路由渲染
+    4.  layout: 页面基本布局，根据 router 文件夹暴露的路由信息进行路由渲染
     5.  store: store 目录用于整合 views 中的 store
     6.  components: components 目录用于存放非业务组件，或者在多个业务间都需要用到的功能组件
     7.  common: common 目录用于存放一些公共 css 以及 js 工具方法
@@ -92,7 +92,7 @@ axios.interceptors.response.use(
 ## TODO
 
 1.  ~~封装轮播图组件~~[react-tiny-swiepr](https://github.com/worldzhao/react-tiny-swiper)
-2.  ~~抽象 basicLayout 组件~~
+2.  ~~抽象 layout 组件~~
 3.  ~~抽象 router 信息~~
 4.  ~~异步请求全局错误处理~~
 5.  loading 控制

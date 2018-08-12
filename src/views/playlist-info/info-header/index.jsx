@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { star, cancelStar } from '../../../basicLayout/store/actionCreators'
+import { star, cancelStar } from '../../../layout/store/actionCreators'
 import Subtitle from '../../../component/subtitle/'
 import { formatTimeStamp } from '../../../common/js/util'
 import './style.styl'

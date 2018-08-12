@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { addSong2Que, playSong2Que } from '../../basicLayout/store/actionCreators'
+import { addSong2Que, playSong2Que } from '../../layout/store/actionCreators'
 import { specIndex, formatDuration } from '../../common/js/util'
 import './style.styl'
 

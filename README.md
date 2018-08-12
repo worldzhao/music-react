@@ -1,14 +1,9 @@
 # music-react
 
-> 前言：在七月份初学 vue 的时候，用 vue 全家桶做了一个音乐播放器，那是我学前端的第四个月，不懂工程构建/项目构建/代码规范/模块复用的思想，也能运行，功能也颇为完善，但是最近翻看其代码的时候实在惨不忍睹，于是删除了 git 仓库，用 react 重构了一遍，更加注重模块划分以及项目构建，并且引入了 eslint 与 editorconfig 规范自己的代码，目前还未重构完成。
-
-![推荐歌单.png](http://upload-images.jianshu.io/upload_images/4869616-d24aa08f95605b93.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-![歌单详情.png](http://upload-images.jianshu.io/upload_images/4869616-4a367530230faed0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
-![播放详情.png](https://upload-images.jianshu.io/upload_images/4869616-4adbc1a037a854b6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ## 项目简介
+
+基于react搭建的在线音乐播放器
 
 该项目由 [Create React App](https://github.com/facebookincubator/create-react-app) 搭建.
 
@@ -44,7 +39,7 @@
 5.  API:
 
     1.  [AD`s API](https://api.imjad.cn/cloudmusic.md)
-    2.  ~~部分 API 由我室友爬虫完成~~毕业服务器到期，一些首页数据直接 mock
+    2.  ~~部分 API 由我室友爬虫完成~~毕业服务器到期，首页数据 mock
     3.  推荐[NeteaseCloudMusicApi](https://github.com/agnij/NeteaseCloudMusicApi)
 
 6.  异步请求错误处理：
@@ -119,6 +114,14 @@ npm install
 
 npm start
 ```
+## 项目截图
+
+![推荐歌单.png](http://upload-images.jianshu.io/upload_images/4869616-d24aa08f95605b93.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+![歌单详情.png](http://upload-images.jianshu.io/upload_images/4869616-4a367530230faed0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+![播放详情.png](https://upload-images.jianshu.io/upload_images/4869616-4adbc1a037a854b6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
 
 每学到一点新知识，新思想，我都会来改进这个项目，欢迎 fork 和 star，如果你正在学习 react，通过一个比较综合的项目来实战也还是非常不错的。
 

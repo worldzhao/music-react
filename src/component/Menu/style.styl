@@ -2,20 +2,19 @@
 @import '../../common/style/variable.styl';
 
 $drawerBgc = #f7f7f7;
-$drawerWidth = 15%;
 $hideWidth = 35px;
 $toggleBtnFontSize = 16px;
+$linkFontSize = 14px;
+$liHoverBgc = #e8e8eb;
 
-.drawer {
+.menu {
   background-color: $drawerBgc;
   text-align: left;
   overflow-y: auto;
   overflow-x: hidden;
-  width: $drawerWidth;
 
   &.hide {
     width: $hideWidth;
-    overflow: hidden;
   }
 
   & > i {
@@ -24,24 +23,19 @@ $toggleBtnFontSize = 16px;
     mx_hlh(45px, 45px);
     margin-left: 10px;
   }
-}
 
-$linkFontSize = 14px;
-$liHoverBgc = #e8e8eb;
+  .drawer-block {
+    & > h4 {
+      margin-left: 10px;
+      mx_whlh(100%, 45px, 45px);
+      mx_fc($linkFontSize, $toggleBtnColor);
+      overflow: hidden;
 
-.drawer-block {
-  & > h4 {
-    margin-left: 10px;
-    mx_whlh(100%, 45px, 45px);
-    mx_fc($linkFontSize, $toggleBtnColor);
-    overflow: hidden;
-
-    &.hide {
-      display: none;
+      &.hide {
+        display: none;
+      }
     }
-  }
 
-  .items {
     .item {
       height: 40px;
       mx_brbox();

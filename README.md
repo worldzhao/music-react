@@ -1,9 +1,8 @@
 # music-react
 
-
 ## 项目简介
 
-基于react搭建的在线音乐播放器
+基于 react 搭建的在线音乐播放器
 
 该项目由 [Create React App](https://github.com/facebookincubator/create-react-app) 搭建.
 
@@ -16,7 +15,7 @@
     1.  views: views 目录用于存放项目功能模块的页面，需要根据路由配置情况以及页面复杂程度大小分割子级目录
     2.  config: config 目录存放一些配置目录，比如 API 信息以及 axios 拦截器设置
     3.  router: 路由信息文件夹
-    4.  layout: 页面基本布局，根据 router 文件夹暴露的路由信息进行路由渲染
+    4.  layout: 页面基本布局
     5.  store: store 目录用于整合 views 中的 store
     6.  components: components 目录用于存放非业务组件，或者在多个业务间都需要用到的功能组件
     7.  common: common 目录用于存放一些公共 css 以及 js 工具方法
@@ -80,6 +79,89 @@ axios.interceptors.response.use(
 
     公司的项目使用的是 dva，其插件 dva-loading 可以自动处理 loading 状态，不用一遍遍地写 showLoading 和 hideLoading，并且每一个 model 均有独立的 loading，组件内部可以获取到，目前还在思考不使用 dva 如何实现同样效果。
 
+8.  layout-主页结构
+
+    1.  menu 菜单导航
+    2.  header 头部
+    3.  footer 底部
+    4.  main 内容区域
+
+    头部和底部固定，中间高度自适应的几种实现方式
+
+    1.  header/footer 通过 fixed 定位，container 高度为 100vh，上下 padding 为 header 与 footer 的高度，main 高度为 100%
+
+    ```css
+    header {
+      height: 30px;
+      position: fixed;
+      top: 0;
+      left: 0;
+    }
+
+    footer {
+      height: 60px;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+    }
+
+    .container {
+      height: 100vh;
+      padding: 30px 0 60px 0;
+    }
+
+    .main {
+      height: 100%;
+    }
+    ```
+
+    2.  header 以及 footer 使用 fixed 定位 main 使用 absolute 定位
+
+    ```css
+    header {
+      height: 30px;
+      position: fixed;
+      top: 0;
+      left: 0;
+    }
+
+    footer {
+      height: 60px;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+    }
+
+    .container {
+      height: 100vh;
+    }
+
+    .main {
+      position: absolute;
+      top: 30px;
+      bottom: 60px;
+    }
+    ```
+
+    3.普通流式布局，container 高度为 100vh，中间高度通过`calc`计算得到
+
+    ```css
+    header {
+      height: 30px;
+    }
+    footer {
+      height: 60px;
+    }
+
+    .container {
+      height: 100vh;
+    }
+
+    .main {
+      height: calc(100vh - 30px - 60px);
+    }
+    ```
+
 ## 实现功能
 
 1.  ~~歌手详情~~
@@ -114,6 +196,7 @@ npm install
 
 npm start
 ```
+
 ## 项目截图
 
 ![推荐歌单.png](http://upload-images.jianshu.io/upload_images/4869616-d24aa08f95605b93.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
@@ -121,7 +204,6 @@ npm start
 ![歌单详情.png](http://upload-images.jianshu.io/upload_images/4869616-4a367530230faed0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 ![播放详情.png](https://upload-images.jianshu.io/upload_images/4869616-4adbc1a037a854b6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
-
 
 每学到一点新知识，新思想，我都会来改进这个项目，欢迎 fork 和 star，如果你正在学习 react，通过一个比较综合的项目来实战也还是非常不错的。
 

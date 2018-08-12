@@ -1,11 +1,11 @@
 const routeInfo = [
   {
     path: '/playlistinfo/:id',
-    view: 'playlist-info',
+    view: 'Playlist',
   },
   {
     path: '/artistinfo/:id',
-    view: 'artist-info',
+    view: 'Artist',
   },
   {
     path: '/exception/403',

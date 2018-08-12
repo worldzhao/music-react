@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { actionCreators } from '../store'
+import { actionCreators } from '../../common/store'
 import { formatDuration, formatCurrentTime } from '../../common/js/util'
-import ReadyList from '../ready-list'
-import Rolling from '../../views/lyric-box'
+import ReadyList from '../../component/ReadyQueue'
+import Rolling from '../../views/Song'
 import './style.styl'
-
 @connect(
   state => ({ playQueue: state.playQueue }),
   {
@@ -261,7 +260,7 @@ export default class Player extends Component {
       ...extraProps,
     }
     return [
-      <div className="player" key="player">
+      <footer key="player">
         <div className="album-img" onClick={this.toggleRolling}>
           <img src={song.al.picUrl} alt="album-img" />
         </div>
@@ -338,7 +337,7 @@ export default class Player extends Component {
           <i className="icon-list" onClick={this.toggleReadyList} />
         </div>
         {showReadyList ? <ReadyList /> : null}
-      </div>,
+      </footer>,
       <Rolling key="rolling" {...allProps} />,
     ]
   }

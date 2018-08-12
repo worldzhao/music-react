@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { initStarredList } from '../../store/actionCreators'
+import { initStarredList } from '../../../common/store/actionCreators'
 import './style.styl'
 
 @connect(
@@ -19,7 +19,7 @@ export default class StarredBlock extends Component {
   // re-render 优化test
   shouldComponentUpdate(nextProps) {
     // console.log(this.props.starredList === nextProps.starredList)
-    // false 引用类型 所以PureComponent会失效  扩展:immuable.js
+    // false 引用类型 所以PureComponent会失效  扩展:immutable.js
     return !(this.props.starredList.length === nextProps.starredList.length)
   }
   render() {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Item from './list-item'
-import { changeSong, deleteSong, clearQueue } from '../store/actionCreators'
+import { changeSong, deleteSong, clearQueue } from '../../common/store/actionCreators'
 
 import './style.styl'
 

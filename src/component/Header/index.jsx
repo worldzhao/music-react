@@ -12,7 +12,7 @@ const HeadBar = (props) => {
   const { pathname } = props.location
   const title = getTitle(menuInfo, pathname)
   return (
-    <div className="headbar">
+    <header>
       <div className="left">
         <i
           className="icon-arrow-left"
@@ -25,7 +25,7 @@ const HeadBar = (props) => {
       <div className="right">
         <i className="icon-cross" />
       </div>
-    </div>
+    </header>
   )
 }
 

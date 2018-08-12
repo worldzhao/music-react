@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import InfoHeader from './info-header/'
-import InfoList from '../../component/info-list/'
+import InfoHeader from './header'
+import InfoList from '../../component/List'
 import { fetchPlaylist } from './store/actionCreators'
 
 import './style.styl'

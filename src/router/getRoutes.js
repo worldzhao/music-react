@@ -1,11 +1,11 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
 import Loadable from 'react-loadable'
-import Loading from '../component/loading'
+import Loading from '../component/Loading'
 
 const createLoadableComp = path =>
   Loadable({
-    loader: () => import(`../views/${path}/`),
+    loader: () => import(`../views/${path}`),
     loading: Loading,
   })
 

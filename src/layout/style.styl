@@ -8,33 +8,32 @@ html {
 .basic-layout {
   min-width: 1000px;
 
-  .navbar {
-    mx_poftl(0, 0);
+  header {
+    mx_wh(100%, $headerHeight);
+  }
+
+  footer {
+    mx_wh(100%, $footerHeight);
+  }
+
+  #main {
+    mx_flex();
+    background-color: $pageBgc;
+    overflow: auto;
+    width: 100%;
+    height: calc(100vh - 30px - 60px);
+  }
+
+  .menu {
+    width: 15%;
+    min-width: 180px;
   }
 
   .content {
-    background-color: $pageBgc;
-    mx_postb($navBarHeight, $playerHeight);
-    mx_flex();
-    min-width: 1000px;
-    overflow: auto;
-    width: 100%;
-  }
-
-  .views {
     mx_brbox();
     mx_flex_item(1);
     overflow-x: hidden;
     overflow-y: auto;
     position: relative;
-
-    &::-webkit-scrollbar {
-      display: none;
-    }
-  }
-
-  .player {
-    min-width: 1000px;
-    mx_pofbl(0, 0);
   }
 }

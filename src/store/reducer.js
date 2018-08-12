@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux'
-import { reducer as playQueueReducer } from '../layout/store'
-import { reducer as artistInfoReducer } from '../views/artist-info/store'
-import { reducer as findMusicReducer } from '../views/find-music/store'
-import { reducer as toplistReducer } from '../views/toplist/store'
-import { reducer as playlistInfoReducer } from '../views/playlist-info/store'
-import { reducer as lyricReducer } from '../views/lyric-box/store'
+import { reducer as playQueueReducer } from '../common/store'
+import { reducer as artistInfoReducer } from '../views/Artist/store'
+import { reducer as findMusicReducer } from '../views/FindMusic/store'
+import { reducer as toplistReducer } from '../views/Toplist/store'
+import { reducer as playlistInfoReducer } from '../views/Playlist/store'
+import { reducer as lyricReducer } from '../views/Song/store'
 
 const reducer = combineReducers({
   artistInfo: artistInfoReducer,

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import SpecialList from './special-list/'
 import GlobalList from './global-list/'
-import Subtitle from '../../component/subtitle/'
+import Subtitle from '../../component/SubTitle'
 import { fetchToplist } from './store/actionCreators'
 import './style.styl'
 

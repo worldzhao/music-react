@@ -20,7 +20,7 @@ export default class Drawer extends Component {
     const { isShow } = this.state
     const { children } = this.props
     return (
-      <div className={`drawer ${isShow ? '' : 'hide'}`}>
+      <div className={`menu ${isShow ? '' : 'hide'}`}>
         <i className="icon-menu" onClick={this.toggleDrawer} />
         <div className="drawer-block">
           <ul className="items">

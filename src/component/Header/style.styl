@@ -1,0 +1,32 @@
+@import '../../common/style/mixin.styl';
+@import '../../common/style/variable.styl';
+
+header {
+  mx_brbox();
+  mx_fc(14px, #fff);
+  mx_hlh($headerHeight, $headerHeight);
+  background-color: $neteaseRed;
+  cursor: default;
+  padding: 0 20px;
+
+  .left {
+    float: left;
+  }
+
+  .right {
+    float: right;
+  }
+
+  .icon-arrow-left {
+    cursor: pointer;
+  }
+
+  .title {
+    display: inline-block;
+    margin-left: 30px;
+  }
+
+  .icon-cross {
+    margin-left: 30px;
+  }
+}

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Route, NavLink, Redirect, withRouter } from 'react-router-dom'
-import Subtitle from '../../component/subtitle/'
+import Subtitle from '../../component/SubTitle'
 import SpecialPage from './specicl-page/'
 import SongCardPage from './songcard-page/'
 import './style.styl'

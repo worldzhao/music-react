@@ -24,7 +24,7 @@ export default class Item extends PureComponent {
           {v.name}
         </div>
         <div className="song-artist">
-          {v.ar.map(artist => (
+          {v.artists.map(artist => (
             <Link
               key={artist.id}
               to={{

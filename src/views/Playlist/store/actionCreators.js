@@ -6,6 +6,8 @@ const getPlaylistInfoAction = playlist => ({ type: PLAYLIST_INFO, payload: playl
 
 export const fetchPlaylist = id => (dispatch) => {
   axios.get(playlistInfoUrl(id)).then((res) => {
-    dispatch(getPlaylistInfoAction(res.data.playlist))
+    if (res.data.code === 200) {
+      dispatch(getPlaylistInfoAction(res.data.result))
+    }
   })
 }

@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { star, cancelStar } from '../../../common/store/actionCreators'
 import Subtitle from '../../../component/SubTitle'
 import { formatTimeStamp } from '../../../common/js/util'
 import './style.styl'
@@ -38,15 +36,6 @@ const checkStarred = (id) => {
   return false
 }
 
-@connect(
-  state => ({
-    starredList: state.playQueue.starredList,
-  }),
-  {
-    star,
-    cancelStar,
-  },
-)
 export default class Header extends Component {
   constructor() {
     super()
@@ -62,20 +51,11 @@ export default class Header extends Component {
   }
 
   beforeStar = () => {
-    const { playlist } = this.props
-    const { id, name, coverImgUrl } = playlist
-    const parseList = {
-      id,
-      name,
-      coverImgUrl,
-    }
-    this.props.star(parseList)
+    this.props.beforeStar()
   }
 
   beforeCancelStar = () => {
-    const { playlist } = this.props
-    const { id } = playlist
-    this.props.cancelStar(id)
+    this.props.beforeCancelStar()
   }
 
   render() {

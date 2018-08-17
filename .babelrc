@@ -1,6 +1,8 @@
 {
-  "presets": [
-    "react-app"
-  ],
-  "plugins": ["transform-decorators-legacy","syntax-dynamic-import"]
+  "presets": ["react-app"],
+  "plugins": [
+    ["import", { "libraryName": "antd", "style": "css" }],
+    "transform-decorators-legacy",
+    "syntax-dynamic-import"
+  ]
 }

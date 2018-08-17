@@ -7,8 +7,9 @@ import './style.styl'
 
 const renderArtist = song => (
   <div className="song-artist">
-    {song.ar.map(artist => (
+    {song.artists.map(artist => (
       <Link key={artist.id} to={{ pathname: `/artistinfo/${artist.id}` }}>
+        {' '}
         {artist.name}
       </Link>
     ))}
@@ -33,8 +34,8 @@ const SongList = (props) => {
               <i className="icon-play3" onClick={() => props.playSong2Que(song)} />
               {isShowAr ? renderArtist(song) : null}
             </div>
-            <span className="song-album">{song.al.name}</span>
-            <span className="song-duration">{formatDuration(song.dt)}</span>
+            <span className="song-album">{song.album.name}</span>
+            <span className="song-duration">{formatDuration(song.duration)}</span>
           </li>
         ))}
       </ul>

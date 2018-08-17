@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import StarredBlock from './starred-block'
+import CollectBlock from './CollectBlock'
 import './style.styl'
 
 export default class Drawer extends Component {
@@ -27,7 +27,7 @@ export default class Drawer extends Component {
             {React.Children.map(children, l => <li className="item">{l}</li>)}
           </ul>
         </div>
-        {isShow ? <StarredBlock /> : null}
+        {isShow ? <CollectBlock /> : null}
       </div>
     )
   }

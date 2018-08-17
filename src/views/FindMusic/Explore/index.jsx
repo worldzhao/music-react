@@ -25,8 +25,8 @@ export default class SwiperPage extends Component {
         {data.length && (
           <Swiper {...setting}>
             {data.map(item => (
-              <div key={item.imgurl}>
-                <img src={item.imgurl} alt="slick" />
+              <div key={item.picUrl}>
+                <img src={item.picUrl} alt="slick" />
               </div>
             ))}
           </Swiper>

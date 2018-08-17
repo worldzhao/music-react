@@ -55,7 +55,7 @@ export const playSong2Que = s => (dispatch, getState) => {
       }
       dispatch(playSongAct(song))
     } else {
-      alert('歌曲直链不存在')
+      console.log('歌曲直链不存在')
     }
   })
 }

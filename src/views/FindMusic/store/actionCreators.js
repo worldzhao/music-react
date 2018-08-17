@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { CARD_LIST, SWIPER_IMG } from './actionTypes'
-import { topPlaylist, swiperUrl } from '../../../config/api'
+import { topPlaylist, bannerUrl } from '../../../config/api'
 
 export const getCardListAction = list => ({
   type: CARD_LIST,
@@ -22,8 +22,8 @@ export const getSwiperImgAction = swiperImg => ({
 })
 
 export const fetchSwiperImg = () => (dispatch) => {
-  axios.get(swiperUrl).then((res) => {
+  axios.get(bannerUrl).then((res) => {
     const { data } = res
-    dispatch(getSwiperImgAction(data.result))
+    dispatch(getSwiperImgAction(data.banners))
   })
 }

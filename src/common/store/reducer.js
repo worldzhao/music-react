@@ -12,7 +12,7 @@ const song = {
   id: 419375586,
   pst: 0,
   t: 0,
-  ar: [
+  artists: [
     {
       id: 8103,
       name: '花粥',
@@ -28,7 +28,7 @@ const song = {
   v: 51,
   crbt: null,
   cf: '',
-  al: {
+  album: {
     id: 3078773,
     name: '很多无处存放的歌曲',
     picUrl: 'https://p1.music.126.net/J_oFMgT9IzcbTlr0_ZtthQ==/18225504742452490.jpg',

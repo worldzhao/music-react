@@ -21,8 +21,12 @@ const { TabPanel } = Tabs
 )
 export default class FindMusic extends React.Component {
   componentDidMount() {
-    this.props.fetchCardList(100)
-    this.props.fetchSwiperImg()
+    const { swiperImg, cardList } = this.props.findMusic
+
+    if (!cardList.length && !swiperImg.length) {
+      this.props.fetchCardList(30)
+      this.props.fetchSwiperImg()
+    }
   }
   render() {
     const { swiperImg, cardList } = this.props.findMusic

@@ -262,7 +262,7 @@ export default class Player extends Component {
     return [
       <footer key="player">
         <div className="album-img" onClick={this.toggleRolling}>
-          <img src={song.al.picUrl} alt="album-img" />
+          <img src={song.album.picUrl} alt="album-img" />
         </div>
         <div className="player-btns">
           <button className="pre-btn" onClick={this.preSong}>
@@ -290,7 +290,7 @@ export default class Player extends Component {
             </audio>
             <span className="song-name">{song.name}</span>
             <div className="song-artist">
-              {song.ar.map(v => (
+              {song.artists.map(v => (
                 <Link key={v.id} to={{ pathname: `/artistinfo/${v.id}` }}>
                   {v.name}
                 </Link>

@@ -1,51 +1,43 @@
 import React from 'react'
-import { Route, NavLink, Redirect, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { fetchCardList, fetchSwiperImg } from './store/actionCreators'
+import Tabs from '../../component/Tabs'
 import Subtitle from '../../component/SubTitle'
-import SpecialPage from './specicl-page/'
-import SongCardPage from './songcard-page/'
+import PlayList from './PlayList'
+import Explore from './Explore'
 import './style.styl'
 
-const NavTab = (props) => {
-  const { navlist } = props
-  return (
-    <div className="navtab">
-      <ul className="items">
-        {navlist.map(v => (
-          <li key={v.path} className="item">
-            <NavLink to={v.path}>{v.text}</NavLink>
-          </li>
-        ))}
-      </ul>
-    </div>
-  )
-}
-
-function FindMusic(props) {
-  const { match } = props
-  const { pathname } = props.location
-  const navlist = [
-    {
-      path: `${match.url}/specialpage`,
-      text: '个性推荐',
-      component: SpecialPage,
-    },
-    {
-      path: `${match.url}/playlist`,
-      text: '歌单',
-      component: SongCardPage,
-    },
-  ]
-
-  return (
-    <div className="findMusic">
-      {pathname === '/findmusic' ? <Redirect to="/findmusic/playlist" /> : null}
-      <Subtitle title="发现音乐" />
-      <NavTab navlist={navlist} />
-      <div className="level2-views">
-        {navlist.map(v => <Route key={v.path} path={v.path} component={v.component} />)}
+const { TabPanel } = Tabs
+@withRouter
+@connect(
+  state => ({
+    findMusic: state.findMusic,
+  }),
+  {
+    fetchCardList,
+    fetchSwiperImg,
+  },
+)
+export default class FindMusic extends React.Component {
+  componentDidMount() {
+    this.props.fetchCardList(100)
+    this.props.fetchSwiperImg()
+  }
+  render() {
+    const { swiperImg, cardList } = this.props.findMusic
+    return (
+      <div className="find-music">
+        <Subtitle title="发现音乐" />
+        <Tabs defaultActiveIndex={1}>
+          <TabPanel tab="个性推荐">
+            <Explore data={swiperImg} />
+          </TabPanel>
+          <TabPanel tab="歌单">
+            <PlayList data={cardList} />
+          </TabPanel>
+        </Tabs>
       </div>
-    </div>
-  )
+    )
+  }
 }
-
-export default withRouter(FindMusic)

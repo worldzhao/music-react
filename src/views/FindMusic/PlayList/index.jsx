@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import './style.styl'
 
@@ -19,4 +19,17 @@ const SongCard = (props) => {
   )
 }
 
-export default SongCard
+export default class PlayList extends Component {
+  componentDidMount() {
+    // do sth
+  }
+
+  render() {
+    const { data } = this.props
+    return (
+      <div className="songcard-page">
+        {data.map(card => <SongCard key={card.id} playlist={card} />)}
+      </div>
+    )
+  }
+}

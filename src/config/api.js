@@ -18,20 +18,16 @@ export function lyricUrl(id) {
   return `https://api.imjad.cn/cloudmusic/?type=lyric&id=${id}`
 }
 
-// 推荐歌单 参数 limit pagenum
-// export function getRecmdPlaylist(limit = 24, pagenum) {
-//   return `http://112.74.56.114:8888/NetEaseMusicServer/index?limit=${limit}&pagenum=${pagenum}`
-// }
+// 精品歌单 参数 limit pagenum
+export function topPlaylist(limit) {
+  return `/api/top/playlist?limit=${limit}`
+}
 
 // 轮播图
 // export const swiperUrl = 'http://112.74.56.114:8888/NetEaseMusicServer/image'
 
 // 排行榜
 // export const toplistUrl = 'http://112.74.56.114:8888/NetEaseMusicServer/fuckzzw'
-
-export function getRecmdPlaylist() {
-  return '/api/recommend.json'
-}
 
 export const swiperUrl = '/api/swiper.json'
 

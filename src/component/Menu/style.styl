@@ -12,12 +12,13 @@ $liHoverBgc = #e8e8eb;
   text-align: left;
   overflow-y: auto;
   overflow-x: hidden;
+  width: 15%;
 
   &.hide {
     width: $hideWidth;
   }
 
-  & > i {
+  .icon-menu {
     cursor: pointer;
     mx_fc($toggleBtnFontSize, $toggleBtnColor);
     mx_hlh(45px, 45px);
@@ -25,7 +26,7 @@ $liHoverBgc = #e8e8eb;
   }
 
   .drawer-block {
-    & > h4 {
+    h4 {
       margin-left: 10px;
       mx_whlh(100%, 45px, 45px);
       mx_fc($linkFontSize, $toggleBtnColor);
@@ -45,7 +46,7 @@ $liHoverBgc = #e8e8eb;
         background-color: $liHoverBgc;
       }
 
-      & > a {
+      a {
         display: inline-block;
         mx_fc($linkFontSize, #000);
         mx_whlh(100%, 40px, 40px);
@@ -54,10 +55,10 @@ $liHoverBgc = #e8e8eb;
         &.active {
           color: $neteaseRed;
         }
+      }
 
-        &>i {
-          margin-right: 16px;
-        }
+      i {
+        margin-right: 16px;
       }
     }
   }

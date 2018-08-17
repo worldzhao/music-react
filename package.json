@@ -1,5 +1,5 @@
 {
-  "name": "music-react",
+  "name": "music",
   "version": "0.1.0",
   "private": true,
   "homepage": "http://worldzhao.github.io/music-react",
@@ -111,5 +111,14 @@
     "redux-devtools-extension": "^2.13.2",
     "stylus": "^0.54.5",
     "stylus-loader": "^3.0.1"
+  },
+  "proxy": {
+    "/api": {
+      "target": "http://119.29.241.71:3000/",
+      "pathRewrite": {
+        "^/api": ""
+      },
+      "secure": false
+    }
   }
 }

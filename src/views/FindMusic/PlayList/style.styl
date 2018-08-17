@@ -1,4 +1,9 @@
-@import '../../../../common/style/mixin.styl';
+@import '../../../common/style/mixin.styl';
+
+.songcard-page {
+  mx_wh(100%, 100%);
+  overflow-y: auto;
+}
 
 .songcard {
   float: left;
@@ -10,6 +15,10 @@
   .album-img {
     mx_wh(100%, 145px);
     margin-bottom: 10px;
+  }
+
+  img {
+    mx_wh(100%, 100%);
   }
 
   .title {

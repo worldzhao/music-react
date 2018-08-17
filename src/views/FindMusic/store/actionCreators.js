@@ -1,21 +1,18 @@
 import axios from 'axios'
-import { CARD_LIST, RECORD_SCROLL, SWIPER_IMG } from './actionTypes'
-import { getRecmdPlaylist, swiperUrl } from '../../../config/api'
+import { CARD_LIST, SWIPER_IMG } from './actionTypes'
+import { topPlaylist, swiperUrl } from '../../../config/api'
 
 export const getCardListAction = list => ({
   type: CARD_LIST,
   payload: { list },
 })
 
-export const getKeepScrollAction = scrollTop => ({
-  type: RECORD_SCROLL,
-  payload: scrollTop,
-})
-
-export const fetchCardList = (pageNum, limit) => (dispatch) => {
-  axios.get(getRecmdPlaylist(limit, pageNum)).then((res) => {
+export const fetchCardList = limit => (dispatch) => {
+  axios.get(topPlaylist(limit)).then((res) => {
     const { data } = res
-    dispatch(getCardListAction(data.result))
+    if (data.code === 200) {
+      dispatch(getCardListAction(data.playlists))
+    }
   })
 }
 

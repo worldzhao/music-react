@@ -4,7 +4,7 @@ import './style.styl'
 /**
  * 有三个要点：
  * 1. 歌词 String => 歌词 array
- * 原本的歌词字符串是lyricObj中的属性 通过parseLyric转变为歌词数组 保存在this.formatLyrics中[[time,lyric],[time,lyric]]
+ * 原本的歌词字符串是lyric中的属性 通过parseLyric转变为歌词数组 保存在this.formatLyrics中[[time,lyric],[time,lyric]]
  * 注：【this.formatLyrics 不是state属性，改变它视图不会刷新】
  * 通过 this.formatLyrics渲染出所有歌词
  * 2. 激活当前播放的歌词
@@ -83,12 +83,12 @@ export default class LyricBlock extends Component {
       }
     }
   }
-  renderLyrics = (lyricObj) => {
-    if (!lyricObj) return null
-    if (lyricObj.nolyric || lyricObj.uncollected) {
+  renderLyrics = (lyric) => {
+    if (!lyric) return null
+    if (lyric.nolyric || lyric.uncollected) {
       return <p className="lyric-info">该歌曲暂无歌词o(╯□╰)o</p>
     }
-    const lyricStr = lyricObj.lrc.lyric
+    const lyricStr = lyric.lrc.lyric
     this.formatLyrics = parseLyric(lyricStr)
     const { activeLines, top } = this.state
     return (
@@ -108,11 +108,11 @@ export default class LyricBlock extends Component {
     )
   };
   render() {
-    const { lyricObj } = this.props.lyric
+    const { lyric } = this.props
     return (
       <div className="lyric-block">
-        {lyricObj ? (
-          this.renderLyrics(lyricObj)
+        {lyric ? (
+          this.renderLyrics(lyric)
         ) : (
           <p className="lyric-info">获取歌词中...</p>
         )}

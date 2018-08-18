@@ -6,8 +6,9 @@ import {
   PLAYER_CLEAR_QUEUE,
   PLAYER_DELETE_SONG,
   INIT_STARRED_LIST,
+  LYRIC,
 } from './actionTypes'
-import { Mp3Url } from '../../config/api'
+import { Mp3Url, lyricUrl } from '../../config/api'
 
 const playSongAct = song => ({ type: PLAYER_PLAY_SONG, payload: song })
 
@@ -113,4 +114,15 @@ export const cancelStar = id => (dispatch) => {
   allStarredList.splice(index, 1)
   localStorage.setItem('allStarredList', JSON.stringify(allStarredList))
   dispatch(initStarredListAct(allStarredList))
+}
+
+const getLyricAction = data => ({
+  type: LYRIC,
+  payload: data,
+})
+
+export const fetchLyric = id => (dispatch) => {
+  axios.get(lyricUrl(id)).then((res) => {
+    dispatch(getLyricAction(res.data))
+  })
 }

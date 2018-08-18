@@ -17,7 +17,7 @@ html {
   }
 
   #main {
-    mx_flex();
+    display: flex;
     background-color: $pageBgc;
     overflow: auto;
     width: 100%;
@@ -25,8 +25,8 @@ html {
   }
 
   .content {
-    mx_brbox();
-    mx_flex_item(1);
+    flex: 1;
+    box-sizing: border-box;
     overflow-x: hidden;
     overflow-y: auto;
     position: relative;

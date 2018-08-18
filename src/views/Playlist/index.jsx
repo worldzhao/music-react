@@ -53,8 +53,6 @@ export default class PlaylistInfo extends Component {
     const { playlist } = this.props.playlistInfo
     const { tracks, coverImgUrl } = playlist || {}
 
-    console.log(playlist)
-
     return (
       <div className="playlist-wrapper">
         {playlist && (

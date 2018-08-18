@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { actionCreators } from '../../common/store'
+import { changeSong, fetchLyric } from '../../common/store/actionCreators'
 import { formatDuration, formatCurrentTime } from '../../common/js/util'
 import ReadyList from '../../component/ReadyQueue'
 import Rolling from '../../views/Song'
 import './style.styl'
 @connect(
-  state => ({ playQueue: state.playQueue }),
+  state => ({ playQueue: state.playQueue, lyric: state.lyric }),
   {
-    changeSong: actionCreators.changeSong,
+    changeSong,
+    fetchLyric,
   },
 )
 export default class Player extends Component {
@@ -25,12 +26,21 @@ export default class Player extends Component {
       mode: 'listloop',
       modeIcon: 'icon-loop2',
       showReadyList: false,
-      showRolling: false,
+      showDetailPage: false,
     }
   }
 
   componentDidMount() {
     this.audio.volume = 0.5
+    this.props.fetchLyric(this.props.playQueue.song.id)
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const { id } = nextProps.playQueue.song
+    const preId = this.props.playQueue.song.id
+    if (id !== preId) {
+      nextProps.fetchLyric(id)
+    }
   }
 
   componentDidUpdate(prevProps) {
@@ -221,9 +231,9 @@ export default class Player extends Component {
     })
   }
 
-  toggleRolling = () => {
+  toggleDetailPage = () => {
     this.setState({
-      showRolling: !this.state.showRolling,
+      showDetailPage: !this.state.showDetailPage,
     })
   }
 
@@ -234,8 +244,10 @@ export default class Player extends Component {
       this.toPause()
     }
   }
+
   render() {
     const {
+      showDetailPage,
       ppIcon,
       volumeIcon,
       modeIcon,
@@ -243,29 +255,23 @@ export default class Player extends Component {
       curVolBarWidth,
       showReadyList,
     } = this.state
-    const { song } = this.props.playQueue
+    const { song, lyric } = this.props.playQueue
     const artists = song.artists || song.ar
     const album = song.album || song.al
-    const extraProps = {
-      toggleRolling: this.toggleRolling,
-      preSong: this.preSong,
-      togglePlay: this.togglePlay,
-      nextSong: this.nextSong,
-      setCurTime: this.setCurTime,
+    const duration = song.duration || song.dt
+    const RollingProps = {
+      song,
+      lyric,
+      showDetailPage,
+      isPlaying: ppIcon.includes('pause'),
     }
     if (this.audio) {
-      extraProps.currentTime = this.audio.currentTime
+      RollingProps.currentTime = this.audio.currentTime
     }
-    const allProps = {
-      ...this.state,
-      ...this.props,
-      ...extraProps,
-      artists,
-      album,
-    }
+
     return [
       <footer key="player">
-        <div className="album-img" onClick={this.toggleRolling}>
+        <div className="album-img" onClick={this.toggleDetailPage}>
           <img src={album.picUrl} alt="album-img" />
         </div>
         <div className="player-btns">
@@ -301,7 +307,7 @@ export default class Player extends Component {
               ))}
             </div>
             <div className="song-duration">
-              {this.state.cdt}/{formatDuration(song.dt)}
+              {this.state.cdt}/{formatDuration(duration)}
             </div>
           </div>
 
@@ -342,7 +348,7 @@ export default class Player extends Component {
         </div>
         {showReadyList ? <ReadyList /> : null}
       </footer>,
-      <Rolling key="rolling" {...allProps} />,
+      <Rolling key="rolling" {...RollingProps} />,
     ]
   }
 }

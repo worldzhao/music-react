@@ -16,74 +16,72 @@ $activeRed = #df3b3b;
   .list-head {
     border-bottom: 1px solid rgba(7, 17, 27, 0.2);
     font-size: 14px;
-    mx_flex();
+    display: flex;
     mx_hlh(40px, 40px);
     padding: 0 30px;
 
     &>div:first-child {
-      mx_flex_item(3);
+      flex: 3;
     }
 
     &>div:nth-child(2) {
-      mx_flex_item(2);
+      flex: 2;
     }
 
     &>div:last-child {
       cursor: default;
-      mx_flex_item(1);
+      flex: 1;
       text-align: right;
     }
   }
 
-  .list-body {
-    .body-item {
-      mx_flex();
-      mx_hlh(45px, 45px);
-      padding: 0 30px;
+  .song-name {
+    cursor: pointer;
+    flex: 3;
+    mx_single_ellipsis();
+  }
 
-      .song-name {
-        cursor: pointer;
-        mx_flex_item(3);
-        mx_single_ellipsis();
+  .song-artist {
+    flex: 2;
+    mx_single_ellipsis();
+  }
+
+  .delete-btn {
+    color: #b7b7b8;
+    flex: 1;
+    text-align: right;
+  }
+
+  .body-item {
+    display: flex;
+    mx_hlh(45px, 45px);
+    padding: 0 30px;
+
+    &:hover {
+      background-color: #e8e8eb;
+    }
+
+    &.active {
+      position: relative;
+
+      .song-name, .delete-btn {
+        color: $activeRed;
       }
 
       .song-artist {
-        mx_flex_item(2);
-        mx_single_ellipsis();
-      }
-
-      .delete-btn {
-        color: #b7b7b8;
-        mx_flex_item(1);
-        text-align: right;
-      }
-
-      &:hover {
-        background-color: #e8e8eb;
-      }
-
-      &.active {
-        position: relative;
-
-        .song-name, .delete-btn {
+        a {
           color: $activeRed;
         }
-
-        .song-artist {
-          &>a {
-            color: $activeRed;
-          }
-        }
       }
+    }
 
-      &.active::before {
-        background-color: $activeRed;
-        content: '';
-        display: block;
-        mx_wh(3px, 30px);
-        mx_postl(50%, 0);
-        transform: translate(0, -50%);
-      }
+    &.active::before {
+      background-color: $activeRed;
+      content: '';
+      display: block;
+      mx_wh(3px, 30px);
+      mx_postl(50%, 0);
+      transform: translate(0, -50%);
     }
   }
 }

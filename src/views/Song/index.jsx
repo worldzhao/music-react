@@ -1,97 +1,34 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
-import { connect } from 'react-redux'
-import { fetchLyric } from './store/actionCreators'
 import LyricBlock from './lyric'
 import './style.styl'
 
-@connect(
-  state => ({ lyric: state.lyric }),
-  { fetchLyric },
-)
 export default class Rolling extends Component {
   componentDidMount() {
-    this.props.fetchLyric(this.props.playQueue.song.id)
+    // do sth
   }
-  componentWillReceiveProps(nextProps) {
-    const { id } = nextProps.playQueue.song
-    const preId = this.props.playQueue.song.id
-    if (id !== preId) {
-      nextProps.fetchLyric(id)
-    }
+
+  setAlbumClass = () => {
+    const { isPlaying } = this.props
+    return isPlaying ? 'album-img active' : 'album-img'
   }
+
+  setPageClass = () => {
+    const { showDetailPage } = this.props
+    return showDetailPage ? 'detail-page detail-page-show' : 'detail-page'
+  }
+
   render() {
-    const { song } = this.props.playQueue
-    const {
-      toggleRolling,
-      showRolling,
-      preSong,
-      togglePlay,
-      nextSong,
-      ppIcon,
-      curProgressBarWidth,
-      setCurTime,
-      currentTime,
-      lyric,
-      artists,
-      album,
-    } = this.props
+    const { currentTime, lyric, song } = this.props
+    const album = song.album || song.al
     const coverImg = album.picUrl
     return (
-      <div className={showRolling ? 'rolling rolling-up' : 'rolling'}>
-        <i className="icon-cross goback" onClick={toggleRolling} />
+      <div className={this.setPageClass()}>
         <img src={coverImg} alt="bg" className="bg" />
-        <div className="left-part">
-          <div className="vertical">
-            <div className={ppIcon === 'icon-play3' ? 'album-img' : 'album-img active'}>
-              <img src={coverImg} alt="album-img" />
-            </div>
-            <div className="player-btns">
-              <button className="pre-btn" onClick={preSong}>
-                <i className="icon-previous2" />
-              </button>
-              <button className="pp-btn" onClick={togglePlay}>
-                <i className={ppIcon} />
-              </button>
-              <button className="next-icon" onClick={nextSong}>
-                <i className="icon-next2" />
-              </button>
-            </div>
-            <div className="progress-wrapper">
-              <div
-                className="progress-bar"
-                ref={(node) => {
-                  this.progressBar = node
-                }}
-                onClick={(e) => {
-                  setCurTime(e, this.progressBar)
-                }}
-              >
-                <div className="current-progress" style={{ width: `${curProgressBarWidth}` }} />
-              </div>
-            </div>
-          </div>
+        <div className="left">
+          <img src={coverImg} alt="album-img" className={this.setAlbumClass()} />
         </div>
-
-        <div className="right-part">
-          <div className="song-info">
-            <div className="song-name">{song.name}</div>
-            <div className="info-block">
-              <span>
-                专辑：
-                <Link key={album.id} to={{ pathname: `/albuminfo/${album.id}` }}>
-                  {album.name}
-                </Link>
-              </span>
-              <span>
-                歌手：{artists.map(v => (
-                  <Link key={v.id} to={{ pathname: `/artistinfo/${v.id}` }}>
-                    {v.name}
-                  </Link>
-                ))}
-              </span>
-            </div>
-          </div>
+        <div className="right">
+          <div className="name">{song.name}</div>
           <LyricBlock lyric={lyric} currentTime={currentTime} />
         </div>
       </div>

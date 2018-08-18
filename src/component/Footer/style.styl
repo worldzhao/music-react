@@ -4,101 +4,101 @@
 footer {
   background-color: #fff;
   border: 1px solid rgba(7, 17, 27, 0.2);
-  mx_brbox();
-  mx_flex();
+  box-sizing: border-box;
+  display: flex;
 
   .album-img {
     cursor: pointer;
     mx_wh(60px, 60px);
+  }
 
-    & > img {
-      mx_wh(100%, 100%);
-    }
+  img {
+    mx_wh(100%, 100%);
   }
 
   .player-btns {
-    mx_flex();
+    display: flex;
     mx_flex_mid();
     padding: 14px;
     width: 170px;
+  }
 
-    & > button {
-      background-color: $redBgc;
-      border-radius: 50%;
-      cursor: pointer;
-      outline: none;
-      mx_wh(40px, 40px);
+  button {
+    background-color: $redBgc;
+    border-radius: 50%;
+    cursor: pointer;
+    outline: none;
+    mx_wh(40px, 40px);
+  }
 
-      &.pp-btn {
-        margin: 0 16px 0 16px;
-      }
+  i {
+    mx_fc(16px, #fff);
+  }
 
-      & > i {
-        mx_fc(16px, #fff);
-      }
-    }
+  .pp-btn {
+    margin: 0 16px 0 16px;
   }
 
   .player-state {
-    mx_flex_item(6);
+    flex: 6;
+  }
 
-    .song-info {
-      font-size: 12px;
-      mx_brbox();
-      mx_wh(100%, 30px);
-      padding: 9px 20px;
+  .song-info {
+    font-size: 12px;
+    box-sizing: border-box;
+    mx_wh(100%, 30px);
+    padding: 9px 20px;
 
-      .song-artist {
-        margin-left: 10px;
-      }
-
-      .song-duration {
-        float: right;
-      }
-
-      & > div {
-        display: inline-block;
-      }
+    & > div {
+      display: inline-block;
     }
+  }
 
-    .progress-wrapper {
-      mx_brbox();
-      mx_wh(100%, 30px);
-      padding: 12px 20px;
+  .song-artist {
+    margin-left: 10px;
+  }
 
-      .progress-bar {
-        mx_bar(100%, 6px);
+  .song-duration {
+    float: right;
+  }
 
-        .current-progress {
-          mx_bar_child();
-        }
-      }
-    }
+  .progress-wrapper {
+    box-sizing: border-box;
+    mx_wh(100%, 30px);
+    padding: 12px 20px;
+  }
+
+  .progress-bar {
+    mx_bar(100%, 6px);
+  }
+
+  .current-progress {
+    mx_bar_child();
   }
 
   .vol-wrapper {
-    mx_flex_item(2);
+    flex: 2;
     padding: 37px 20px 0;
+  }
 
-    .vol {
-      align-items: center;
-      height: 16px;
-      mx_brbox();
-      mx_flex();
+  .vol {
+    align-items: center;
+    height: 16px;
+    box-sizing: border-box;
+    display: flex;
+  }
 
-      .vol-bar {
-        mx_bar(80%, 6px);
+  .vol-bar {
+    mx_bar(80%, 6px);
+  }
 
-        .current-vol {
-          mx_bar_child();
-        }
-      }
-    }
+  .current-vol {
+    mx_bar_child();
   }
 
   .player-mode {
-    mx_flex_item(1);
-    mx_flex();
+    flex: 1;
+    display: flex;
     align-items: center;
 
     &>i {

@@ -17,44 +17,44 @@ $indexAndNameColor = #333333;
   .song-container {
     mx_fc(12px, $songContainerColor);
     text-align: left;
+  }
 
-    .song-item {
-      mx_flex();
-      mx_hlh(45px, 45px);
-      padding-left: 15px;
+  .song-item {
+    display: flex;
+    mx_hlh(45px, 45px);
+    padding-left: 15px;
 
-      .section-one, .section-two {
-        mx_flex_item(2);
-        mx_single_ellipsis();
-
-        .song-index, .song-name {
-          color: $indexAndNameColor;
-        }
-
-        .song-artist {
-          display: inline-block;
-        }
-
-        & > i {
-          margin: 0 12px;
-        }
-      }
-
-      .song-album {
-        mx_flex_item(2);
-      }
-
-      .song-duration {
-        mx_flex_item(1);
-      }
-
-      &:nth-child(odd) {
-        background-color: $oddColor;
-      }
-
-      &:nth-child(even) {
-        background-color: $pageBgc;
-      }
+    &:nth-child(odd) {
+      background-color: $oddColor;
     }
+
+    &:nth-child(even) {
+      background-color: $pageBgc;
+    }
+  }
+
+  .section-one, .section-two {
+    flex: 2;
+    mx_single_ellipsis();
+
+    & > i {
+      margin: 0 12px;
+    }
+  }
+
+  .song-index, .song-name {
+    color: $indexAndNameColor;
+  }
+
+  .song-artist {
+    display: inline-block;
+  }
+
+  .song-album {
+    flex: 2;
+  }
+
+  .song-duration {
+    flex: 1;
   }
 }

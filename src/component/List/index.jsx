@@ -8,7 +8,7 @@ import './style.styl'
 const renderArtist = song => (
   <div className="song-artist">
     {song.artists.map(artist => (
-      <Link key={artist.id} to={{ pathname: `/artistinfo/${artist.id}` }}>
+      <Link key={artist.name} to={{ pathname: `/artistinfo/${artist.id}` }}>
         {' '}
         {artist.name}
       </Link>

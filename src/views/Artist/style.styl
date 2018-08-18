@@ -4,43 +4,43 @@
   mx_page_mg();
 
   .ar-header {
-    mx_flex();
+    display: flex;
     margin-bottom: 40px;
+  }
 
-    .name {
-      font-size: 18px;
-      margin-bottom: 45px;
+  .name {
+    font-size: 18px;
+    margin-bottom: 45px;
+  }
+
+  .avatar {
+    flex: 0 0 200px;
+    mx_wh(200px, 200px);
+    margin-right: 20px;
+    position: relative;
+
+    & > img {
+      mx_wh(100%, 100%);
     }
+  }
 
-    .avatar {
-      flex: 0 0 200px;
-      mx_wh(200px, 200px);
-      margin-right: 20px;
-      position: relative;
+  .num {
+    flex: 1;
+    margin-top: 4px;
+    padding: 10px;
 
-      & > img {
-        mx_wh(100%, 100%);
-      }
+    & > span {
+      display: block;
+      font-size: 12px;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
     }
+  }
 
-    .num {
-      mx_flex_item(1);
-      margin-top: 4px;
-      padding: 10px;
-
-      & > span {
-        display: block;
-        font-size: 12px;
-        letter-spacing: 1px;
-        margin-bottom: 20px;
-      }
-    }
-
-    .desc {
-      mx_flex_item(6);
-      font-size: 14px;
-      line-height: 25px;
-      padding-top: 40px;
-    }
+  .desc {
+    flex: 6;
+    font-size: 14px;
+    line-height: 25px;
+    padding-top: 40px;
   }
 }

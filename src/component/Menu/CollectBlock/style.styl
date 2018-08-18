@@ -14,7 +14,7 @@ $infoText = #666;
     .item {
       height: 40px;
       margin-bottom: 5px;
-      mx_brbox();
+      box-sizing: border-box;
       padding-left: 12px;
 
       &:hover {
@@ -23,7 +23,7 @@ $infoText = #666;
 
       & > a {
         display: inline-block;
-        mx_brbox();
+        box-sizing: border-box;
         mx_fc($linkFontSize, #000);
         mx_whlh(100%, 40px, 40px);
         mx_single_ellipsis();

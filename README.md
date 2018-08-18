@@ -4,6 +4,8 @@
 
 基于 react 搭建的在线音乐播放器
 
+[点击在线预览](http://119.29.241.71/music/findmusic)
+
 该项目由 [Create React App](https://github.com/facebookincubator/create-react-app) 搭建.
 
 [Github 地址](https://github.com/worldzhao/music-react)
@@ -34,6 +36,7 @@
 
     1.  eslint: airbnb (可参见根目录下的.eslintrc 文件)
     2.  缩进空行等设置可参见项目根目录.editorconfig 文件
+    3.  使用 commitizen 规范 commit 提交
 
 5.  API:
 

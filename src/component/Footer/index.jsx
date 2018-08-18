@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { Icon } from 'antd'
 import { changeSong, fetchLyric } from '../../common/store/actionCreators'
 import { formatDuration, formatCurrentTime } from '../../common/js/util'
 import ReadyList from '../../component/ReadyQueue'
-import Rolling from '../../views/Song'
+import SongDetailPage from '../../views/Song'
 import './style.styl'
 @connect(
   state => ({ playQueue: state.playQueue, lyric: state.lyric }),
@@ -20,11 +21,11 @@ export default class Player extends Component {
       cdt: '00:00',
       curProgressBarWidth: 0,
       curVolBarWidth: '50%',
-      ppIcon: 'icon-play3',
+      ppIcon: 'play-circle',
       lastVolumeIcon: '',
       volumeIcon: 'icon-volume-medium',
       mode: 'listloop',
-      modeIcon: 'icon-loop2',
+      modeIcon: '列表循环',
       showReadyList: false,
       showDetailPage: false,
     }
@@ -57,7 +58,7 @@ export default class Player extends Component {
       case 'listloop':
         this.setState({
           mode: 'sequential',
-          modeIcon: 'icon-spinner11',
+          modeIcon: '顺序播放',
         })
         break
       // 顺序播放 => 单曲循环
@@ -65,7 +66,7 @@ export default class Player extends Component {
         this.setState(
           {
             mode: 'singleCycle',
-            modeIcon: 'icon-loop',
+            modeIcon: '单曲循环',
           },
           () => {
             this.audio.loop = true
@@ -77,7 +78,7 @@ export default class Player extends Component {
         this.setState(
           {
             mode: 'shuffleplay',
-            modeIcon: 'icon-shuffle',
+            modeIcon: '随机播放',
           },
           () => {
             this.audio.loop = false
@@ -88,7 +89,7 @@ export default class Player extends Component {
       case 'shuffleplay':
         this.setState({
           mode: 'listloop',
-          modeIcon: 'icon-loop2',
+          modeIcon: '列表循环',
         })
         break
       default:
@@ -137,12 +138,12 @@ export default class Player extends Component {
   toPlay = () => {
     // 资源无效异常处理存在问题
     this.audio.play()
-    this.setState({ ppIcon: 'icon-pause2' })
+    this.setState({ ppIcon: 'pause-circle' })
   }
 
   toPause = () => {
     this.audio.pause()
-    this.setState({ ppIcon: 'icon-play3' })
+    this.setState({ ppIcon: 'play-circle' })
   }
 
   toggleMute = () => {
@@ -194,10 +195,10 @@ export default class Player extends Component {
     const { ppIcon } = this.state
     // 暂停状态下切歌保持暂停状态
     // 播放状态下切歌歌曲立刻播放
-    // ppIcon === icon-pause2说明图标为暂停图标,处于播放状态
+    // ppIcon === pause-circle说明图标为暂停图标,处于播放状态
     // flag === 'PLAY_SONG' 是歌曲列表播放按钮被点击
     // 这里不需要担心flag对上下切换的影响 因为上下切换[changeSong]会默认重置flag
-    if (ppIcon === 'icon-pause2' || this.props.playQueue.flag === 'PLAY_SONG') {
+    if (ppIcon === 'pause-circle' || this.props.playQueue.flag === 'PLAY_SONG') {
       this.toPlay()
     }
   }
@@ -271,47 +272,31 @@ export default class Player extends Component {
 
     return [
       <footer key="player">
-        <div className="album-img" onClick={this.toggleDetailPage}>
+        <div className="player-album" onClick={this.toggleDetailPage}>
           <img src={album.picUrl} alt="album-img" />
         </div>
         <div className="player-btns">
-          <button className="pre-btn" onClick={this.preSong}>
-            <i className="icon-previous2" />
-          </button>
-          <button className="pp-btn" onClick={this.togglePlay}>
-            <i className={ppIcon} />
-          </button>
-          <button className="next-icon" onClick={this.nextSong}>
-            <i className="icon-next2" />
-          </button>
+          <Icon type="backward" onClick={this.preSong} />
+          <Icon type={ppIcon} onClick={this.togglePlay} />
+          <Icon type="forward" onClick={this.nextSong} />
         </div>
 
         <div className="player-state">
-          <div className="song-info">
-            <audio
-              src={song.url}
-              ref={(node) => {
-                this.audio = node
-              }}
-              onTimeUpdate={this.syncTime}
-              onEnded={this.ended}
-            >
-              您的浏览器不支持audio标签，无法播放音乐
-            </audio>
-            <span className="song-name">{song.name}</span>
-            <div className="song-artist">
+          <div className="player-state-top">
+            <span className="name">{song.name}</span>
+            <div className="artist">
               {artists.map(v => (
                 <Link key={v.id} to={{ pathname: `/artistinfo/${v.id}` }}>
                   {v.name}
                 </Link>
               ))}
             </div>
-            <div className="song-duration">
+            <div className="duration">
               {this.state.cdt}/{formatDuration(duration)}
             </div>
           </div>
 
-          <div className="progress-wrapper">
+          <div className="player-state-bottom">
             <div
               className="progress-bar"
               ref={(node) => {
@@ -341,14 +326,27 @@ export default class Player extends Component {
           </div>
         </div>
 
-        <div className="player-mode">
-          <i className="icon-heart" />
-          <i className={modeIcon} onClick={this.setMode} />
-          <i className="icon-list" onClick={this.toggleReadyList} />
+        <div className="player-extra">
+          <span className="mode-title" onClick={this.setMode}>
+            {modeIcon}
+          </span>
+          <Icon type="heart-o" />
+          <Icon type="bars" onClick={this.toggleReadyList} />
         </div>
         {showReadyList ? <ReadyList /> : null}
       </footer>,
-      <Rolling key="rolling" {...RollingProps} />,
+      <SongDetailPage key="songDetailPage" {...RollingProps} />,
+      <audio
+        key="audio"
+        src={song.url}
+        ref={(node) => {
+          this.audio = node
+        }}
+        onTimeUpdate={this.syncTime}
+        onEnded={this.ended}
+      >
+        您的浏览器不支持audio标签，无法播放音乐
+      </audio>,
     ]
   }
 }

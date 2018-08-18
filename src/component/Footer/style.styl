@@ -1,19 +1,32 @@
 @import '../../common/style/mixin.styl';
 @import '../../common/style/variable.styl';
 
+mx_bar($width, $height) {
+  background-color: #e5e5e5;
+  border-radius: 10px;
+  cursor: pointer;
+  mx_wh($width, $height);
+  overflow: hidden;
+}
+
+mx_bar_child() {
+  height: 6px;
+  background-color: #df3b3b;
+}
+
 footer {
   background-color: #fff;
   border: 1px solid rgba(7, 17, 27, 0.2);
   box-sizing: border-box;
   display: flex;
 
-  .album-img {
-    cursor: pointer;
-    mx_wh(60px, 60px);
-  }
-
   img {
     mx_wh(100%, 100%);
+  }
+
+  .player-album {
+    cursor: pointer;
+    mx_wh(60px, 60px);
   }
 
   .player-btns {
@@ -23,30 +36,21 @@ footer {
     width: 170px;
   }
 
-  button {
-    background-color: $redBgc;
-    border-radius: 50%;
+  i.anticon {
     cursor: pointer;
-    outline: none;
+    mx_fc(24px, $redBgc);
     mx_wh(40px, 40px);
-  }
-
-  i {
-    mx_fc(16px, #fff);
-  }
-
-  .pp-btn {
-    margin: 0 16px 0 16px;
+    line-height: 40px;
   }
 
   .player-state {
     flex: 6;
+    position: relative;
   }
 
-  .song-info {
+  .player-state-top {
     font-size: 12px;
     box-sizing: border-box;
-    mx_wh(100%, 30px);
     padding: 9px 20px;
 
     & > div {
@@ -54,18 +58,22 @@ footer {
     }
   }
 
-  .song-artist {
+  .artist {
     margin-left: 10px;
   }
 
-  .song-duration {
+  .duration {
     float: right;
   }
 
-  .progress-wrapper {
+  .player-state-bottom {
     box-sizing: border-box;
-    mx_wh(100%, 30px);
+    width: 100%;
     padding: 12px 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 
   .progress-bar {
@@ -78,14 +86,19 @@ footer {
 
   .vol-wrapper {
     flex: 2;
-    padding: 37px 20px 0;
+    position: relative;
   }
 
   .vol {
-    align-items: center;
-    height: 16px;
     box-sizing: border-box;
     display: flex;
+    align-items: center;
+    width: 100%;
+    height: 16px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 
   .vol-bar {
@@ -96,14 +109,22 @@ footer {
     mx_bar_child();
   }
 
-  .player-mode {
+  .player-extra {
     flex: 1;
     display: flex;
     align-items: center;
 
-    &>i {
+    i {
+      flex: 1;
       color: #999;
       margin-left: 18%;
     }
+  }
+
+  .mode-title {
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    line-height: 18px;
   }
 }

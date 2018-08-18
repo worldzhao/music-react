@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import LyricBlock from './lyric'
 import './style.styl'
 
-export default class Rolling extends Component {
+export default class SongDetailPage extends Component {
   componentDidMount() {
     // do sth
   }

@@ -57,7 +57,7 @@ export default class PlaylistInfo extends Component {
       <div className="playlist-wrapper">
         {playlist && (
           <Fragment>
-            <img src={coverImgUrl} alt="blur background" key="bgc" />,
+            <img src={coverImgUrl} alt=" background" className="background" key="bgc" />
             <div className="playlist-info" key="playlist">
               <InfoHeader
                 playlist={playlist}

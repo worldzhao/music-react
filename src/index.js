@@ -7,7 +7,6 @@ import store, { history } from './store'
 import './config/axios'
 
 import './common/style/reset.css'
-import './common/style/fonts.css'
 
 ReactDOM.render(
   <Provider store={store}>

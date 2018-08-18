@@ -2,9 +2,9 @@
 @import '../../common/style/variable.styl';
 
 header {
-  box-sizing: border-box;
   mx_fc(14px, #fff);
   mx_hlh($headerHeight, $headerHeight);
+  box-sizing: border-box;
   background-color: $neteaseRed;
   cursor: default;
   padding: 0 20px;
@@ -15,18 +15,17 @@ header {
 
   .right {
     float: right;
+    margin-right: 30px;
+    mx_hlh($headerHeight, $headerHeight);
   }
 
-  .icon-arrow-left {
+  i {
     cursor: pointer;
   }
 
   .title {
+    color: #fff;
     display: inline-block;
-    margin-left: 30px;
-  }
-
-  .icon-cross {
     margin-left: 30px;
   }
 }

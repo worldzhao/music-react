@@ -1,25 +1,17 @@
 import React, { Component } from 'react'
+import { Icon } from 'antd'
 import Subtitle from '../../../component/SubTitle'
 import { formatTimeStamp } from '../../../common/js/util'
 import './style.styl'
 
-const renderCoverImg = playlist => (
-  <div className="cover-img">
-    <img src={playlist.coverImgUrl} alt="pic" />
-    <p className="play-count">
-      <i className="icon-headphones" />
-      {playlist.playCount}
-    </p>
-  </div>
-)
-
 const renderCreator = playlist => (
   <div className="creator">
-    <div className="creator-avatar">
+    <span className="creator-avatar">
       <img src={playlist.creator.avatarUrl} alt="creator-avatar" />
-    </div>
-    <div className="creator-nickname">{playlist.creator.nickname}</div>
-    <div className="create-time">{formatTimeStamp(playlist.createTime)}创建</div>
+    </span>
+    <span className="creator-nickname">{playlist.creator.nickname}</span>
+    <span className="create-time">{formatTimeStamp(playlist.createTime)}创建</span>
+    <span className="play-count">🎧 {playlist.playCount}</span>
   </div>
 )
 
@@ -58,30 +50,40 @@ export default class Header extends Component {
     this.props.beforeCancelStar()
   }
 
+  renderCollectBtn = id =>
+    (checkStarred(id) ? (
+      <a onClick={this.beforeCancelStar}>
+        <Icon type="heart" /> 取消收藏
+      </a>
+    ) : (
+      <a onClick={this.beforeStar}>
+        <Icon type="heart-o" /> 收藏
+      </a>
+    ))
+
   render() {
     const { playlist } = this.props
+    const {
+      coverImgUrl, name, description, tags,
+    } = playlist
     const { id } = playlist
     return (
       <div>
         <Subtitle title="歌单" />
         <div className="info-header">
-          {renderCoverImg(playlist)}
-          <div className="info-header-right">
-            <p className="title">{playlist.name}</p>
+          <div className="cover-img">
+            <img src={coverImgUrl} alt="cover-img" />
+          </div>
+          <div className="right">
+            <p className="title">{name}</p>
             {renderCreator(playlist)}
-            <div className="operation-buttons">
-              {checkStarred(id) ? (
-                <a onClick={this.beforeCancelStar}>❤️ 取消收藏</a>
-              ) : (
-                <a onClick={this.beforeStar}>💗 收藏</a>
-              )}
-            </div>
+            <div className="operation-buttons">{this.renderCollectBtn(id)}</div>
             <div className="tags">
               标签：
-              {playlist.tags.map(v => <span key={v}>{v}</span>)}
+              {tags.map(v => <span key={v}>{v}</span>)}
             </div>
             <div className="playlist-desc" onClick={this.toggleDesc}>
-              <p className={this.state.showDesc ? 'show' : 'more'}>{playlist.description}</p>
+              <p className={this.state.showDesc ? 'show' : 'more'}>{description}</p>
             </div>
           </div>
         </div>

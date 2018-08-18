@@ -1,7 +1,7 @@
 import React, { Fragment, Component } from 'react'
 import { connect } from 'react-redux'
 import HotSongs from '../../component/List'
-import Subtitle from '../../component/SubTitle'
+import MinorTitle from '../../component/MinorTitle'
 import { getArtistInfoEffect } from './store/actionCreators'
 import './style.styl'
 
@@ -40,20 +40,12 @@ const renderArtistInfo = (artistDetail) => {
   const { artist, hotSongs } = artistDetail
   return (
     <Fragment>
-      <Subtitle title="歌手信息" />
+      <MinorTitle>歌手信息</MinorTitle>
       <Header artist={artist} />
       <HotSongs tracks={hotSongs} isShowAr={false} />
     </Fragment>
   )
 }
-// @connect(
-//   state => ({
-//     artistInfo: state.artistInfo,
-//   }),
-//   dispatch => ({
-//     getArtistInfoEffect: dispatch(actionCreators.getArtistInfoEffect()),
-//   }),
-// )
 @connect(
   state => ({
     artistInfo: state.artistInfo,

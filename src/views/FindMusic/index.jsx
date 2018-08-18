@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { fetchCardList, fetchSwiperImg } from './store/actionCreators'
 import Tabs from '../../component/Tabs'
-import Subtitle from '../../component/SubTitle'
+import MinorTitle from '../../component/MinorTitle'
 import PlayList from './PlayList'
 import Explore from './Explore'
 import './style.styl'
@@ -32,7 +32,7 @@ export default class FindMusic extends React.Component {
     const { swiperImg, cardList } = this.props.findMusic
     return (
       <div className="find-music">
-        <Subtitle title="发现音乐" />
+        <MinorTitle>发现音乐</MinorTitle>
         <Tabs defaultActiveIndex={1}>
           <TabPanel tab="个性推荐">
             <Explore data={swiperImg} />

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Icon } from 'antd'
-import Subtitle from '../../../component/SubTitle'
+import MinorTitle from '../../../component/MinorTitle'
 import { formatTimeStamp } from '../../../common/js/util'
 import './style.styl'
 
@@ -69,7 +69,7 @@ export default class Header extends Component {
     const { id } = playlist
     return (
       <div>
-        <Subtitle title="歌单" />
+        <MinorTitle>歌单</MinorTitle>
         <div className="info-header">
           <div className="cover-img">
             <img src={coverImgUrl} alt="cover-img" />

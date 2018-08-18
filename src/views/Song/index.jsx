@@ -33,8 +33,10 @@ export default class Rolling extends Component {
       setCurTime,
       currentTime,
       lyric,
+      artists,
+      album,
     } = this.props
-    const coverImg = song.album.picUrl
+    const coverImg = album.picUrl
     return (
       <div className={showRolling ? 'rolling rolling-up' : 'rolling'}>
         <i className="icon-cross goback" onClick={toggleRolling} />
@@ -77,12 +79,12 @@ export default class Rolling extends Component {
             <div className="info-block">
               <span>
                 专辑：
-                <Link key={song.album.id} to={{ pathname: `/albuminfo/${song.album.id}` }}>
-                  {song.album.name}
+                <Link key={album.id} to={{ pathname: `/albuminfo/${album.id}` }}>
+                  {album.name}
                 </Link>
               </span>
               <span>
-                歌手：{song.artists.map(v => (
+                歌手：{artists.map(v => (
                   <Link key={v.id} to={{ pathname: `/artistinfo/${v.id}` }}>
                     {v.name}
                   </Link>

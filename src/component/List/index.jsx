@@ -34,8 +34,8 @@ const SongList = (props) => {
               <i className="icon-play3" onClick={() => props.playSong2Que(song)} />
               {isShowAr ? renderArtist(song) : null}
             </div>
-            <span className="song-album">{song.album.name}</span>
-            <span className="song-duration">{formatDuration(song.duration)}</span>
+            <span className="song-album">{song.album ? song.album.name : song.al.name}</span>
+            <span className="song-duration">{formatDuration(song.duration || song.dt)}</span>
           </li>
         ))}
       </ul>

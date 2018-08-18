@@ -244,6 +244,8 @@ export default class Player extends Component {
       showReadyList,
     } = this.state
     const { song } = this.props.playQueue
+    const artists = song.artists || song.ar
+    const album = song.album || song.al
     const extraProps = {
       toggleRolling: this.toggleRolling,
       preSong: this.preSong,
@@ -258,11 +260,13 @@ export default class Player extends Component {
       ...this.state,
       ...this.props,
       ...extraProps,
+      artists,
+      album,
     }
     return [
       <footer key="player">
         <div className="album-img" onClick={this.toggleRolling}>
-          <img src={song.album.picUrl} alt="album-img" />
+          <img src={album.picUrl} alt="album-img" />
         </div>
         <div className="player-btns">
           <button className="pre-btn" onClick={this.preSong}>
@@ -290,7 +294,7 @@ export default class Player extends Component {
             </audio>
             <span className="song-name">{song.name}</span>
             <div className="song-artist">
-              {song.artists.map(v => (
+              {artists.map(v => (
                 <Link key={v.id} to={{ pathname: `/artistinfo/${v.id}` }}>
                   {v.name}
                 </Link>

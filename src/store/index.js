@@ -6,7 +6,7 @@ import { composeWithDevTools } from 'redux-devtools-extension' // eslint-disable
 import reducers from './reducer'
 
 const history = createBrowserHistory({
-  basename: '/music-react/',
+  basename: '/music/',
 })
 
 const store = createStore(

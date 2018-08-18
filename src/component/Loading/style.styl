@@ -1,0 +1,17 @@
+@import '../../common/style/mixin.styl';
+@import '../../common/style/variable.styl';
+
+.loading {
+  animation: roll 4s linear infinite;
+  background-color: $pageBgc;
+  margin: 0 auto;
+  margin-top: 50px;
+  mx_wh(30px, 30px);
+  position: relative;
+  transform: translateZ(0);
+
+  .icon-spinner10 {
+    mx_fc(30px, $neteaseRed);
+    mx_posc();
+  }
+}

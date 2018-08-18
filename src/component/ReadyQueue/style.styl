@@ -35,24 +35,24 @@ $activeRed = #df3b3b;
     }
   }
 
-  .song-name {
+  .name {
     cursor: pointer;
     flex: 3;
     mx_single_ellipsis();
   }
 
-  .song-artist {
+  .artist {
     flex: 2;
     mx_single_ellipsis();
   }
 
-  .delete-btn {
-    color: #b7b7b8;
+  .anticon-close {
     flex: 1;
+    color: #b7b7b8;
     text-align: right;
   }
 
-  .body-item {
+  .list-item {
     display: flex;
     mx_hlh(45px, 45px);
     padding: 0 30px;
@@ -64,11 +64,11 @@ $activeRed = #df3b3b;
     &.active {
       position: relative;
 
-      .song-name, .delete-btn {
+      .name, .anticon-close {
         color: $activeRed;
       }
 
-      .song-artist {
+      .artist {
         a {
           color: $activeRed;
         }

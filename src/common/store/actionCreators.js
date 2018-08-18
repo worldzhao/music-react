@@ -76,7 +76,7 @@ export const addSong2Que = s => (dispatch, getState) => {
       }
       dispatch(addSongAct(song))
     } else {
-      alert('歌曲直链不存在')
+      console.log('歌曲直链不存在')
     }
   })
 }

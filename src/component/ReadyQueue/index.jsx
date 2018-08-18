@@ -20,10 +20,10 @@ export default class ReadyList extends Component {
           <div onClick={this.props.clearQueue}>清空</div>
         </div>
         <ul className="list-body">
-          {playlist.map((v, index) => (
+          {playlist.map((songInList, index) => (
             <Item
-              key={v.id}
-              v={v}
+              key={songInList.id}
+              songInList={songInList}
               song={song}
               index={index}
               changeSong={this.props.changeSong}

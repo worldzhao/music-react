@@ -17,7 +17,7 @@ const renderArtist = song => (
   </div>
 )
 
-const SongList = (props) => {
+function SongList(props) {
   const { tracks, isShowAr = true } = props
   return (
     <div className="songList">

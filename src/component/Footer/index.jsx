@@ -23,9 +23,9 @@ export default class Player extends Component {
       curVolBarWidth: '50%',
       ppIcon: 'play-circle',
       lastVolumeIcon: '',
-      volumeIcon: 'icon-volume-medium',
+      volumeIcon: '🔊',
       mode: 'listloop',
-      modeIcon: '列表循环',
+      modeIcon: <span title="列表循环">🔁</span>,
       showReadyList: false,
       showDetailPage: false,
     }
@@ -58,7 +58,7 @@ export default class Player extends Component {
       case 'listloop':
         this.setState({
           mode: 'sequential',
-          modeIcon: '顺序播放',
+          modeIcon: <span title="顺序播放">↩️</span>,
         })
         break
       // 顺序播放 => 单曲循环
@@ -66,7 +66,7 @@ export default class Player extends Component {
         this.setState(
           {
             mode: 'singleCycle',
-            modeIcon: '单曲循环',
+            modeIcon: <span title="单曲循环">🔂</span>,
           },
           () => {
             this.audio.loop = true
@@ -78,7 +78,7 @@ export default class Player extends Component {
         this.setState(
           {
             mode: 'shuffleplay',
-            modeIcon: '随机播放',
+            modeIcon: <span title="随机播放">🔀</span>,
           },
           () => {
             this.audio.loop = false
@@ -89,7 +89,7 @@ export default class Player extends Component {
       case 'shuffleplay':
         this.setState({
           mode: 'listloop',
-          modeIcon: '列表循环',
+          modeIcon: <span title="列表循环">🔁</span>,
         })
         break
       default:
@@ -98,16 +98,19 @@ export default class Player extends Component {
   }
 
   setVol = (e) => {
-    const distance = e.clientX - this.volBar.offsetLeft
-    const scale = distance / this.volBar.offsetWidth
+    const { left } = this.valBar.getBoundingClientRect()
+    const distance = e.clientX - left
+    const scale = distance / this.valBar.offsetWidth
+    console.log(scale)
+
     this.audio.volume = scale
     let volumeIcon
     if (scale > 0 && scale < 0.4) {
-      volumeIcon = 'icon-volume-low'
+      volumeIcon = '🔉'
     } else if (scale >= 0.4 && scale < 0.6) {
-      volumeIcon = 'icon-volume-medium'
+      volumeIcon = '🔊'
     } else if (scale >= 0.6 && scale <= 1) {
-      volumeIcon = 'icon-volume-high'
+      volumeIcon = '🔊'
     }
     this.setState({
       volumeIcon,
@@ -115,10 +118,10 @@ export default class Player extends Component {
     })
   }
 
-  setCurTime = (e, bar) => {
-    // 不要用e.target.offsetWidth 莫名其妙 冒泡？
-    const distance = e.clientX - bar.offsetLeft
-    const scale = distance / bar.offsetWidth
+  setCurTime = (e) => {
+    const { left } = this.progressBar.getBoundingClientRect()
+    const distance = e.clientX - left
+    const scale = distance / this.progressBar.offsetWidth
     // audio标签内有duration，数据对象中也有dt，不过dt = 1000 * duration
     this.audio.currentTime = this.audio.duration * scale
     this.setState({
@@ -128,7 +131,8 @@ export default class Player extends Component {
 
   syncTime = () => {
     const { song } = this.props.playQueue
-    const timeScale = (this.audio.currentTime * 1000) / song.dt
+    const duration = song.dt || song.duration
+    const timeScale = (this.audio.currentTime * 1000) / duration
     this.setState({
       curProgressBarWidth: `${timeScale * 100}%`,
       cdt: formatCurrentTime(this.audio.currentTime),
@@ -151,7 +155,7 @@ export default class Player extends Component {
     if (this.audio.muted) {
       this.setState({
         lastVolumeIcon: this.state.volumeIcon,
-        volumeIcon: 'icon-volume-mute2',
+        volumeIcon: '🔇',
       })
     } else {
       this.setState({
@@ -272,6 +276,17 @@ export default class Player extends Component {
 
     return [
       <footer key="player">
+        <audio
+          key="audio"
+          src={song.url}
+          ref={(node) => {
+            this.audio = node
+          }}
+          onTimeUpdate={this.syncTime}
+          onEnded={this.ended}
+        >
+          您的浏览器不支持audio标签，无法播放音乐
+        </audio>
         <div className="player-album" onClick={this.toggleDetailPage}>
           <img src={album.picUrl} alt="album-img" />
         </div>
@@ -303,7 +318,7 @@ export default class Player extends Component {
                 this.progressBar = node
               }}
               onClick={(e) => {
-                this.setCurTime(e, this.progressBar)
+                this.setCurTime(e)
               }}
             >
               <div className="current-progress" style={{ width: `${curProgressBarWidth}` }} />
@@ -313,13 +328,13 @@ export default class Player extends Component {
 
         <div className="vol-wrapper">
           <div className="vol">
-            <i className={volumeIcon} onClick={this.toggleMute} />
+            <span onClick={this.toggleMute}>{volumeIcon}</span>
             <div
               className="vol-bar"
-              ref={(node) => {
-                this.volBar = node
-              }}
               onClick={this.setVol}
+              ref={(node) => {
+                this.valBar = node
+              }}
             >
               <div className="current-vol" style={{ width: `${curVolBarWidth}` }} />
             </div>
@@ -327,26 +342,15 @@ export default class Player extends Component {
         </div>
 
         <div className="player-extra">
-          <span className="mode-title" onClick={this.setMode}>
+          <div className="mode-title" onClick={this.setMode}>
             {modeIcon}
-          </span>
+          </div>
           <Icon type="heart-o" />
           <Icon type="bars" onClick={this.toggleReadyList} />
         </div>
         {showReadyList ? <ReadyList /> : null}
       </footer>,
       <SongDetailPage key="songDetailPage" {...RollingProps} />,
-      <audio
-        key="audio"
-        src={song.url}
-        ref={(node) => {
-          this.audio = node
-        }}
-        onTimeUpdate={this.syncTime}
-        onEnded={this.ended}
-      >
-        您的浏览器不支持audio标签，无法播放音乐
-      </audio>,
     ]
   }
 }

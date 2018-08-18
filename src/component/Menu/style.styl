@@ -13,12 +13,21 @@ $liHoverBgc = #e8e8eb;
   overflow-y: auto;
   overflow-x: hidden;
   width: 15%;
+  transition: all 0.2s;
+
+  .anticon {
+    visibility: visible;
+  }
 
   &.hide {
     width: $hideWidth;
+
+    a {
+      visibility: hidden;
+    }
   }
 
-  .icon-menu {
+  i.anticon-menu-fold, i.anticon-menu-unfold {
     cursor: pointer;
     mx_fc($toggleBtnFontSize, $toggleBtnColor);
     mx_hlh(45px, 45px);

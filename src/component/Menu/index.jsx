@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Icon } from 'antd'
 import CollectBlock from './CollectBlock'
 import './style.styl'
 
@@ -10,6 +11,10 @@ export default class Drawer extends Component {
     }
   }
 
+  setMenuClass = isShow => (isShow ? 'menu' : 'menu hide')
+
+  setMenuIconType = isShow => (isShow ? 'menu-fold' : 'menu-unfold')
+
   toggleDrawer = () => {
     this.setState({
       isShow: !this.state.isShow,
@@ -20,11 +25,11 @@ export default class Drawer extends Component {
     const { isShow } = this.state
     const { children } = this.props
     return (
-      <div className={`menu ${isShow ? '' : 'hide'}`}>
-        <i className="icon-menu" onClick={this.toggleDrawer} />
+      <div className={this.setMenuClass(isShow)}>
+        <Icon type={this.setMenuIconType(isShow)} onClick={this.toggleDrawer} />
         <div className="drawer-block">
           <ul className="items">
-            {React.Children.map(children, l => <li className="item">{l}</li>)}
+            {React.Children.map(children, link => <li className="item">{link}</li>)}
           </ul>
         </div>
         {isShow ? <CollectBlock /> : null}

@@ -1,5 +1,10 @@
 import React from 'react'
+import './index.styl'
 
 export default function Topist() {
-  return <h1>Video</h1>
+  return (
+    <div className="video-camera">
+      <h1 className="placeholder">🎥 Video Page</h1>
+    </div>
+  )
 }

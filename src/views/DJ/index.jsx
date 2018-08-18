@@ -1,5 +1,10 @@
 import React from 'react'
+import './index.styl'
 
 export default function Topist() {
-  return <h1>DJ</h1>
+  return (
+    <div className="dj">
+      <h1 className="placeholder">💽 DJ Page</h1>
+    </div>
+  )
 }

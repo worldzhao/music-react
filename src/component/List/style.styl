@@ -14,12 +14,12 @@ $indexAndNameColor = #333333;
     cursor: pointer;
   }
 
-  .song-container {
+  .container {
     mx_fc(12px, $songContainerColor);
     text-align: left;
   }
 
-  .song-item {
+  .item {
     display: flex;
     mx_hlh(45px, 45px);
     padding-left: 15px;
@@ -42,19 +42,20 @@ $indexAndNameColor = #333333;
     }
   }
 
-  .song-index, .song-name {
+  .index, .name {
     color: $indexAndNameColor;
+    margin-right: 8px;
   }
 
-  .song-artist {
+  .artist {
     display: inline-block;
   }
 
-  .song-album {
+  .album {
     flex: 2;
   }
 
-  .song-duration {
+  .duration {
     flex: 1;
   }
 }

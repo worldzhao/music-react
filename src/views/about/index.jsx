@@ -1,8 +1,11 @@
 import React from 'react'
+import './index.styl'
 
 function About() {
   return (
-    <h1>关于</h1>
+    <div className="about">
+      <h1 className="placeholder">🎼 About Page</h1>
+    </div>
   )
 }
 

@@ -1,4 +1,6 @@
 import axios from 'axios'
+import { message } from 'antd'
+
 import {
   PLAYER_PLAY_SONG,
   PLAYER_ADD_SONG,
@@ -56,7 +58,7 @@ export const playSong2Que = s => (dispatch, getState) => {
       }
       dispatch(playSongAct(song))
     } else {
-      console.log('歌曲直链不存在')
+      message.error('歌曲直链不存在')
     }
   })
 }
@@ -76,7 +78,7 @@ export const addSong2Que = s => (dispatch, getState) => {
       }
       dispatch(addSongAct(song))
     } else {
-      console.log('歌曲直链不存在')
+      message.error('歌曲直链不存在')
     }
   })
 }

@@ -6,16 +6,19 @@ import { addSong2Que, playSong2Que } from '../../common/store/actionCreators'
 import { specIndex, formatDuration } from '../../common/js/util'
 import './style.styl'
 
-const renderArtist = song => (
-  <div className="artist">
-    {song.artists.map(artist => (
-      <Link key={artist.name} to={{ pathname: `/artistinfo/${artist.id}` }}>
-        {' '}
-        {artist.name}
-      </Link>
-    ))}
-  </div>
-)
+const renderArtist = (song) => {
+  const artists = song.artists || song.ar
+  return (
+    <div className="artist">
+      {artists.map(artist => (
+        <Link key={artist.name} to={{ pathname: `/artistinfo/${artist.id}` }}>
+          {' '}
+          {artist.name}
+        </Link>
+      ))}
+    </div>
+  )
+}
 
 function SongList(props) {
   const { tracks, isShowAr = true } = props

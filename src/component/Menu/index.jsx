@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
-import { Icon } from 'antd'
+import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { Icon } from 'antd'
 import { initStarredList } from '../../common/store/actionCreators'
 import CollectBlock from './CollectBlock'
 import './style.styl'
 
+@withRouter
 @connect(
   state => ({
     starredList: state.playQueue.starredList,

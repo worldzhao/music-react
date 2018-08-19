@@ -4,7 +4,7 @@
 
 基于 react 搭建的在线音乐播放器
 
-[点击在线预览](http://119.29.241.71/music/findmusic)
+[点击在线预览](http://119.29.241.71)
 
 该项目由 [Create React App](https://github.com/facebookincubator/create-react-app) 搭建.
 

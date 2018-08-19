@@ -5,9 +5,7 @@ import { createBrowserHistory } from 'history'
 import { composeWithDevTools } from 'redux-devtools-extension' // eslint-disable-line
 import reducers from './reducer'
 
-const history = createBrowserHistory({
-  basename: '/music/',
-})
+const history = createBrowserHistory()
 
 const store = createStore(
   connectRouter(history)(reducers), // new root reducer with router state

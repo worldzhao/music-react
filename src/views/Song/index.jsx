@@ -22,14 +22,16 @@ export default class SongDetailPage extends Component {
     const album = song.album || song.al
     const coverImg = album.picUrl
     return (
-      <div className={this.setPageClass()}>
-        <img src={coverImg} alt="bg" className="bg" />
-        <div className="left">
-          <img src={coverImg} alt="album-img" className={this.setAlbumClass()} />
-        </div>
-        <div className="right">
-          <div className="name">{song.name}</div>
-          <LyricBlock lyric={lyric} currentTime={currentTime} />
+      <div className={this.setPageClass()} style={{ backgroundImage: `url(${coverImg})` }}>
+        <div>
+          <div style={{ backgroundImage: `url(${coverImg})` }} className="filter" />
+          <div className="left">
+            <img src={coverImg} alt="album-img" className={this.setAlbumClass()} />
+          </div>
+          <div className="right">
+            <div className="name">{song.name}</div>
+            <LyricBlock lyric={lyric} currentTime={currentTime} />
+          </div>
         </div>
       </div>
     )

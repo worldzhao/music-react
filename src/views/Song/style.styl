@@ -9,22 +9,32 @@
   height: calc(100vh - 90px);
   overflow: hidden;
   transition: all 0.2s;
-  position: fixed;
+  position: absolute;
   top: 30px;
   left: -100%;
+  z-index: 99999;
 
   &.detail-page-show {
     left: 0;
   }
 
-  .bg {
-    margin: -20px;
-    filter: blur(10px);
-    width: 120%;
-    height: 120%;
-    opacity: 0.3;
+  &.detail-page-show > div {
+    display: flex;
+    width: 100%;
+    hyphens: auto;
+    background: hsla(0, 0%, 100%, 0.5);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .filter {
     position: absolute;
-    z-index: -1;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    filter: blur(10px);
   }
 
   .left {

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
 import Loadable from 'react-loadable'
-import { Spin } from 'antd'
+import Spin from '../component/Spin'
 
 const createLoadableComp = path =>
   Loadable({

@@ -18,8 +18,8 @@ export default class Item extends Component {
     this.props.deleteSong(songInList.id)
   }
 
-  renderArtists = songInList =>
-    songInList.artists.map(artist => (
+  renderArtists = artists =>
+    artists.map(artist => (
       <Link
         key={artist.id}
         to={{
@@ -32,12 +32,14 @@ export default class Item extends Component {
 
   render() {
     const { songInList, song } = this.props
+    const { id, name } = songInList
+    const artists = songInList.ar || songInList.artists
     return (
-      <li key={songInList.id} className={this.setItemClass(songInList.id, song.id)}>
+      <li key={id} className={this.setItemClass(id, song.id)}>
         <div className="name" onClick={this.playSong}>
-          {songInList.name}
+          {name}
         </div>
-        <div className="artist">{this.renderArtists(songInList)}</div>
+        <div className="artist">{this.renderArtists(artists)}</div>
         <Icon type="close" onClick={this.deleteSong} />
       </li>
     )

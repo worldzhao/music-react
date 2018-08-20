@@ -1,12 +1,12 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
 import Loadable from 'react-loadable'
-import Spin from '../component/Spin'
+import Loading from '../component/Loading'
 
 const createLoadableComp = path =>
   Loadable({
     loader: () => import(`../views/${path}`),
-    loading: Spin,
+    loading: Loading,
   })
 
 export default (routes) => {

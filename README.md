@@ -28,9 +28,10 @@
     2.  前端路由: react-router[-dom] v4
     3.  数据管理: redux / react-redux / redux-thunk
     4.  路由同步 store:[connected-react-router](https://github.com/supasate/connected-react-router)
-    5.  网络请求: axios
-    6.  css 预处理器: stylus
-    7.  字体图标: icomoon
+    5.  组件按需加载: react-loadable
+    6.  网络请求: axios
+    7.  css 预处理器: stylus
+    8.  字体图标: antd Icon(实在是懒)
 
 4.  代码规范:
 
@@ -40,12 +41,20 @@
 
 5.  API:
 
-    1.  [AD`s API](https://api.imjad.cn/cloudmusic.md)
-    2.  ~~部分 API 由我室友爬虫完成~~毕业服务器到期，首页数据 mock
-    3.  推荐[NeteaseCloudMusicApi](https://github.com/agnij/NeteaseCloudMusicApi)
+    1.   前期：[AD`s API](https://api.imjad.cn/cloudmusic.md)
+    2.  后期：[NeteaseCloudMusicApi](https://github.com/agnij/NeteaseCloudMusicApi)
 
-6.  异步请求错误处理：
-    使用 axios 拦截器，配合`connected-react-router`进行相应处理
+## 一些问题的处理
+
+### 数据来源以及项目部署
+
+开发阶段：将[NeteaseCloudMusicApi](https://github.com/agnij/NeteaseCloudMusicApi)的服务在本机起起来，通过更改`package.json`的 proxy 字段进行代理
+
+部署到服务器：通过nginx实现，具体参见[这篇文章](https://www.jianshu.com/p/31900f8a5ec9)
+
+### 异步请求错误处理：
+
+使用 axios 拦截器，配合`connected-react-router`进行相应处理
 
 ```js
 // 添加响应拦截器
@@ -74,105 +83,154 @@ axios.interceptors.response.use(
 )
 ```
 
-7.  异步请求 loading 处理
+### 异步请求 loading 处理（待解决）
 
-    原本是每次 dispatch 异步请求 action 时，先 dispatch 一个请求开始的 action，根据这个 action 改变的数据去 showLoading，请求结束完 dispatch 一个请求结束的 action，根据数据 hideLoading，但是全是重复劳动，每一个请求都要做一次。
+原本是每次 dispatch 异步请求 action 时，先 dispatch 一个请求开始的 action，根据这个 action 改变的数据去 showLoading，请求结束完 dispatch 一个请求结束的 action，根据数据 hideLoading，但是全是重复劳动，每一个请求都要做一次。
 
-    有想过在 axios 拦截中进行 showLoading 以及 hideLoading，但存在明显缺陷：粒度太大，不能定位到某一个具体组件。
+有想过在 axios 拦截中进行 showLoading 以及 hideLoading，但存在明显缺陷：粒度太大，不能定位到某一个具体组件。
 
-    公司的项目使用的是 dva，其插件 dva-loading 可以自动处理 loading 状态，不用一遍遍地写 showLoading 和 hideLoading，并且每一个 model 均有独立的 loading，组件内部可以获取到，目前还在思考不使用 dva 如何实现同样效果。
+公司的项目使用的是 dva，其插件 dva-loading 可以自动处理 loading 状态，不用一遍遍地写 showLoading 和 hideLoading，并且每一个 model 均有独立的 loading，组件内部可以获取到，目前还在思考不使用 dva 如何实现同样效果。
 
-8.  layout-主页结构
+### 规划主页结构 layout
 
-    1.  menu 菜单导航
-    2.  header 头部
-    3.  footer 底部
-    4.  main 内容区域
+1.  menu 菜单导航
+2.  header 头部
+3.  footer 底部
+4.  main 内容区域
 
-    头部和底部固定，中间高度自适应的几种实现方式
+头部和底部固定，中间高度自适应的几种实现方式
 
-    1.  header/footer 通过 fixed 定位，container 高度为 100vh，上下 padding 为 header 与 footer 的高度，main 高度为 100%
+1.  header/footer 通过 fixed 定位，container 高度为 100vh，上下 padding 为 header 与 footer 的高度，main 高度为 100%
 
-    ```css
-    header {
-      height: 30px;
-      position: fixed;
-      top: 0;
-      left: 0;
+```css
+header {
+  height: 30px;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+footer {
+  height: 60px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+
+.container {
+  height: 100vh;
+  padding: 30px 0 60px 0;
+}
+
+.main {
+  height: 100%;
+}
+```
+
+2.  header 以及 footer 使用 fixed 定位 main 使用 absolute 定位
+
+```css
+header {
+  height: 30px;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+footer {
+  height: 60px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+
+.container {
+  height: 100vh;
+}
+
+.main {
+  position: absolute;
+  top: 30px;
+  bottom: 60px;
+}
+```
+
+3.普通流式布局，container 高度为 100vh，中间高度通过`calc`计算得到
+
+```css
+header {
+  height: 30px;
+}
+footer {
+  height: 60px;
+}
+
+.container {
+  height: 100vh;
+}
+
+.main {
+  height: calc(100vh - 30px - 60px);
+}
+```
+
+### 图片加载体验优化-loading
+
+发现音乐-歌单 tab 页的歌单图片较多，加载看起来比较卡慢，未优化之前效果如下
+
+![优化前.gif](https://upload-images.jianshu.io/upload_images/4869616-c38134a1249bc614.gif?imageMogr2/auto-orient/strip)
+
+可以通过使用 loading 占位来进行过渡，如下，
+
+主要是通过 LoadableImage 组件代替原生 img 标签，具体代码实现 /component/LoadableImage:
+
+```js
+import React, { Component, Fragment } from 'react'
+import Loading from '../Loading'
+
+export default class LoadableImage extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      loading: true
     }
+  }
 
-    footer {
-      height: 60px;
-      position: fixed;
-      bottom: 0;
-      left: 0;
-    }
+  handleImageLoaded = () => {
+    this.setState({
+      loading: false
+    })
+  }
 
-    .container {
-      height: 100vh;
-      padding: 30px 0 60px 0;
-    }
+  render() {
+    const { loading } = this.state
+    const { imgUrl, altText } = this.props
+    const display = loading ? 'none' : 'block'
+    return (
+      <Fragment>
+        <Loading loading={loading}>
+          <img
+            src={imgUrl}
+            alt={altText}
+            onLoad={this.handleImageLoaded}
+            style={{ display }}
+          />
+        </Loading>
+      </Fragment>
+    )
+  }
+}
+```
 
-    .main {
-      height: 100%;
-    }
-    ```
-
-    2.  header 以及 footer 使用 fixed 定位 main 使用 absolute 定位
-
-    ```css
-    header {
-      height: 30px;
-      position: fixed;
-      top: 0;
-      left: 0;
-    }
-
-    footer {
-      height: 60px;
-      position: fixed;
-      bottom: 0;
-      left: 0;
-    }
-
-    .container {
-      height: 100vh;
-    }
-
-    .main {
-      position: absolute;
-      top: 30px;
-      bottom: 60px;
-    }
-    ```
-
-    3.普通流式布局，container 高度为 100vh，中间高度通过`calc`计算得到
-
-    ```css
-    header {
-      height: 30px;
-    }
-    footer {
-      height: 60px;
-    }
-
-    .container {
-      height: 100vh;
-    }
-
-    .main {
-      height: calc(100vh - 30px - 60px);
-    }
-    ```
+![优化后.gif](https://upload-images.jianshu.io/upload_images/4869616-8393e104a0a45b7c.gif?imageMogr2/auto-orient/strip)
 
 ## 实现功能
 
 1.  ~~歌手详情~~
-2.  ~~排行榜~~
-3.  ~~收藏歌单~~
-4.  ~~歌词滚动~~
-5.  ~~歌曲播放~~
-6.  ~~切歌模式~~
+2.  ~~收藏歌单~~
+3.  ~~歌词滚动~~
+4.  ~~歌曲播放~~
+5.  ~~切歌模式~~
 
 ## TODO
 

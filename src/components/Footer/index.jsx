@@ -2,16 +2,15 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { Icon } from 'antd'
-import { changeSong, fetchLyric } from '../../common/store/actionCreators'
+import { changeSong, updatePlayerStatus } from '../../common/store/actionCreators'
 import { formatDuration, formatCurrentTime } from '../../common/js/util'
 import ReadyList from '../../components/ReadyQueue'
-import SongDetailPage from '../../views/Song'
 import './style.styl'
 @connect(
-  state => ({ playQueue: state.playQueue, lyric: state.lyric }),
+  state => ({ playQueue: state.playQueue }),
   {
     changeSong,
-    fetchLyric,
+    updatePlayerStatus,
   },
 )
 export default class Player extends Component {
@@ -27,21 +26,11 @@ export default class Player extends Component {
       mode: 'listloop',
       modeIcon: <span title="列表循环">🔁</span>,
       showReadyList: false,
-      showDetailPage: false,
     }
   }
 
   componentDidMount() {
     this.audio.volume = 0.5
-    this.props.fetchLyric(this.props.playQueue.song.id)
-  }
-
-  componentWillReceiveProps(nextProps) {
-    const { id } = nextProps.playQueue.song
-    const preId = this.props.playQueue.song.id
-    if (id !== preId) {
-      nextProps.fetchLyric(id)
-    }
   }
 
   componentDidUpdate(prevProps) {
@@ -53,16 +42,16 @@ export default class Player extends Component {
 
   setMode = () => {
     const { mode } = this.state
-    switch (mode) {
+    const modeMap = {
       // 列表循环 => 顺序播放
-      case 'listloop':
+      listloop() {
         this.setState({
           mode: 'sequential',
           modeIcon: <span title="顺序播放">↩️</span>,
         })
-        break
+      },
       // 顺序播放 => 单曲循环
-      case 'sequential':
+      sequential() {
         this.setState(
           {
             mode: 'singleCycle',
@@ -72,9 +61,9 @@ export default class Player extends Component {
             this.audio.loop = true
           },
         )
-        break
+      },
       // 单曲循环 => 随机播放
-      case 'singleCycle':
+      singleCycle() {
         this.setState(
           {
             mode: 'shuffleplay',
@@ -84,25 +73,22 @@ export default class Player extends Component {
             this.audio.loop = false
           },
         )
-        break
+      },
       // 随机播放 => 列表循环
-      case 'shuffleplay':
+      shuffleplay() {
         this.setState({
           mode: 'listloop',
           modeIcon: <span title="列表循环">🔁</span>,
         })
-        break
-      default:
-        break
+      },
     }
+    modeMap[mode] && modeMap[mode]()
   }
 
   setVol = (e) => {
     const { left } = this.valBar.getBoundingClientRect()
     const distance = e.clientX - left
     const scale = distance / this.valBar.offsetWidth
-    console.log(scale)
-
     this.audio.volume = scale
     let volumeIcon
     if (scale > 0 && scale < 0.4) {
@@ -127,6 +113,7 @@ export default class Player extends Component {
     this.setState({
       curProgressBarWidth: `${scale * 100}%`,
     })
+    this.updateCurrentTime()
   }
 
   syncTime = () => {
@@ -137,17 +124,32 @@ export default class Player extends Component {
       curProgressBarWidth: `${timeScale * 100}%`,
       cdt: formatCurrentTime(this.audio.currentTime),
     })
+    this.updateCurrentTime()
   }
 
   toPlay = () => {
     // 资源无效异常处理存在问题
     this.audio.play()
     this.setState({ ppIcon: 'pause-circle' })
+    this.updatePlayingStatus(true)
   }
 
   toPause = () => {
     this.audio.pause()
     this.setState({ ppIcon: 'play-circle' })
+    this.updatePlayingStatus(false)
+  }
+
+  updatePlayingStatus = (status) => {
+    this.props.updatePlayerStatus({
+      isPlaying: status,
+    })
+  }
+
+  updateCurrentTime = () => {
+    this.props.updatePlayerStatus({
+      currentTime: this.audio.currentTime,
+    })
   }
 
   toggleMute = () => {
@@ -165,8 +167,8 @@ export default class Player extends Component {
   }
 
   preSong = () => {
-    const { mode } = this.state
     let { index } = this.props.playQueue
+    const { mode } = this.state
     const { playlist } = this.props.playQueue
     index -= 1
     if (index === -1) {
@@ -183,7 +185,6 @@ export default class Player extends Component {
     const { mode } = this.state
     let { index } = this.props.playQueue
     const { playlist } = this.props.playQueue
-
     index += 1
     if (index === playlist.length) {
       index = 0
@@ -211,34 +212,23 @@ export default class Player extends Component {
     // 当前歌曲播放完毕时会触发该方法
     const { mode } = this.state
     const { index, playlist } = this.props.playQueue
-    switch (mode) {
-      case 'listloop':
+    const modeMap = {
+      listloop() {
         this.nextSong()
-        break
-      case 'sequential':
-        if (index !== playlist.length - 1) {
-          this.nextSong()
-        } else {
-          this.toPause()
-        }
-        break
-      case 'shuffleplay':
+      },
+      sequential() {
+        index !== playlist.length - 1 ? this.nextSong() : this.toPause()
+      },
+      shuffleplay() {
         this.nextSong()
-        break
-      default:
-        break
+      },
     }
+    modeMap[mode] && modeMap[mode]()
   }
 
   toggleReadyList = () => {
     this.setState({
       showReadyList: !this.state.showReadyList,
-    })
-  }
-
-  toggleDetailPage = () => {
-    this.setState({
-      showDetailPage: !this.state.showDetailPage,
     })
   }
 
@@ -252,7 +242,6 @@ export default class Player extends Component {
 
   render() {
     const {
-      showDetailPage,
       ppIcon,
       volumeIcon,
       modeIcon,
@@ -260,19 +249,10 @@ export default class Player extends Component {
       curVolBarWidth,
       showReadyList,
     } = this.state
-    const { song, lyric } = this.props.playQueue
+    const { song } = this.props.playQueue
     const artists = song.artists || song.ar
     const album = song.album || song.al
     const duration = song.duration || song.dt
-    const RollingProps = {
-      song,
-      lyric,
-      showDetailPage,
-      isPlaying: ppIcon.includes('pause'),
-    }
-    if (this.audio) {
-      RollingProps.currentTime = this.audio.currentTime
-    }
 
     return [
       <footer key="player">
@@ -287,8 +267,10 @@ export default class Player extends Component {
         >
           您的浏览器不支持audio标签，无法播放音乐
         </audio>
-        <div className="player-album" onClick={this.toggleDetailPage}>
-          <img src={album.picUrl} alt="album-img" />
+        <div className="player-album">
+          <Link to={{ pathname: `/song/${song.id}` }}>
+            <img src={album.picUrl} alt="album-img" />
+          </Link>
         </div>
         <div className="player-btns">
           <Icon type="backward" onClick={this.preSong} />
@@ -350,7 +332,6 @@ export default class Player extends Component {
         </div>
         {showReadyList ? <ReadyList /> : null}
       </footer>,
-      <SongDetailPage key="songDetailPage" {...RollingProps} />,
     ]
   }
 }

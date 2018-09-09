@@ -15,6 +15,10 @@ const routeInfo = [
     path: '/exception/404',
     view: '404',
   },
+  {
+    path: '/song/:id',
+    view: 'Song',
+  },
 ]
 
 export default routeInfo

@@ -2,23 +2,11 @@
 @import '../../common/style/variable.styl';
 
 .detail-page {
-  background-color: #f4f4f6;
   display: flex;
-  box-sizing: border-box;
   width: 100%;
   height: calc(100vh - 90px);
-  overflow: hidden;
-  transition: all 0.2s;
-  position: absolute;
-  top: 30px;
-  left: -100%;
-  z-index: 2;
 
-  &.detail-page-show {
-    left: 0;
-  }
-
-  &.detail-page-show > div {
+  & > div {
     display: flex;
     width: 100%;
     hyphens: auto;
@@ -34,8 +22,10 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    filter: blur(10px);
-    z-index: -1;
+    filter: blur(40px);
+    background-attachment: fixed;
+    background-repeat: repeat-x;
+    background-size: contain;
   }
 
   .left {
@@ -67,7 +57,7 @@
   }
 
   .name {
-    margin-bottom: 20px;
+    position: absolute;
     font-size: 32px;
     color: #464646;
     mx_single_ellipsis();

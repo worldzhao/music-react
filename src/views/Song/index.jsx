@@ -1,28 +1,33 @@
 import React, { Component } from 'react'
-import LyricBlock from './lyric'
+import { connect } from 'react-redux'
+import { fetchLyric } from './store/actionCreators'
+import Lyric from './lyric'
 import './style.styl'
 
+@connect(
+  state => ({ playQueue: state.playQueue, lyric: state.lyric }),
+  {
+    fetchLyric,
+  },
+)
 export default class SongDetailPage extends Component {
   componentDidMount() {
-    // do sth
+    const { id } = this.props.match.params
+    this.props.fetchLyric(id)
   }
 
   setAlbumClass = () => {
-    const { isPlaying } = this.props
+    const { isPlaying } = this.props.playQueue
     return isPlaying ? 'album-img active' : 'album-img'
   }
 
-  setPageClass = () => {
-    const { showDetailPage } = this.props
-    return showDetailPage ? 'detail-page detail-page-show' : 'detail-page'
-  }
-
   render() {
-    const { currentTime, lyric, song } = this.props
+    const { currentTime, song } = this.props.playQueue
+    const { lyric } = this.props.lyric
     const album = song.album || song.al
     const coverImg = album.picUrl
     return (
-      <div className={this.setPageClass()} style={{ backgroundImage: `url(${coverImg})` }}>
+      <div className="detail-page">
         <div>
           <div style={{ backgroundImage: `url(${coverImg})` }} className="filter" />
           <div className="left">
@@ -30,7 +35,7 @@ export default class SongDetailPage extends Component {
           </div>
           <div className="right">
             <div className="name">{song.name}</div>
-            <LyricBlock lyric={lyric} currentTime={currentTime} />
+            <Lyric lyric={lyric} currentTime={currentTime} />
           </div>
         </div>
       </div>

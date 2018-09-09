@@ -5,7 +5,7 @@ import {
   PLAYER_CLEAR_QUEUE,
   PLAYER_DELETE_SONG,
   INIT_STARRED_LIST,
-  LYRIC,
+  PLAYER_UPDATE_STATUS,
 } from './actionTypes'
 
 const song = {
@@ -74,8 +74,9 @@ const initState = {
   song,
   index: 0,
   flag: '',
+  currentTime: 0,
+  isPlaying: false,
   starredList: [],
-  lyric: null,
 }
 
 export default (state = initState, action) => {
@@ -125,13 +126,13 @@ export default (state = initState, action) => {
       return {
         ...initState,
       }
-    case INIT_STARRED_LIST:
-      return { ...state, starredList: [...action.payload] }
-    case LYRIC:
+    case PLAYER_UPDATE_STATUS:
       return {
         ...state,
-        lyric: action.payload,
+        ...action.payload,
       }
+    case INIT_STARRED_LIST:
+      return { ...state, starredList: [...action.payload] }
     default:
       return state
   }

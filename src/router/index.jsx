@@ -1,6 +1,6 @@
 import getRoutes from './getRoutes'
 import getLinks from './getLinks'
-import routeInfo from './router'
+import routeInfo from './route'
 import menuInfo from './menu'
 
 const routes = [...menuInfo, ...routeInfo]

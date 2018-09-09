@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Icon } from 'antd'
-import MinorTitle from '../../../component/MinorTitle'
+import MinorTitle from '../../../components/MinorTitle'
 import { formatTimeStamp } from '../../../common/js/util'
 import './style.styl'
 

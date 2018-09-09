@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import InfoHeader from './header'
-import InfoList from '../../component/List'
+import InfoList from '../../components/List'
 import { star, cancelStar } from '../../common/store/actionCreators'
 import { fetchPlaylist } from './store/actionCreators'
 import './style.styl'

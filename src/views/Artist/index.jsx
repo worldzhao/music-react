@@ -1,7 +1,7 @@
 import React, { Fragment, Component } from 'react'
 import { connect } from 'react-redux'
-import HotSongs from '../../component/List'
-import MinorTitle from '../../component/MinorTitle'
+import HotSongs from '../../components/List'
+import MinorTitle from '../../components/MinorTitle'
 import { getArtistInfoEffect } from './store/actionCreators'
 import './style.styl'
 

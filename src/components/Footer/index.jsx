@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { Icon } from 'antd'
 import { changeSong, fetchLyric } from '../../common/store/actionCreators'
 import { formatDuration, formatCurrentTime } from '../../common/js/util'
-import ReadyList from '../../component/ReadyQueue'
+import ReadyList from '../../components/ReadyQueue'
 import SongDetailPage from '../../views/Song'
 import './style.styl'
 @connect(

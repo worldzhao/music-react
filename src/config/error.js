@@ -1,5 +1,5 @@
 import { push } from 'connected-react-router'
-import store from '../../store'
+import store from '@store'
 
 export default function onError(error) {
   const { status } = error.response

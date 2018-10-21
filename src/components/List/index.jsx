@@ -2,8 +2,8 @@ import React from 'react'
 import { Icon } from 'antd'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { addSong2Que, playSong2Que } from '../../common/store/actionCreators'
-import { specIndex, formatDuration } from '../../common/js/util'
+import { addSong2Que, playSong2Que } from '@common/store/actionCreators'
+import { specIndex, formatDuration } from '@src/utils'
 import './style.styl'
 
 const renderArtist = (song) => {

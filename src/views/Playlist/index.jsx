@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
+import InfoList from '@components/List'
+import { star, cancelStar } from '@common/store/actionCreators'
 import InfoHeader from './header'
-import InfoList from '../../components/List'
-import { star, cancelStar } from '../../common/store/actionCreators'
 import { fetchPlaylist } from './store/actionCreators'
 import './style.styl'
 
@@ -54,9 +54,9 @@ export default class PlaylistInfo extends Component {
     const { tracks, coverImgUrl } = playlist || {}
 
     return (
-      <div className="playlist-wrapper">
-        {playlist && (
-          <Fragment>
+      <Fragment>
+        {playlist ? (
+          <div className="playlist-wrapper">
             <img src={coverImgUrl} alt=" background" className="background" key="bgc" />
             <div className="playlist-info" key="playlist">
               <InfoHeader
@@ -66,9 +66,9 @@ export default class PlaylistInfo extends Component {
               />
               <InfoList tracks={tracks} />
             </div>
-          </Fragment>
-        )}
-      </div>
+          </div>
+        ) : null}
+      </Fragment>
     )
   }
 }

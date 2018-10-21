@@ -25,6 +25,9 @@
     "jsx-a11y/mouse-events-have-key-events": [0],
     "no-unused-expressions": [0],
     "import/prefer-default-export": [0],
-    "no-debugger": [0]
+    "no-debugger": [0],
+    "import/no-extraneous-dependencies": [0],
+    "import/no-unresolved": [0],
+    "import/extensions": [0]
   }
 }

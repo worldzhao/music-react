@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { Icon } from 'antd'
-import { changeSong, updatePlayerStatus } from '../../common/store/actionCreators'
-import { formatDuration, formatCurrentTime } from '../../common/js/util'
-import ReadyList from '../../components/ReadyQueue'
+import { changeSong, updatePlayerStatus } from '@common/store/actionCreators'
+import { formatDuration, formatCurrentTime } from '@src/utils'
+import ReadyList from '@components/ReadyQueue'
 import './style.styl'
 @connect(
   state => ({ playQueue: state.playQueue }),

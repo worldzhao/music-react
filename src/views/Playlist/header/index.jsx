@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Icon } from 'antd'
-import MinorTitle from '../../../components/MinorTitle'
-import { formatTimeStamp } from '../../../common/js/util'
+import MinorTitle from '@components/MinorTitle'
+import { formatTimeStamp } from '@src/utils'
 import './style.styl'
 
 const renderCreator = playlist => (

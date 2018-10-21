@@ -1,0 +1,18 @@
+module.exports = {
+  extends: 'stylelint-config-standard',
+  rules: {
+    'string-quotes': 'single',
+    'property-no-unknown': [
+      true,
+      {
+        ignoreProperties: ['composes'],
+      },
+    ],
+    'selector-pseudo-class-no-unknown': [
+      true,
+      {
+        ignorePseudoClasses: ['global'],
+      },
+    ],
+  },
+}

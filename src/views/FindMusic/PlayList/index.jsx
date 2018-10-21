@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import LoadableImage from '../../../component/LoadableImage'
 import './style.styl'
 
 const SongCard = (props) => {
@@ -10,7 +11,7 @@ const SongCard = (props) => {
     <div className="songcard">
       <div className="album-img">
         <Link to={{ pathname: `/playlistinfo/${id}` }}>
-          <img src={coverImgUrl} alt="playlist-cover" />
+          <LoadableImage imgUrl={coverImgUrl} altText="card-img" />
         </Link>
       </div>
       <p className="title">{name}</p>

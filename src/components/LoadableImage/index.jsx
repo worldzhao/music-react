@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import Loading from '../Loading'
+import Spin from '../Spin'
 
 export default class LoadableImage extends Component {
   constructor(props) {
@@ -21,9 +21,9 @@ export default class LoadableImage extends Component {
     const display = loading ? 'none' : 'block'
     return (
       <Fragment>
-        <Loading loading={loading}>
+        <Spin spinning={loading}>
           <img src={imgUrl} alt={altText} onLoad={this.handleImageLoaded} style={{ display }} />
-        </Loading>
+        </Spin>
       </Fragment>
     )
   }

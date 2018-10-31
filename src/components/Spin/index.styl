@@ -1,13 +1,35 @@
-.spin {
-  position: relative;
+.spin-wrapper {
   width: 100%;
   height: 100%;
+  position: relative;
 
-  & > div {
-    z-index: 9999;
+  .spin {
+    width: 40px;
+    height: 40px;
     position: absolute;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
+  }
+
+  .spin::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 40px;
+    border: 4px solid #bc2f2e;
+    border-radius: 50%;
+    border-right: none;
+    animation: roll 0.5s infinite;
+  }
+}
+
+@keyframes roll {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
   }
 }

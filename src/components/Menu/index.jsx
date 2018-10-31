@@ -43,11 +43,9 @@ export default class Drawer extends Component {
     return (
       <div className={this.setMenuClass(isShow)}>
         <Icon type={this.setMenuIconType(isShow)} onClick={this.toggleMenu} />
-        <div className="drawer-block">
-          <ul className="items">
-            {React.Children.map(children, link => <li className="item">{link}</li>)}
-          </ul>
-        </div>
+        <nav>
+          <ul className="nav-list">{React.Children.map(children, link => <li>{link}</li>)}</ul>
+        </nav>
         {isShow ? <CollectBlock starredList={starredList} /> : null}
       </div>
     )

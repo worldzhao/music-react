@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import LoadableImage from '../../../component/LoadableImage'
+import LoadableImage from '@components/LoadableImage'
 import './style.styl'
 
 const SongCard = (props) => {

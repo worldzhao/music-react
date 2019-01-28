@@ -11,7 +11,7 @@ const renderArtist = (song) => {
   return (
     <div className="artist">
       {artists.map(artist => (
-        <Link key={artist.name} to={{ pathname: `/artistinfo/${artist.id}` }}>
+        <Link key={artist.name} to={{ pathname: `/artist/${artist.id}` }}>
           {' '}
           {artist.name}
         </Link>

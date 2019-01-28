@@ -1,9 +1,5 @@
 @import '../../../common/style/mixin.styl';
 
-$linkFontSize = 14px;
-$liHoverBgc = #e8e8eb;
-$infoText = #666;
-
 .starred-block {
   margin-top: 10px;
 
@@ -16,8 +12,8 @@ $infoText = #666;
     margin-bottom: 10px;
   }
 
-  .nolist-info {
-    mx_fc(12px, $infoText);
+  .no-list-info {
+    mx_fc(12px, #666);
     padding-left: 45px;
   }
 
@@ -28,13 +24,13 @@ $infoText = #666;
     padding-left: 12px;
 
     &:hover {
-      background-color: $liHoverBgc;
+      background-color: #e8e8eb;
     }
 
     & > a {
       display: inline-block;
       box-sizing: border-box;
-      mx_fc($linkFontSize, #000);
+      mx_fc(14px, #000);
       mx_whlh(100%, 40px, 40px);
       mx_single_ellipsis();
       padding-left: 45px;

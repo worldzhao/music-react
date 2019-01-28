@@ -1,10 +1,15 @@
-import React, { Component } from 'react'
-import { Switch } from 'react-router-dom'
-import { Routes } from '@router'
+import React from 'react'
+import { Switch, Route } from 'react-router-dom'
+import { routesConfig } from '@router'
 
-export default class DiskLayout extends Component {
-  state = {}
-  render() {
-    return <Switch>{Routes}</Switch>
-  }
+function DiskLayout() {
+  return (
+    <Switch>
+      {routesConfig.map(r => (
+        <Route {...r} key={r.path} />
+      ))}
+    </Switch>
+  )
 }
+
+export default DiskLayout

@@ -255,7 +255,7 @@ export default class Player extends Component {
     const duration = song.duration || song.dt
 
     return [
-      <footer key="player">
+      <footer key="player" className="soul-player">
         <audio
           key="audio"
           src={song.url}
@@ -283,7 +283,7 @@ export default class Player extends Component {
             <span className="name">{song.name}</span>
             <div className="artist">
               {artists.map(v => (
-                <Link key={v.id} to={{ pathname: `/artistinfo/${v.id}` }}>
+                <Link key={v.id} to={{ pathname: `/artist/${v.id}` }}>
                   {v.name}
                 </Link>
               ))}

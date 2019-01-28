@@ -1,27 +1,15 @@
 @import '../../common/style/mixin.styl';
-@import '../../common/style/variable.styl';
 
 html {
-  background-color: $pageBgc;
+  background-color: #fafafc;
 }
 
-.basic-layout {
-  min-width: 1000px;
-
-  header {
-    mx_wh(100%, $headerHeight);
-  }
-
-  footer {
-    mx_wh(100%, $footerheight);
-    display: flex;
-  }
+.soul-basic-layout {
+  min-width: 960px;
 
   #main {
     display: flex;
-    background-color: $pageBgc;
-    overflow: auto;
-    width: 100%;
+    background-color: #fafafc;
     height: calc(100vh - 30px - 60px);
   }
 

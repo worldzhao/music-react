@@ -10,7 +10,7 @@ const SongCard = (props) => {
   return (
     <div className="songcard">
       <div className="album-img">
-        <Link to={{ pathname: `/playlistinfo/${id}` }}>
+        <Link to={{ pathname: `/playlist/${id}` }}>
           <LoadableImage imgUrl={coverImgUrl} altText="card-img" />
         </Link>
       </div>

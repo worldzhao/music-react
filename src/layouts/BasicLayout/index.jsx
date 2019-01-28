@@ -1,30 +1,28 @@
-import React, { Component } from 'react'
-import { Switch } from 'react-router-dom'
-import { Routes, Links } from '@router'
+import React from 'react'
+import { Switch, Route } from 'react-router-dom'
+import { routesConfig } from '@router'
 import Header from '@components/Header'
 import Footer from '@components/Footer'
 import Menu from '@components/Menu'
 import './style.styl'
 
-class BasicLayout extends Component {
-  componentDidMount() {
-    // do sth
-  }
-
-  render() {
-    return (
-      <div className="basic-layout">
-        <Header />
-        <div id="main">
-          <Menu>{Links}</Menu>
-          <main>
-            <Switch>{Routes}</Switch>
-          </main>
-        </div>
-        <Footer {...this.props} />
+function BasicLayout(props) {
+  return (
+    <div className="soul-basic-layout">
+      <Header />
+      <div id="main">
+        <Menu />
+        <main>
+          <Switch>
+            {routesConfig.map(r => (
+              <Route {...r} key={r.path} />
+            ))}
+          </Switch>
+        </main>
       </div>
-    )
-  }
+      <Footer {...props} />
+    </div>
+  )
 }
 
 export default BasicLayout

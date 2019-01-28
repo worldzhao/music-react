@@ -1,31 +1,29 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom'
 import { Icon } from 'antd'
-import menuInfo from '../../router/menu'
+import { links } from '@router'
 import './style.styl'
-
-const getTitle = (m, p) => {
-  const matchMenu = m.filter(v => p.indexOf(v.path) !== -1)
-  return (matchMenu[0] && matchMenu[0].title) || 'SoulBeats'
-}
 
 @withRouter
 export default class Header extends React.Component {
+  get title() {
+    const { pathname } = this.props.location
+    const matchMenus = links.filter(v => pathname.includes(v.path))
+    return (matchMenus[0] && matchMenus[0].title) || 'SoulBeats'
+  }
+
   goBack = () => {
     const { history } = this.props
     history.goBack()
   }
 
   render() {
-    const { pathname } = this.props.location
-    const title = getTitle(menuInfo, pathname)
     return (
-      <header>
-        <div className="left">
+      <header className="soul-header">
+        <h1 className="logo">
           <Icon type="arrow-left" onClick={this.goBack} />
-          <h2 className="title">{title}</h2>
-        </div>
-        <Icon type="close" className="right" />
+          <span>{this.title}</span>
+        </h1>
       </header>
     )
   }

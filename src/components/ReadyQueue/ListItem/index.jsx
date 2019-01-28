@@ -23,7 +23,7 @@ export default class Item extends Component {
       <Link
         key={artist.id}
         to={{
-          pathname: `/artistinfo/${artist.id}`,
+          pathname: `/artist/${artist.id}`,
         }}
       >
         {artist.name}

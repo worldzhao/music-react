@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
+import { withRouter, NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { links } from '@router'
 import { Icon } from 'antd'
 import { initStarredList } from '../../common/store/actionCreators'
 import CollectBlock from './CollectBlock'
@@ -15,7 +16,7 @@ import './style.styl'
     initStarredList,
   },
 )
-export default class Drawer extends Component {
+export default class Menu extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -27,7 +28,7 @@ export default class Drawer extends Component {
     this.props.initStarredList()
   }
 
-  setMenuClass = isShow => (isShow ? 'menu' : 'menu hide')
+  setMenuClass = isShow => (isShow ? 'soul-menu' : 'soul-menu soul-menu__hide')
 
   setMenuIconType = isShow => (isShow ? 'menu-fold' : 'menu-unfold')
 
@@ -39,12 +40,21 @@ export default class Drawer extends Component {
 
   render() {
     const { isShow } = this.state
-    const { children, starredList } = this.props
+    const { starredList } = this.props
     return (
       <div className={this.setMenuClass(isShow)}>
         <Icon type={this.setMenuIconType(isShow)} onClick={this.toggleMenu} />
         <nav>
-          <ul className="nav-list">{React.Children.map(children, link => <li>{link}</li>)}</ul>
+          <ul className="nav-list">
+            {links.map(link => (
+              <li>
+                <NavLink to={link.path} key={link.path}>
+                  <Icon type={link.icon} />
+                  {link.title}
+                </NavLink>
+              </li>
+            ))}
+          </ul>
         </nav>
         {isShow ? <CollectBlock starredList={starredList} /> : null}
       </div>

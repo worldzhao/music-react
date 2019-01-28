@@ -1,5 +1,4 @@
 @import '../../common/style/mixin.styl';
-@import '../../common/style/variable.styl';
 
 mx_bar($width, $height) {
   background-color: #e5e5e5;
@@ -9,15 +8,11 @@ mx_bar($width, $height) {
   overflow: hidden;
 }
 
-mx_bar_child() {
-  height: 6px;
-  background-color: #df3b3b;
-}
-
-footer {
+.soul-player {
   background-color: #fff;
   border: 1px solid rgba(7, 17, 27, 0.2);
   box-sizing: border-box;
+  height: 60px;
   display: flex;
 
   img {
@@ -37,7 +32,7 @@ footer {
 
     i.anticon {
       cursor: pointer;
-      mx_fc(24px, $redBgc);
+      mx_fc(24px, #df3b3b);
       mx_wh(40px, 40px);
       line-height: 40px;
     }
@@ -80,8 +75,9 @@ footer {
     mx_bar(100%, 6px);
   }
 
-  .current-progress {
-    mx_bar_child();
+  .current-progress, .current-vol {
+    height: 6px;
+    background-color: #df3b3b;
   }
 
   .vol-wrapper {
@@ -103,10 +99,6 @@ footer {
 
   .vol-bar {
     mx_bar(80%, 6px);
-  }
-
-  .current-vol {
-    mx_bar_child();
   }
 
   .player-extra {

@@ -11,7 +11,7 @@ export default function StarredBlock(props) {
         <ul className="items">
           {starredList.map(item => (
             <li key={item.id} className="item">
-              <Link to={{ pathname: `/playlistinfo/${item.id}` }}>
+              <Link to={{ pathname: `/playlist/${item.id}` }}>
                 {item.name}
                 <img src={item.coverImgUrl} alt="thunmb-img" />
               </Link>
@@ -19,7 +19,7 @@ export default function StarredBlock(props) {
           ))}
         </ul>
       ) : (
-        <p className="nolist-info">还没有收藏歌单哦~</p>
+        <p className="no-list-info">还没有收藏歌单哦~</p>
       )}
     </div>
   )

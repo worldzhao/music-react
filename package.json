@@ -62,7 +62,8 @@
     "test": "node scripts/test.js --env=jsdom",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "commit": "npx git-cz"
   },
   "lint-staged": {
     "*.js, *.jsx": [

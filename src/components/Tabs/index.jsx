@@ -20,7 +20,7 @@ export default class Tabs extends Component {
 
   render() {
     return (
-      <div className="tabs">
+      <div className="soul-tabs">
         <ul className="tabs-head">
           {React.Children.map(this.props.children, (element, index) => (
             <li onClick={() => this.handleClick(index)} className={this.setTabClass(index)}>

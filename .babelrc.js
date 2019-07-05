@@ -1,3 +1,4 @@
 module.exports = {
-  plugins: ['@babel/plugin-proposal-decorators']
+  presets: ['react-app']
 };
+

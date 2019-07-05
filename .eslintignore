@@ -2,3 +2,6 @@ public/
 dist/
 node_modules/
 build/
+config/
+public/
+scripts/

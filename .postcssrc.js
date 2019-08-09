@@ -1,6 +1,5 @@
 module.exports = {
   plugins: {
-    'postcss-normalize': {},
     'postcss-flexbugs-fixes': {},
     'postcss-preset-env': {
       autoprefixer: {
@@ -8,13 +7,17 @@ module.exports = {
       },
       stage: 3
     },
-    'postcss-px-to-viewport': {
-      viewportWidth: 750, // (Number) The width of the viewport.
-      unitPrecision: 3, // (Number) The decimal numbers to allow the REM units to grow to.
-      viewportUnit: 'vw', // (String) Expected units.
-      selectorBlackList: ['.ignore', '.hairlines'], // (Array) The selectors to ignore and leave as px.
-      minPixelValue: 1, // (Number) Set the minimum pixel value to replace.
-      mediaQuery: false // (Boolean) Allow px to be converted in media queries.
+    'postcss-plugin-px2rem': {
+      rootValue: 75, // 根节点fontSize，二倍图为75 一倍图为37.5
+      unitPrecision: 5,
+      propWhiteList: [],
+      propBlackList: [],
+      exclude: /(node_module)/,
+      selectorBlackList: [],
+      ignoreIdentifier: false,
+      replace: true,
+      mediaQuery: false,
+      minPixelValue: 1
     }
   }
 };

@@ -4,6 +4,9 @@ module.exports = {
   plugins: ['@typescript-eslint', 'react'],
   rules: {
     '@typescript-eslint/explicit-function-return-type': 0,
-    '@typescript-eslint/indent': ['error', 2]
+    '@typescript-eslint/indent': 0,
+    '@typescript-eslint/explicit-member-accessibility': 0,
+    'react/self-closing-comp': 1, // 防止没有children的组件的额外结束标签
+    'react/sort-comp': 1 // 强制组件方法顺序
   }
 };

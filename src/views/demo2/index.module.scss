@@ -1,0 +1,38 @@
+@import '~@/common/styles/index.scss';
+
+// 按照2倍图的像素写即可 无需使用预处理器px2rem()方法
+// 如果不想转为rem  可以使用PX。 通常文本内容不需要等比缩放
+// 屏幕越大看得越多font-size
+// 可能需要用到 PX 而非 px => rem
+
+.demoWrapper {
+  min-height: 100vh;
+}
+
+.demo {
+  height: 75px;
+  display: flex;
+  @include hairline(#ccc); // 1px border
+}
+
+.subtitle {
+  color: #ccc;
+  font-size: 75px; // 标题可以等比缩放
+  line-height: 75px;
+  margin: 0 auto;
+}
+
+.content {
+  /* prettier-ignore */
+  font-size: 12PX; // 内容始终为12PX 屏幕越大看的越多
+}
+
+.btn {
+  display: block;
+  width: 300px;
+  padding: 20px;
+  color: #fff;
+  margin: 30px auto;
+  background-color: skyblue;
+  font-size: 48px;
+}

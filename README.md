@@ -1,44 +1,39 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# music-react
 
-## Available Scripts
+项目模板：[violet-cli](https://github.com/worldzhao/violet-cli)
+基本组件：[dora-ui](https://github.com/worldzhao/dora-ui)
+我的博客：[worldzhao.github.io](https://worldzhao.github.io/)
 
-In the project directory, you can run:
+欢迎 star ✨
 
-### `npm start`
+本次基于移动端进行全新的重构
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+PC 端代码见分支[feature/pc]()，代码很烂
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## 基本命令
 
-### `npm test`
+```
+yarn start | yarn dev 启动开发环境
+yarn build:prod       打包生产环境
+yarn build:analyze    进行打包分析
+```
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 状态管理
 
-### `npm run build`
+## 路由配置
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## proxy 与 mock
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+## 移动端布局
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## typescript
 
-### `npm run eject`
+## eslint
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## polyfill
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## commit
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## 性能优化
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 其他

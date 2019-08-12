@@ -1506,6 +1506,13 @@
     "@types/history" "*"
     "@types/react" "*"
 
+"@types/react-transition-group@^4.2.2":
+  version "4.2.2"
+  resolved "https://registry.npmjs.org/@types/react-transition-group/-/react-transition-group-4.2.2.tgz#8c851c4598a23a3a34173069fb4c5c9e41c02e3f"
+  integrity sha512-YfoaTNqBwbIqpiJ5NNfxfgg5kyFP1Hqf/jqBtSWNv0E+EkkxmN+3VD6U2fu86tlQvdAc1o0SdWhnWFwcRMTn9A==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react@*":
   version "16.8.23"
   resolved "https://registry.npmjs.org/@types/react/-/react-16.8.23.tgz#ec6be3ceed6353a20948169b6cb4c97b65b97ad2"
@@ -9308,7 +9315,7 @@ react-router@5.0.1:
     tiny-invariant "^1.0.2"
     tiny-warning "^1.0.0"
 
-react-transition-group@^4.0.1:
+react-transition-group@^4.0.1, react-transition-group@^4.2.2:
   version "4.2.2"
   resolved "http://xnpm.ximalaya.com/react-transition-group/-/react-transition-group-4.2.2.tgz#8b5252410180c27fd7eebf50b185256b41799b16"
   integrity sha1-i1JSQQGAwn/X7r9QsYUla0F5mxY=
@@ -10364,11 +10371,6 @@ stealthy-require@^1.1.1:
   version "1.1.1"
   resolved "https://registry.npmjs.org/stealthy-require/-/stealthy-require-1.1.1.tgz#35b09875b4ff49f26a777e509b3090a3226bf24b"
   integrity sha1-NbCYdbT/SfJqd35QmzCQoyJr8ks=
-
-store2@^2.7.1:
-  version "2.8.0"
-  resolved "https://registry.npmjs.org/store2/-/store2-2.8.0.tgz#032d5dcbd185a5d74049d67a1765ff1e75faa04b"
-  integrity sha512-FBJpcOEZQLZBIGL4Yp7W5RgZ0ejaURmcfUjIpyOb64BpI8z/iJXw7zd/NTBeq304dVMxuWVDZEUUCGn7llaVrA==
 
 stream-browserify@^2.0.1:
   version "2.0.2"

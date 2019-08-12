@@ -37,9 +37,6 @@ interface LoadingState<M extends Models> {
 
 export type RootState = RematchRootState<models> & LoadingState<models>;
 
-// react-router相关类型定义
-export { RouteComponentProps } from 'react-router';
-
 // response wrapper
 export interface Response<T> {
   code: number;

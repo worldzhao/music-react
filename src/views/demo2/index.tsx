@@ -1,14 +1,8 @@
+import { DemoModelState, Dispatch, GetUserParams, PostUserParams, RootState } from '@/typings';
+import { Spin } from 'dora-ui';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Spin } from 'dora-ui';
-import {
-  RootState,
-  Dispatch,
-  RouteComponentProps,
-  GetUserParams,
-  PostUserParams,
-  DemoModelState
-} from '@/typings';
+import { RouteComponentProps } from 'react-router';
 import styles from './index.module.scss';
 
 const mapState = (store: RootState) => ({
@@ -48,7 +42,7 @@ class TSDemoWithRematch extends Component<Props, {}> {
     console.log('接口 2 effect loading', postLoading);
 
     return (
-      <Spin spinning={demoModelLoading} fullScreen>
+      <Spin spinning={demoModelLoading} delay={500} fullScreen>
         <div className={styles.demoWrapper}>
           <div className={styles.demo}>
             <h2 className={styles.subtitle}>welcome to Iris</h2>

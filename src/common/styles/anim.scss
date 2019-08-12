@@ -1,0 +1,113 @@
+.router-wrapper {
+  overflow: hidden;
+}
+
+/**
+ * 右侧淡入，右侧淡出
+ */
+.forward-from-right-enter {
+  position: absolute;
+  z-index: 2;
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.forward-from-right-enter-active {
+  position: absolute;
+  z-index: 2;
+  opacity: 1;
+  transform: translateX(0);
+  transition: all 500ms;
+}
+
+.forward-from-right-exit {
+  position: absolute;
+  z-index: 1;
+  opacity: 1;
+}
+
+.forward-from-right-exit-active {
+  position: absolute;
+  z-index: 1;
+  opacity: 0;
+  transition: all 500ms;
+}
+
+.back-to-right-enter {
+  position: absolute;
+  z-index: 1;
+  opacity: 0;
+}
+
+.back-to-right-enter-active {
+  position: absolute;
+  z-index: 1;
+  opacity: 1;
+  transition: all 500ms;
+}
+
+.back-to-right-exit {
+  position: absolute;
+  z-index: 2;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.back-to-right-exit-active {
+  position: absolute;
+  z-index: 2;
+  opacity: 0;
+  transform: translate(100%);
+  transition: all 500ms;
+}
+
+/**
+ * 下方淡入，下方淡出
+ */
+.forward-from-bottom-enter {
+  position: absolute;
+  opacity: 0;
+  transform: translateY(100%);
+}
+
+.forward-from-bottom-enter-active {
+  position: absolute;
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 500ms;
+}
+
+.forward-from-bottom-exit {
+  position: absolute;
+  opacity: 1;
+}
+
+.forward-from-bottom-exit-active {
+  position: absolute;
+  opacity: 0.3;
+  transition: all 500ms;
+}
+
+.back-to-bottom-enter {
+  position: absolute;
+  opacity: 0.3;
+}
+
+.back-to-bottom-enter-active {
+  position: absolute;
+  opacity: 1;
+  transition: all 500ms;
+}
+
+.back-to-bottom-exit {
+  position: absolute;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.back-to-bottom-exit-active {
+  position: absolute;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: all 500ms;
+}

@@ -31,9 +31,9 @@
   },
   "browserslist": {
     "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
     ],
     "development": [
       "last 1 chrome version",
@@ -52,8 +52,8 @@
     "react-dom": "^16.8.6",
     "react-redux": "^7.1.0",
     "react-router-dom": "^5.0.1",
+    "react-transition-group": "^4.2.2",
     "redux": "^4.0.1",
-    "store2": "^2.7.1",
     "vconsole": "^3.3.2"
   },
   "devDependencies": {
@@ -67,6 +67,7 @@
     "@types/react-dom": "16.8.4",
     "@types/react-redux": "^7.1.1",
     "@types/react-router-dom": "^4.3.4",
+    "@types/react-transition-group": "^4.2.2",
     "@typescript-eslint/eslint-plugin": "1.x",
     "@typescript-eslint/parser": "1.x",
     "babel-eslint": "10.0.1",

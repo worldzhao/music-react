@@ -1,11 +1,12 @@
-import 'react-app-polyfill/stable';
 import '@/common/scripts/rem';
 import '@/common/styles/index.scss';
-import Router from '@/router';
+import Routes from '@/router';
 import { env } from '@/utils';
 import React from 'react';
+import 'react-app-polyfill/stable';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
 import { store } from './store';
 
 if (!env.isProd) {
@@ -19,7 +20,9 @@ if (!env.isProd) {
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router />
+    <BrowserRouter>
+      <Routes />
+    </BrowserRouter>
   </Provider>,
   document.getElementById('root')
 );

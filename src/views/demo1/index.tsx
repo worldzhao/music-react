@@ -1,6 +1,6 @@
+import { ClassCounter, FCCounter, HocCounter } from '@/components';
 import React, { Component, Fragment } from 'react';
 import { RouteComponentProps } from 'react-router';
-import { FCCounter, ClassCounter, HocCounter } from '@/components';
 
 interface State {
   count: number;

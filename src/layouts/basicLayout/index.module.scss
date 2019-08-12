@@ -1,4 +1,9 @@
 .basic-layout {
-  width: 100%;
+  background-color: #f8f8ff;
   overflow-x: hidden;
+
+  &-content {
+    height: calc(100vh - 84px - 52px);
+    overflow-y: auto;
+  }
 }

@@ -2,7 +2,7 @@ import '@/common/styles/anim.scss';
 import Layout from '@/layouts';
 import React, { Attributes } from 'react';
 import { RouteComponentProps, withRouter } from 'react-router';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import routerConfig from './routerConfig';
 
@@ -16,7 +16,9 @@ const DEFAULT_SCENE_CONFIG: { [key: string]: string } = {
   exit: 'to-right'
 };
 
-const getSceneConfig = (location: location) => {
+const routes = routerConfig.map(r => r.path);
+
+const getAnimConfig = (location: location) => {
   const matchedRoute = routerConfig.find(config =>
     new RegExp(`^${config.path}$`).test(location.pathname)
   );
@@ -28,31 +30,41 @@ let oldLocation: Props['location'];
 function Routes(props: Props) {
   const { location, history } = props;
 
-  // 转场动画应该都是采用当前页面的sceneConfig，所以：
-  // push操作时，用新location匹配的路由sceneConfig
-  // pop操作时，用旧location匹配的路由sceneConfig
+  // 转场动画应该都是采用当前页面的animConfig，所以：
+  // push操作时，用新location匹配的路由animConfig
+  // pop操作时，用旧location匹配的路由animConfig
   let classNames = '';
   if (history.action === 'PUSH') {
-    classNames = 'forward-' + getSceneConfig(location).enter;
+    if (routes.indexOf(location.pathname) < routes.indexOf(oldLocation.pathname)) {
+      classNames = 'back-' + getAnimConfig(oldLocation).exit;
+    } else {
+      classNames = 'forward-' + getAnimConfig(location).enter;
+    }
   } else if (history.action === 'POP' && oldLocation) {
-    classNames = 'back-' + getSceneConfig(oldLocation).exit;
+    classNames = 'back-' + getAnimConfig(oldLocation).exit;
   }
 
   // 更新旧location
   oldLocation = location;
 
+  if (location.pathname === '/') {
+    return <Redirect to="/recommend" />;
+  }
+
   return (
-    <TransitionGroup childFactory={child => React.cloneElement(child, { classNames: classNames })}>
-      <CSSTransition timeout={500} key={location.pathname}>
-        <Layout {...props}>
+    <Layout {...props}>
+      <TransitionGroup
+        childFactory={child => React.cloneElement(child, { classNames: classNames })}
+      >
+        <CSSTransition timeout={500} key={location.pathname}>
           <Switch location={location}>
             {routerConfig.map(r => (
               <Route {...r} key={r.path as Attributes['key']} />
             ))}
           </Switch>
-        </Layout>
-      </CSSTransition>
-    </TransitionGroup>
+        </CSSTransition>
+      </TransitionGroup>
+    </Layout>
   );
 }
 

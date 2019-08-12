@@ -1,0 +1,11 @@
+.recommend {
+  width: 100%;
+  color: #fff;
+  background: #403b4a; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #e7e9bb, #403b4a); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #e7e9bb,
+    #403b4a
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}

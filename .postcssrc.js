@@ -8,7 +8,7 @@ module.exports = {
       stage: 3
     },
     'postcss-plugin-px2rem': {
-      rootValue: 75, // 根节点fontSize，二倍图为75 一倍图为37.5
+      rootValue: 37.5, // 根节点fontSize，二倍图为75 一倍图为37.5
       unitPrecision: 5,
       propWhiteList: [],
       propBlackList: [],

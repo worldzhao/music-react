@@ -1,1 +1,1 @@
-export { default as demo } from './demo';
+export { default as recommend } from './recommend';

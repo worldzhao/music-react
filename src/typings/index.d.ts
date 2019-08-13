@@ -37,18 +37,5 @@ interface LoadingState<M extends Models> {
 
 export type RootState = RematchRootState<models> & LoadingState<models>;
 
-// response wrapper
-export interface Response<T> {
-  code: number;
-  msg: string;
-  data: T;
-}
-
-// demo页面相关类型定义
-export {
-  GetUserParams,
-  GetUserResponse,
-  PostUserParams,
-  PostUserResponse,
-  DemoModelState
-} from './demo';
+// recommend页面相关类型定义
+export { RecommendState, BannerResponse } from './recommend';

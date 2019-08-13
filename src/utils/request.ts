@@ -1,8 +1,8 @@
 import axios, { AxiosRequestConfig } from 'axios';
-import { Response } from '@/typings';
+import { Toast } from 'dora-ui';
 
 const instance = axios.create({
-  timeout: 5000 // 超时时间 5s
+  timeout: 3000 // 超时时间
 });
 
 // 增加请求拦截器
@@ -21,13 +21,25 @@ instance.interceptors.response.use(
     return response;
   },
   error => {
-    console.log(error.response);
+    Toast.info('接口异常，请稍后再试');
     return Promise.reject(error);
   }
 );
 
+const addTimestamp = (config: AxiosRequestConfig) => {
+  let { params } = config;
+  if (Object.prototype.toString.call(params) === '[object Object]') {
+    params['_'] = Date.now();
+  } else {
+    params = { _: Date.now() };
+  }
+  config.params = params;
+  return config;
+};
+
 function request<T>(config: AxiosRequestConfig) {
-  return instance.request<Response<T>>(config).then(res => res.data);
+  config = addTimestamp(config);
+  return instance.request<T>(config).then(res => res.data);
 }
 
 export default request;

@@ -1,4 +1,3 @@
-import '@/common/styles/anim.scss';
 import Layout from '@/layouts';
 import React, { Attributes } from 'react';
 import { RouteComponentProps, withRouter } from 'react-router';

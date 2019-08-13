@@ -7,3 +7,5 @@ export { default as HocCounter } from './HocCounter';
 export { default as Header } from './Header';
 
 export { default as Player } from './Player';
+
+export { default as Spin } from './Spin';

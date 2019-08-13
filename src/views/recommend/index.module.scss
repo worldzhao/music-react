@@ -1,11 +1,26 @@
-.recommend {
-  width: 100%;
-  color: #fff;
-  background: #403b4a; /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #e7e9bb, #403b4a); /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(
-    to right,
-    #e7e9bb,
-    #403b4a
-  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+.slick-dots {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+  bottom: 8px;
+  :global(.slick-active) {
+    background-color: #fff;
+  }
+
+  & > li {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background-color: rgba(34, 34, 34, 0.3);
+    border-radius: 50%;
+    margin-right: 8px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    & > button {
+      display: none;
+    }
+  }
 }

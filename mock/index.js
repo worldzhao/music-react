@@ -1,5 +1,5 @@
-const demoData = require('./demo');
+const recommendData = require('./recommend');
 
 module.exports = {
-  ...demoData
+  ...recommendData
 };

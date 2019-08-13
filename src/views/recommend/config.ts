@@ -1,3 +1,4 @@
+import { Settings } from 'react-slick';
 import styles from './index.module.scss';
 
 export const slickSettings = {
@@ -13,5 +14,6 @@ export const slickSettings = {
   cssEase: 'linear',
   swipe: true,
   pauseOnFocus: true,
-  pauseOnHover: true
+  pauseOnHover: true,
+  lazyLoad: (true as any) as Settings['lazyLoad']
 };

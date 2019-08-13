@@ -1,1 +1,1 @@
-export { getBanner } from './recommend';
+export { getBanner, getNewestAlbum } from './recommend';

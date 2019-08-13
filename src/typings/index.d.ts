@@ -38,4 +38,4 @@ interface LoadingState<M extends Models> {
 export type RootState = RematchRootState<models> & LoadingState<models>;
 
 // recommend页面相关类型定义
-export { RecommendState, BannerResponse } from './recommend';
+export { RecommendState, BannerResponse, NewestAlbumResponse } from './recommend';

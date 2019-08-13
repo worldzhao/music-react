@@ -1,4 +1,4 @@
-import { Spin } from '@/components';
+import { Spin, BetterImage } from '@/components';
 import { Dispatch, RecommendState, RootState } from '@/typings';
 import { _ } from '@/utils';
 import React, { PureComponent } from 'react';
@@ -9,6 +9,9 @@ import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
 import { slickSettings } from './config';
 import styles from './index.module.scss';
+import LazyLoad from 'react-lazyload';
+import dayjs from 'dayjs';
+import albumDefaultImg from '@/common/images/album-default-cover.png';
 
 const mapState = ({ recommend, loading }: RootState) => ({
   recommendState: recommend as RecommendState,
@@ -16,7 +19,8 @@ const mapState = ({ recommend, loading }: RootState) => ({
 });
 
 const mapDispatch = ({ recommend }: Dispatch) => ({
-  getBanner: recommend.getBannerAsync
+  getBanner: recommend.getBannerAsync,
+  getNewestAlbum: recommend.getNewestAlbumAsync
 });
 
 type Props = ReturnType<typeof mapState> &
@@ -25,7 +29,9 @@ type Props = ReturnType<typeof mapState> &
 
 class Recommend extends PureComponent<Props> {
   componentDidMount() {
-    this.props.getBanner();
+    const { getBanner, getNewestAlbum } = this.props;
+    getBanner();
+    getNewestAlbum();
   }
 
   // 渲染轮播图
@@ -48,11 +54,46 @@ class Recommend extends PureComponent<Props> {
     );
   }
 
+  // 渲染最新专辑
+  renderNewestAlbums() {
+    const { newestAlbums } = this.props.recommendState;
+    return (
+      <ul className={styles['newest-albums']}>
+        {newestAlbums.map(album => {
+          const {
+            name: albumName,
+            picUrl,
+            id,
+            artist: { name: artistName }
+          } = album;
+          return (
+            <li key={id} className={styles['album']}>
+              <LazyLoad overflow once offset={100}>
+                <BetterImage
+                  defaultImgSrc={albumDefaultImg}
+                  src={`${picUrl}?param=60y60`}
+                  alt="album-cover"
+                />
+              </LazyLoad>
+              <div className={styles['album-info']}>
+                <p className={styles['album-name']}>{albumName}</p>
+                <p className={styles['artist-name']}>{artistName}</p>
+              </div>
+              <span className={styles['date']}>{dayjs(Date.now()).format('MM-DD')}</span>
+            </li>
+          );
+        })}
+      </ul>
+    );
+  }
+
   render() {
     const { modelLoading } = this.props;
     return (
       <Spin fullScreen spinning={modelLoading} delay={500}>
         {this.renderSlick()}
+        <h2 className={styles['title']}>最新专辑</h2>
+        {this.renderNewestAlbums()}
       </Spin>
     );
   }

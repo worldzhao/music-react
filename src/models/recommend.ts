@@ -1,16 +1,22 @@
-import { getBanner } from '@/services';
+import { getBanner, getNewestAlbum } from '@/services';
 import { RecommendState } from '@/typings';
 import produce from 'immer';
 
 export default {
   state: {
-    banners: []
+    banners: [],
+    newestAlbums: []
   },
 
   effects: {
     async getBannerAsync() {
       const res = await getBanner();
       this.getBanner(res);
+    },
+
+    async getNewestAlbumAsync() {
+      const res = await getNewestAlbum();
+      this.getNewestAlbum(res);
     }
   },
 
@@ -18,6 +24,11 @@ export default {
     getBanner(state: RecommendState, payload: RecommendState['banners']) {
       return produce(state, draft => {
         draft.banners = payload;
+      });
+    },
+    getNewestAlbum(state: RecommendState, payload: RecommendState['newestAlbums']) {
+      return produce(state, draft => {
+        draft.newestAlbums = payload;
       });
     }
   }

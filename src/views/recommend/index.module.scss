@@ -1,3 +1,5 @@
+@import '~@/common/styles/mixin.scss';
+
 .slick-dots {
   position: absolute;
   left: 50%;
@@ -22,5 +24,51 @@
     & > button {
       display: none;
     }
+  }
+}
+
+.title {
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 400;
+  color: #31c27c;
+}
+
+.album {
+  display: flex;
+  margin: 20px;
+  margin-top: 0;
+
+  & > img {
+    width: 60px;
+    height: 60px;
+    margin-right: 20px;
+  }
+
+  &-info {
+    flex: 1;
+    line-height: 30px;
+    font-size: 15px;
+  }
+
+  .album-name {
+    color: #333;
+    font-weight: 500;
+    width: 200px;
+    @include ellipsis();
+  }
+
+  .artist-name {
+    color: rgba(0, 0, 0, 0.6);
+    width: 200px;
+    @include ellipsis();
+  }
+
+  .date {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 14px;
+    line-height: 60px;
   }
 }

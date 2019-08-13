@@ -1484,6 +1484,13 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-lazyload@^2.5.0":
+  version "2.5.0"
+  resolved "https://registry.npmjs.org/@types/react-lazyload/-/react-lazyload-2.5.0.tgz#7d8dd04c9a711fc0f1ea3419786acdcc01fb11dc"
+  integrity sha512-+SFmsxcC0l9mSXmoQMRtTbIW6YJQH+WxDWFG5N1b1JCiyTHZqekYcNKhGFTBvKktYOi3ET75+B4SeD52V7P1uw==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-redux@^7.1.1":
   version "7.1.1"
   resolved "https://registry.npmjs.org/@types/react-redux/-/react-redux-7.1.1.tgz#eb01e89cf71cad77df9f442b819d5db692b997cb"
@@ -3567,6 +3574,11 @@ date-now@^0.1.4:
   version "0.1.4"
   resolved "https://registry.npmjs.org/date-now/-/date-now-0.1.4.tgz#eaf439fd4d4848ad74e5cc7dbef200672b9e345b"
   integrity sha1-6vQ5/U1ISK105cx9vvIAZyueNFs=
+
+dayjs@^1.8.15:
+  version "1.8.15"
+  resolved "https://registry.npmjs.org/dayjs/-/dayjs-1.8.15.tgz#7121bc04e6a7f2621ed6db566be4a8aaf8c3913e"
+  integrity sha512-HYHCI1nohG52B45vCQg8Re3hNDZbMroWPkhz50yaX7Lu0ATyjGsTdoYZBpjED9ar6chqTx2dmSmM8A51mojnAg==
 
 debug@2.6.9, debug@^2.2.0, debug@^2.3.3, debug@^2.6.0, debug@^2.6.8, debug@^2.6.9:
   version "2.6.9"
@@ -9314,6 +9326,11 @@ react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.4, react-is
   version "16.8.6"
   resolved "https://registry.npmjs.org/react-is/-/react-is-16.8.6.tgz#5bbc1e2d29141c9fbdfed456343fe2bc430a6a16"
   integrity sha512-aUk3bHfZ2bRSVFFbbeVS4i+lNPZr3/WM5jT2J5omUVV1zzcs1nAaf3l51ctA5FFvCRbhrH0bdAsRRQddFJZPtA==
+
+react-lazyload@^2.6.2:
+  version "2.6.2"
+  resolved "https://registry.npmjs.org/react-lazyload/-/react-lazyload-2.6.2.tgz#6a1660de6e8653632797539189d19d64e924482c"
+  integrity sha512-zbFiwI3H7W0/Qvb6T/ew2NiGe2wj+soYNW7vv5Dte1eZuJDvvyUOHo8GpYfEeWoP5x4Rree2Hwop+lCISalBwg==
 
 react-redux@^7.1.0:
   version "7.1.0"

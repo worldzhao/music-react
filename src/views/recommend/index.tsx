@@ -1,12 +1,14 @@
 import { Spin } from '@/components';
 import { Dispatch, RecommendState, RootState } from '@/typings';
+import { _ } from '@/utils';
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router';
 import Slider from 'react-slick';
+import 'slick-carousel/slick/slick-theme.css';
+import 'slick-carousel/slick/slick.css';
 import { slickSettings } from './config';
 import styles from './index.module.scss';
-import { _ } from '@/utils';
 
 const mapState = ({ recommend, loading }: RootState) => ({
   recommendState: recommend as RecommendState,

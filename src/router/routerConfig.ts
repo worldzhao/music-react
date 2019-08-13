@@ -1,8 +1,5 @@
+import React from 'react';
 import { RouteProps } from 'react-router';
-import Recommend from '@/views/recommend';
-import Ranking from '@/views/ranking';
-import Singer from '@/views/singer';
-import Search from '@/views/search';
 
 type enterType = 'from-right' | 'from-bottom';
 type exitType = 'to-right' | 'to-bottom';
@@ -11,19 +8,19 @@ type routerConfig = (RouteProps & { animConfig?: { enter: enterType; exit: exitT
 const routerConfig: routerConfig = [
   {
     path: '/recommend',
-    component: Recommend
+    component: React.lazy(() => import(/* webpackChunkName: "recommend" */ '@/views/recommend'))
   },
   {
     path: '/ranking',
-    component: Ranking
+    component: React.lazy(() => import(/* webpackChunkName: "ranking" */ '@/views/ranking'))
   },
   {
     path: '/singer',
-    component: Singer
+    component: React.lazy(() => import(/* webpackChunkName: "singer" */ '@/views/singer'))
   },
   {
     path: '/search',
-    component: Search
+    component: React.lazy(() => import(/* webpackChunkName: "search" */ '@/views/search'))
   }
 ];
 

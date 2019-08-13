@@ -1,5 +1,5 @@
 import Layout from '@/layouts';
-import React, { Attributes } from 'react';
+import React, { Attributes, Suspense } from 'react';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
@@ -56,11 +56,13 @@ function Routes(props: Props) {
         childFactory={child => React.cloneElement(child, { classNames: classNames })}
       >
         <CSSTransition timeout={500} key={location.pathname}>
-          <Switch location={location}>
-            {routerConfig.map(r => (
-              <Route {...r} key={r.path as Attributes['key']} />
-            ))}
-          </Switch>
+          <Suspense fallback={<div>Loading...</div>}>
+            <Switch location={location}>
+              {routerConfig.map(r => (
+                <Route {...r} key={r.path as Attributes['key']} />
+              ))}
+            </Switch>
+          </Suspense>
         </CSSTransition>
       </TransitionGroup>
     </Layout>

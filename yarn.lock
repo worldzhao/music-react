@@ -1397,6 +1397,11 @@
   dependencies:
     "@babel/types" "^7.3.0"
 
+"@types/better-scroll@^1.12.1":
+  version "1.12.1"
+  resolved "https://registry.npmjs.org/@types/better-scroll/-/better-scroll-1.12.1.tgz#493d12ca4b5a23cf877bed2358cf0e0ca63cda98"
+  integrity sha512-jI/nmYl6+RbGsVIhJpqpoh09hC5Kf/OZiwYKCcfmoihpxxTPkeuNdz9DyRhdXf09Wgl1l9n/bOXXo9ucwgp4Lg==
+
 "@types/eslint-visitor-keys@^1.0.0":
   version "1.0.0"
   resolved "https://registry.npmjs.org/@types/eslint-visitor-keys/-/eslint-visitor-keys-1.0.0.tgz#1ee30d79544ca84d68d4b3cdb0af4f205663dd2d"

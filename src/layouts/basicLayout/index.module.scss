@@ -5,5 +5,9 @@
   &-content {
     height: calc(100vh - 84px - 52px);
     overflow-y: auto;
+
+    & > div {
+      height: 100%;
+    }
   }
 }

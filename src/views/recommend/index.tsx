@@ -1,7 +1,10 @@
-import { Spin, BetterImage } from '@/components';
+import albumDefaultImg from '@/common/images/album-default-cover.png';
+import { BetterImage, Scroll, Spin } from '@/components';
 import { Dispatch, RecommendState, RootState } from '@/typings';
 import { _ } from '@/utils';
+import dayjs from 'dayjs';
 import React, { PureComponent } from 'react';
+import LazyLoad, { forceCheck } from 'react-lazyload';
 import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router';
 import Slider from 'react-slick';
@@ -9,9 +12,6 @@ import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
 import { slickSettings } from './config';
 import styles from './index.module.scss';
-import LazyLoad from 'react-lazyload';
-import dayjs from 'dayjs';
-import albumDefaultImg from '@/common/images/album-default-cover.png';
 
 const mapState = ({ recommend, loading }: RootState) => ({
   recommendState: recommend as RecommendState,
@@ -90,11 +90,13 @@ class Recommend extends PureComponent<Props> {
   render() {
     const { modelLoading } = this.props;
     return (
-      <Spin fullScreen spinning={modelLoading} delay={500}>
-        {this.renderSlick()}
-        <h2 className={styles['title']}>最新专辑</h2>
-        {this.renderNewestAlbums()}
-      </Spin>
+      <Scroll shouldRefresh={!modelLoading} onScroll={forceCheck}>
+        <Spin fullScreen spinning={modelLoading} delay={500}>
+          {this.renderSlick()}
+          <h2 className={styles['title']}>最新专辑</h2>
+          {this.renderNewestAlbums()}
+        </Spin>
+      </Scroll>
     );
   }
 }

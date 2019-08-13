@@ -9,7 +9,7 @@ export const slickSettings = {
   slidesToShow: 1,
   slidesToScroll: 1,
   autoplay: true,
-  speed: 500,
+  speed: 1000,
   autoplaySpeed: 3000,
   cssEase: 'linear',
   swipe: true,

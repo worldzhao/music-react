@@ -15,5 +15,5 @@ module.exports = {
     ],
     // 开发模式下不使用code splitting 加快热更新速度
     isDev && 'dynamic-import-node'
-  ]
+  ].filter(Boolean)
 };

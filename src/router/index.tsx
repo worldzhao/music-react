@@ -3,6 +3,7 @@ import React, { Attributes, Suspense } from 'react';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import Spinner from '@/components/Spin/spinner';
 import routerConfig from './routerConfig';
 
 // 路由转场动画 https://juejin.im/post/5cb1e4275188251ace1feee9
@@ -53,10 +54,11 @@ function Routes(props: Props) {
   return (
     <Layout {...props}>
       <TransitionGroup
+        className="router-wrapper"
         childFactory={child => React.cloneElement(child, { classNames: classNames })}
       >
         <CSSTransition timeout={500} key={location.pathname}>
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<Spinner />}>
             <Switch location={location}>
               {routerConfig.map(r => (
                 <Route {...r} key={r.path as Attributes['key']} />

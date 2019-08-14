@@ -8,19 +8,43 @@ type routerConfig = (RouteProps & { animConfig?: { enter: enterType; exit: exitT
 const routerConfig: routerConfig = [
   {
     path: '/recommend',
-    component: React.lazy(() => import(/* webpackChunkName: "recommend" */ '@/views/recommend'))
+    component: React.lazy(() =>
+      import(
+        '@/views/recommend'
+        /* webpackChunkName: "recommend" */
+        /* webpackPrefetch: true */
+      )
+    )
   },
   {
     path: '/ranking',
-    component: React.lazy(() => import(/* webpackChunkName: "ranking" */ '@/views/ranking'))
+    component: React.lazy(() =>
+      import(
+        '@/views/ranking'
+        /* webpackChunkName: "ranking" */
+        /* webpackPrefetch: true */
+      )
+    )
   },
   {
     path: '/singer',
-    component: React.lazy(() => import(/* webpackChunkName: "singer" */ '@/views/singer'))
+    component: React.lazy(() =>
+      import(
+        '@/views/singer'
+        /* webpackChunkName: "singer" */
+        /* webpackPrefetch: true */
+      )
+    )
   },
   {
     path: '/search',
-    component: React.lazy(() => import(/* webpackChunkName: "search" */ '@/views/search'))
+    component: React.lazy(() =>
+      import(
+        /* webpackPrefetch: true */
+        /* webpackChunkName: "search" */
+        '@/views/search'
+      )
+    )
   }
 ];
 

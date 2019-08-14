@@ -5,8 +5,7 @@
   "scripts": {
     "start": "REACT_APP_ENV=dev node scripts/start.js",
     "dev": "yarn start",
-    "build": "node scripts/build.js",
-    "build:prod": "GENERATE_SOURCEMAP=false REACT_APP_ENV=prod yarn build",
+    "build": "REACT_APP_ENV=prod GENERATE_SOURCEMAP=false node scripts/build.js",
     "build:analyze": "REACT_APP_ANALYZE=true yarn build",
     "test": "node scripts/test.js",
     "commit": "git cz"
@@ -51,7 +50,6 @@
     "dora-ui": "^0.0.3",
     "immer": "^3.2.0",
     "react": "^16.8.6",
-    "react-app-polyfill": "^1.0.1",
     "react-dom": "^16.8.6",
     "react-lazyload": "^2.6.2",
     "react-redux": "^7.1.0",
@@ -59,8 +57,7 @@
     "react-slick": "^0.25.2",
     "react-transition-group": "^4.2.2",
     "redux": "^4.0.1",
-    "slick-carousel": "^1.8.1",
-    "vconsole": "^3.3.2"
+    "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
     "@babel/core": "^7.5.0",

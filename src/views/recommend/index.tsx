@@ -76,16 +76,26 @@ const Slider: FC<SliderProps> = memo(({ banners }: SliderProps) => {
     }
   };
 
+  const handleBannerClick = (event: React.MouseEvent<HTMLImageElement, MouseEvent>) => {
+    const url = event.currentTarget.dataset['url'];
+    if (_.isString(url)) {
+      window.location.href = url;
+    }
+  };
+
   return (
     <div className={styles['slick-container']}>
       <Slick {...slickSettings} ref={slickRef} onSwipe={handleSlickSwipe}>
         {banners.map(({ imageUrl, url }) => {
-          const handler = () => {
-            if (_.isString(url)) {
-              window.location.href = url;
-            }
-          };
-          return <img src={imageUrl} key={imageUrl} alt="banner" onClick={handler} />;
+          return (
+            <img
+              src={imageUrl}
+              key={imageUrl}
+              alt="banner"
+              onClick={handleBannerClick}
+              data-url={url}
+            />
+          );
         })}
       </Slick>
     </div>

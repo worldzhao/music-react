@@ -19,11 +19,64 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+    <title>Soul Beats</title>
+    <style>
+      .first-screen-spinner {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        justify-content: space-between;
+        width: 60px;
+      }
+
+      .first-screen-spinner > span {
+        width: 12px;
+        height: 30px;
+        background-color: #31c27c;
+      }
+
+      .first-screen-spinner > span:nth-of-type(1) {
+        animation: grow 1s -0.45s ease-in-out infinite;
+      }
+
+      .first-screen-spinner > span:nth-of-type(2) {
+        animation: grow 1s -0.3s ease-in-out infinite;
+      }
+
+      .first-screen-spinner > span:nth-of-type(3) {
+        animation: grow 1s -0.15s ease-in-out infinite;
+      }
+
+      .first-screen-spinner > span:nth-of-type(4) {
+        animation: grow 1s ease-in-out infinite;
+      }
+
+      @keyframes grow {
+        0%,
+        100% {
+          transform: scaleY(1);
+        }
+
+        50% {
+          transform: scaleY(2);
+        }
+      }
+    </style>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+    <div id="root">
+      <div class="first-screen-spinner">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.

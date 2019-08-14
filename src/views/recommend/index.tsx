@@ -28,11 +28,18 @@ type Props = ReturnType<typeof mapState> &
   RouteComponentProps<{}> & {};
 
 class Recommend extends PureComponent<Props> {
+  constructor(props: Props) {
+    super(props);
+    this.sliderInstance = React.createRef();
+  }
+
   componentDidMount() {
     const { getBanner, getNewestAlbum } = this.props;
     getBanner();
     getNewestAlbum();
   }
+
+  sliderInstance: React.RefObject<Slider>;
 
   // 渲染轮播图
   renderSlick() {
@@ -40,7 +47,7 @@ class Recommend extends PureComponent<Props> {
     if (banners.length < 1) return null;
     return (
       <div className={styles['slick-container']}>
-        <Slider {...slickSettings}>
+        <Slider ref={this.sliderInstance} {...slickSettings(this.sliderInstance.current as Slider)}>
           {banners.map(({ imageUrl, url }) => {
             const handler = () => {
               if (_.isString(url)) {

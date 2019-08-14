@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import styles from './index.module.scss';
 
-// 基于better-scroll封装Scroll组件 参考：https://juejin.im/post/5a3a6c12f265da4325297408#heading-3
+// 基于better-scroll封装Scroll组件 参考：
 
 interface Props {
   clickable: boolean;

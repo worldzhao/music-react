@@ -3,7 +3,7 @@ import { BetterImage, Scroll, Spin } from '@/components';
 import { Dispatch, RecommendState, RootState } from '@/typings';
 import { _ } from '@/utils';
 import dayjs from 'dayjs';
-import React, { createRef, FC, memo, useEffect } from 'react';
+import React, { FC, memo, useEffect, useRef } from 'react';
 import LazyLoad, { forceCheck } from 'react-lazyload';
 import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router';
@@ -53,11 +53,32 @@ interface SliderProps {
 }
 
 const Slider: FC<SliderProps> = memo(({ banners }: SliderProps) => {
-  const sliderRef = createRef<Slick>();
   if (banners.length < 1) return null;
+  let timer: any = undefined;
+
+  useEffect(() => {
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [timer]);
+
+  const slickRef = useRef<Slick>(null);
+
+  const handleSlickSwipe = () => {
+    if (slickRef.current) {
+      const { current: Slick } = slickRef;
+      clearTimeout(timer);
+      Slick.slickPause();
+      timer = setTimeout(() => {
+        Slick.slickPlay();
+        clearTimeout(timer);
+      }, slickSettings.autoplaySpeed);
+    }
+  };
+
   return (
     <div className={styles['slick-container']}>
-      <Slick ref={sliderRef} {...slickSettings(sliderRef.current as Slick)}>
+      <Slick {...slickSettings} ref={slickRef} onSwipe={handleSlickSwipe}>
         {banners.map(({ imageUrl, url }) => {
           const handler = () => {
             if (_.isString(url)) {

@@ -61,6 +61,7 @@ class Scroll extends Component<Props> {
 
   render() {
     const { children } = this.props;
+
     return (
       <div className={styles['scroll-view']} ref={this.scrollView}>
         {children}

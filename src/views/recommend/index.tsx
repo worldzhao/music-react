@@ -3,15 +3,73 @@ import { BetterImage, Scroll, Spin } from '@/components';
 import { Dispatch, RecommendState, RootState } from '@/typings';
 import { _ } from '@/utils';
 import dayjs from 'dayjs';
-import React, { PureComponent } from 'react';
+import React, { createRef, FC, memo, useEffect } from 'react';
 import LazyLoad, { forceCheck } from 'react-lazyload';
 import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router';
-import Slider from 'react-slick';
+import Slick from 'react-slick';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
 import { slickSettings } from './config';
 import styles from './index.module.scss';
+
+interface NewestAlbumsProps {
+  newestAlbums: RecommendState['newestAlbums'];
+}
+
+const NewestAlbums: FC<NewestAlbumsProps> = memo(({ newestAlbums }) => {
+  return (
+    <ul className={styles['newest-albums']}>
+      {newestAlbums.map(album => {
+        const {
+          name: albumName,
+          picUrl,
+          id,
+          artist: { name: artistName }
+        } = album;
+        return (
+          <li key={id} className={styles['album']}>
+            <LazyLoad overflow once offset={100}>
+              <BetterImage
+                defaultImgSrc={albumDefaultImg}
+                src={`${picUrl}?param=60y60`}
+                alt="album-cover"
+              />
+            </LazyLoad>
+            <div className={styles['album-info']}>
+              <p className={styles['album-name']}>{albumName}</p>
+              <p className={styles['artist-name']}>{artistName}</p>
+            </div>
+            <span className={styles['date']}>{dayjs(Date.now()).format('MM-DD')}</span>
+          </li>
+        );
+      })}
+    </ul>
+  );
+});
+
+interface SliderProps {
+  banners: RecommendState['banners'];
+}
+
+const Slider: FC<SliderProps> = memo(({ banners }: SliderProps) => {
+  const sliderRef = createRef<Slick>();
+  if (banners.length < 1) return null;
+  return (
+    <div className={styles['slick-container']}>
+      <Slick ref={sliderRef} {...slickSettings(sliderRef.current as Slick)}>
+        {banners.map(({ imageUrl, url }) => {
+          const handler = () => {
+            if (_.isString(url)) {
+              window.location.href = url;
+            }
+          };
+          return <img src={imageUrl} key={imageUrl} alt="banner" onClick={handler} />;
+        })}
+      </Slick>
+    </div>
+  );
+});
 
 const mapState = ({ recommend, loading }: RootState) => ({
   recommendState: recommend as RecommendState,
@@ -27,86 +85,28 @@ type Props = ReturnType<typeof mapState> &
   ReturnType<typeof mapDispatch> &
   RouteComponentProps<{}> & {};
 
-class Recommend extends PureComponent<Props> {
-  constructor(props: Props) {
-    super(props);
-    this.sliderInstance = React.createRef();
-  }
+const Recommend: FC<Props> = props => {
+  const { getBanner, getNewestAlbum, modelLoading, recommendState } = props;
 
-  componentDidMount() {
-    const { getBanner, getNewestAlbum } = this.props;
+  useEffect(() => {
     getBanner();
     getNewestAlbum();
-  }
+  }, [getBanner, getNewestAlbum]);
 
-  sliderInstance: React.RefObject<Slider>;
+  const { newestAlbums, banners } = recommendState;
 
-  // 渲染轮播图
-  renderSlick() {
-    const { banners } = this.props.recommendState;
-    if (banners.length < 1) return null;
-    return (
-      <div className={styles['slick-container']}>
-        <Slider ref={this.sliderInstance} {...slickSettings(this.sliderInstance.current as Slider)}>
-          {banners.map(({ imageUrl, url }) => {
-            const handler = () => {
-              if (_.isString(url)) {
-                window.location.href = url;
-              }
-            };
-            return <img src={imageUrl} key={imageUrl} alt="banner" onClick={handler} />;
-          })}
-        </Slider>
-      </div>
-    );
-  }
-
-  // 渲染最新专辑
-  renderNewestAlbums() {
-    const { newestAlbums } = this.props.recommendState;
-    return (
-      <ul className={styles['newest-albums']}>
-        {newestAlbums.map(album => {
-          const {
-            name: albumName,
-            picUrl,
-            id,
-            artist: { name: artistName }
-          } = album;
-          return (
-            <li key={id} className={styles['album']}>
-              <LazyLoad overflow once offset={100}>
-                <BetterImage
-                  defaultImgSrc={albumDefaultImg}
-                  src={`${picUrl}?param=60y60`}
-                  alt="album-cover"
-                />
-              </LazyLoad>
-              <div className={styles['album-info']}>
-                <p className={styles['album-name']}>{albumName}</p>
-                <p className={styles['artist-name']}>{artistName}</p>
-              </div>
-              <span className={styles['date']}>{dayjs(Date.now()).format('MM-DD')}</span>
-            </li>
-          );
-        })}
-      </ul>
-    );
-  }
-
-  render() {
-    const { modelLoading } = this.props;
-    return (
-      <Scroll shouldRefresh={!modelLoading} onScroll={forceCheck}>
-        <Spin fullScreen spinning={modelLoading} delay={500}>
-          {this.renderSlick()}
+  return (
+    <Scroll shouldRefresh={!modelLoading} onScroll={forceCheck}>
+      <Spin fullScreen spinning={modelLoading} delay={500}>
+        <div className={styles['recommend']}>
+          <Slider banners={banners} />
           <h2 className={styles['title']}>最新专辑</h2>
-          {this.renderNewestAlbums()}
-        </Spin>
-      </Scroll>
-    );
-  }
-}
+          <NewestAlbums newestAlbums={newestAlbums} />
+        </div>
+      </Spin>
+    </Scroll>
+  );
+};
 
 export default connect(
   mapState as any,

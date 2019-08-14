@@ -1,9 +1,9 @@
-import Slider, { Settings } from 'react-slick';
+import Slick, { Settings } from 'react-slick';
 import styles from './index.module.scss';
 
 const speed = 500; // 轮播切换速度
 const autoplaySpeed = 3000; // 轮播速度
-export const slickSettings = (instance: Slider) => {
+export const slickSettings = (instance: Slick) => {
   const settings = {
     dots: true,
     dotsClass: styles['slick-dots'],

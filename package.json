@@ -47,7 +47,7 @@
     "better-scroll": "1.5.5",
     "classnames": "^2.2.6",
     "dayjs": "^1.8.15",
-    "dora-ui": "^0.0.3",
+    "dora-ui": "^0.0.6",
     "immer": "^3.2.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",

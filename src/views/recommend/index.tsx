@@ -18,6 +18,7 @@ interface NewestAlbumsProps {
 }
 
 const NewestAlbums: FC<NewestAlbumsProps> = memo(({ newestAlbums }) => {
+  if (!Array.isArray(newestAlbums)) return null;
   return (
     <ul className={styles['newest-albums']}>
       {newestAlbums.map(album => {
@@ -53,6 +54,7 @@ interface SliderProps {
 }
 
 const Slider: FC<SliderProps> = memo(({ banners }: SliderProps) => {
+  if (!Array.isArray(banners)) return null;
   if (banners.length < 1) return null;
   let timer: any = undefined;
 
@@ -103,26 +105,23 @@ const Slider: FC<SliderProps> = memo(({ banners }: SliderProps) => {
 });
 
 const mapState = ({ recommend, loading }: RootState) => ({
-  recommendState: recommend as RecommendState,
+  recommendState: recommend,
   modelLoading: loading.models.recommend
 });
 
-const mapDispatch = ({ recommend }: Dispatch) => ({
-  getBanner: recommend.getBannerAsync,
-  getNewestAlbum: recommend.getNewestAlbumAsync
-});
+const mapDispatch = ({ recommend }: Dispatch) => ({ recommendDispatch: recommend });
 
 type Props = ReturnType<typeof mapState> &
   ReturnType<typeof mapDispatch> &
   RouteComponentProps<{}> & {};
 
 const Recommend: FC<Props> = props => {
-  const { getBanner, getNewestAlbum, modelLoading, recommendState } = props;
+  const { recommendDispatch, modelLoading, recommendState } = props;
 
   useEffect(() => {
-    getBanner();
-    getNewestAlbum();
-  }, [getBanner, getNewestAlbum]);
+    recommendDispatch.getBannerAsync();
+    recommendDispatch.getNewestAlbumAsync();
+  }, [recommendDispatch]);
 
   const { newestAlbums, banners } = recommendState;
 

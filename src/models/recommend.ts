@@ -3,10 +3,10 @@ import { RecommendState } from '@/typings';
 import produce from 'immer';
 
 export default {
-  state: {
+  state: ({
     banners: [],
     newestAlbums: []
-  },
+  } as any) as RecommendState,
 
   effects: {
     async getBannerAsync() {

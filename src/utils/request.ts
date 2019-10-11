@@ -46,11 +46,10 @@ instance.interceptors.response.use(
     return data;
   },
   error => {
-    // return Promise.reject(error); 非业务异常无需抛出错误 内部吞掉
     const { status } = error.response;
     console.warn(`http error: status-${status} message-${codeMessage[status]}`);
     Toast.info(codeMessage[status]);
-    return null;
+    return Promise.reject(error);
   }
 );
 
